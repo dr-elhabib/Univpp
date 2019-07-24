@@ -5,13 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace Univ
+namespace Univ.lib
 {
-    class Command : ICommand
+    public class Command : ICommand
     {
-        public event EventHandler CanExecuteChanged;
 
         private Action Action;
+
+        public event EventHandler CanExecuteChanged;
+
         public bool CanExecute(object parameter)
         {
             return true;

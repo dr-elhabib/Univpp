@@ -1,0 +1,317 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Univ.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="card">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="num" Type="int" Nullable="false" />
+    <Property Name="year" Type="int" Nullable="false" />
+    <Property Name="id_prosess" Type="int" Nullable="false" />
+    <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="location" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="card_7isab">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="visa" Type="varchar" MaxLength="255" />
+    <Property Name="id_card" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="card_dafa3">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cost" Type="double" Nullable="false" />
+    <Property Name="alcost" Type="text" Nullable="false" />
+    <Property Name="num" Type="int" Nullable="false" />
+    <Property Name="location" Type="text" Nullable="false" />
+    <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="id_part" Type="int" Nullable="false" />
+    <Property Name="tswiya" Type="text" />
+  </EntityType>
+  <EntityType Name="card_kanoni">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_card" Type="int" Nullable="false" />
+    <Property Name="cost" Type="double" Nullable="false" />
+    <Property Name="visa" Type="text" />
+    <Property Name="id_client" Type="int" Nullable="false" />
+    <Property Name="id_part" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="card_mo7sabi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="cost" Type="double" Nullable="false" />
+    <Property Name="id_card" Type="int" Nullable="false" />
+    <Property Name="id_part" Type="int" Nullable="false" />
+    <Property Name="oldCost" Type="double" Nullable="false" />
+    <Property Name="id_client" Type="int" Nullable="false" />
+    <Property Name="visa" Type="text" />
+    <Property Name="num" Type="int" Nullable="false" />
+    <Property Name="subject" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="card_sa7ab">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_card" Type="int" Nullable="false" />
+    <Property Name="cost" Type="double" Nullable="false" />
+    <Property Name="old_cost" Type="double" Nullable="false" />
+    <Property Name="visa" Type="text" />
+  </EntityType>
+  <EntityType Name="client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="bank" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="num_account" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="gence" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="address" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="part">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="Cost" Type="double" Nullable="false" />
+    <Property Name="Id_Pro" Type="int" Nullable="false" />
+    <Property Name="num" Type="int" Nullable="false" />
+    <Property Name="num_type" Type="int" Nullable="false" />
+    <Property Name="alpart" Type="text" Nullable="false" />
+    <Property Name="nowcost" Type="double" Nullable="false" />
+  </EntityType>
+  <EntityType Name="processes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Code" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="Name" Type="text" Nullable="false" />
+    <Property Name="date" Type="date" Nullable="false" />
+    <Property Name="num" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="NewCost" Type="double" Nullable="false" />
+    <Property Name="location" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="year">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="year" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="card_7isab_ibfk_1">
+    <End Role="card" Type="Self.card" Multiplicity="1" />
+    <End Role="card_7isab" Type="Self.card_7isab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_7isab">
+        <PropertyRef Name="id_card" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_dafa3_ibfk_1">
+    <End Role="part" Type="Self.part" Multiplicity="1" />
+    <End Role="card_dafa3" Type="Self.card_dafa3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="part">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_dafa3">
+        <PropertyRef Name="id_part" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_ibfk_1">
+    <End Role="year" Type="Self.year" Multiplicity="1" />
+    <End Role="card" Type="Self.card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card">
+        <PropertyRef Name="year" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_ibfk_2">
+    <End Role="processes" Type="Self.processes" Multiplicity="1" />
+    <End Role="card" Type="Self.card" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="processes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card">
+        <PropertyRef Name="id_prosess" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_kanoni_ibfk_1">
+    <End Role="card" Type="Self.card" Multiplicity="1" />
+    <End Role="card_kanoni" Type="Self.card_kanoni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_kanoni">
+        <PropertyRef Name="id_card" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_kanoni_ibfk_2">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="card_kanoni" Type="Self.card_kanoni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_kanoni">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_kanoni_ibfk_3">
+    <End Role="part" Type="Self.part" Multiplicity="1" />
+    <End Role="card_kanoni" Type="Self.card_kanoni" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="part">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_kanoni">
+        <PropertyRef Name="id_part" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_mo7sabi_ibfk_1">
+    <End Role="card" Type="Self.card" Multiplicity="1" />
+    <End Role="card_mo7sabi" Type="Self.card_mo7sabi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_mo7sabi">
+        <PropertyRef Name="id_card" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_mo7sabi_ibfk_2">
+    <End Role="part" Type="Self.part" Multiplicity="1" />
+    <End Role="card_mo7sabi" Type="Self.card_mo7sabi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="part">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_mo7sabi">
+        <PropertyRef Name="id_part" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_mo7sabi_ibfk_4">
+    <End Role="client" Type="Self.client" Multiplicity="1" />
+    <End Role="card_mo7sabi" Type="Self.card_mo7sabi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_mo7sabi">
+        <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_sa7ab_ibfk_1">
+    <End Role="card" Type="Self.card" Multiplicity="1" />
+    <End Role="card_sa7ab" Type="Self.card_sa7ab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_sa7ab">
+        <PropertyRef Name="id_card" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="par_ibfk_1">
+    <End Role="processes" Type="Self.processes" Multiplicity="1" />
+    <End Role="part" Type="Self.part" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="processes">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="part">
+        <PropertyRef Name="Id_Pro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="UnivStoreContainer">
+    <EntitySet Name="card" EntityType="Self.card" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="card_7isab" EntityType="Self.card_7isab" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="card_dafa3" EntityType="Self.card_dafa3" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="card_kanoni" EntityType="Self.card_kanoni" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="card_mo7sabi" EntityType="Self.card_mo7sabi" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="card_sa7ab" EntityType="Self.card_sa7ab" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="client" EntityType="Self.client" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="part" EntityType="Self.part" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="processes" EntityType="Self.processes" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="year" EntityType="Self.year" Schema="db_univ" store:Type="Tables" />
+    <AssociationSet Name="card_7isab_ibfk_1" Association="Self.card_7isab_ibfk_1">
+      <End Role="card" EntitySet="card" />
+      <End Role="card_7isab" EntitySet="card_7isab" />
+    </AssociationSet>
+    <AssociationSet Name="card_dafa3_ibfk_1" Association="Self.card_dafa3_ibfk_1">
+      <End Role="part" EntitySet="part" />
+      <End Role="card_dafa3" EntitySet="card_dafa3" />
+    </AssociationSet>
+    <AssociationSet Name="card_ibfk_1" Association="Self.card_ibfk_1">
+      <End Role="year" EntitySet="year" />
+      <End Role="card" EntitySet="card" />
+    </AssociationSet>
+    <AssociationSet Name="card_ibfk_2" Association="Self.card_ibfk_2">
+      <End Role="processes" EntitySet="processes" />
+      <End Role="card" EntitySet="card" />
+    </AssociationSet>
+    <AssociationSet Name="card_kanoni_ibfk_1" Association="Self.card_kanoni_ibfk_1">
+      <End Role="card" EntitySet="card" />
+      <End Role="card_kanoni" EntitySet="card_kanoni" />
+    </AssociationSet>
+    <AssociationSet Name="card_kanoni_ibfk_2" Association="Self.card_kanoni_ibfk_2">
+      <End Role="client" EntitySet="client" />
+      <End Role="card_kanoni" EntitySet="card_kanoni" />
+    </AssociationSet>
+    <AssociationSet Name="card_kanoni_ibfk_3" Association="Self.card_kanoni_ibfk_3">
+      <End Role="part" EntitySet="part" />
+      <End Role="card_kanoni" EntitySet="card_kanoni" />
+    </AssociationSet>
+    <AssociationSet Name="card_mo7sabi_ibfk_1" Association="Self.card_mo7sabi_ibfk_1">
+      <End Role="card" EntitySet="card" />
+      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
+    </AssociationSet>
+    <AssociationSet Name="card_mo7sabi_ibfk_2" Association="Self.card_mo7sabi_ibfk_2">
+      <End Role="part" EntitySet="part" />
+      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
+    </AssociationSet>
+    <AssociationSet Name="card_mo7sabi_ibfk_4" Association="Self.card_mo7sabi_ibfk_4">
+      <End Role="client" EntitySet="client" />
+      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
+    </AssociationSet>
+    <AssociationSet Name="card_sa7ab_ibfk_1" Association="Self.card_sa7ab_ibfk_1">
+      <End Role="card" EntitySet="card" />
+      <End Role="card_sa7ab" EntitySet="card_sa7ab" />
+    </AssociationSet>
+    <AssociationSet Name="par_ibfk_1" Association="Self.par_ibfk_1">
+      <End Role="processes" EntitySet="processes" />
+      <End Role="part" EntitySet="part" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

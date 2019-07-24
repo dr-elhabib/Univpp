@@ -11,7 +11,6 @@ namespace Univ
     {
         public override void OnValueChanged(DependencyObject sender, DependencyPropertyChangedEventArgs e)
         {
-            MessageBox.Show("no");
 
         }
     }

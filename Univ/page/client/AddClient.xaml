@@ -1,0 +1,68 @@
+﻿<Page x:Class="Univ.page.AddClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Univ.page"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      FontFamily="{ StaticResource Medium}"
+      FlowDirection="RightToLeft"
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="AddClient">
+
+    <materialDesign:Card        Padding="0 0 0 30"               materialDesign:ShadowAssist.ShadowDepth="Depth5"
+>
+        <StackPanel >
+
+            <StackPanel  HorizontalAlignment="Center" Margin="20"  Orientation="Horizontal">
+                <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center" Text="معلومات العميل الجديد" FontSize="20" FontWeight="Bold"/>
+            </StackPanel>
+
+            <Grid   >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="0"  BorderBrush="Black" BorderThickness="0 0 1 0 ">
+                <StackPanel Margin="20 10"
+                            
+                            >
+                  
+                        <StackPanel Margin="10" Orientation="Horizontal">
+                        <materialDesign:PackIcon Width="40" Height="40" VerticalAlignment="Center" Kind="RenameBox" />
+                        <TextBox materialDesign:HintAssist.Hint="الإسم"  Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10" Text="{Binding Name}" TextAlignment="Center" TextWrapping="Wrap" 
+                                 AcceptsReturn="True" Width="300" Height="100"/>
+                    </StackPanel>
+
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <materialDesign:PackIcon Width="40" Height="40" VerticalAlignment="Center" Kind="Numeric" />
+                            <TextBox materialDesign:HintAssist.Hint=" الرقم الحساب "  Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"  Text="{Binding numaccount}" Margin="10"  Width="200" Height="60" />
+                    </StackPanel>
+                    <StackPanel Margin="10"  Orientation="Horizontal">
+                            <materialDesign:PackIcon Width="40" Height="40" Kind="AlphabetBBox" VerticalAlignment="Center"/>
+                            <TextBox materialDesign:HintAssist.Hint="الوكالة"  Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"  Text="{Binding agence}" Margin="10"  Width="200" Height="60" />
+                    </StackPanel>
+
+                    
+                </StackPanel>
+                </Border>
+                <StackPanel Grid.Column="1">
+
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <materialDesign:PackIcon Width="40" Height="40" VerticalAlignment="Center" Kind="BankTransferIn"  />
+                        <TextBox materialDesign:HintAssist.Hint=" إسم البنك  "  Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}"  Text="{Binding bank}" Margin="10"  Width="200" Height="60" />
+                    </StackPanel>
+                    <StackPanel Margin="10" Orientation="Horizontal">
+                        <materialDesign:PackIcon Width="40" Height="40" VerticalAlignment="Center" Kind="RoadVariant" />
+                        <TextBox materialDesign:HintAssist.Hint="العنوان الكامل "  Style="{StaticResource MaterialDesignOutlinedTextFieldTextBox}" Margin="10" Text="{Binding address}" TextAlignment="Center" TextWrapping="Wrap" 
+                            AcceptsReturn="True" Width="300" Height="100"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Button  Margin="3 0  100 0"  Command="{Binding save}" BorderBrush="Green" materialDesign:ShadowAssist.ShadowDepth="Depth0"  VerticalAlignment="Bottom" HorizontalAlignment="Right" Background="Transparent"    >
+                <TextBlock Text="حفظ" Foreground="Green" FontWeight="Bold"  />
+            </Button>
+        </StackPanel>
+    </materialDesign:Card>
+</Page>

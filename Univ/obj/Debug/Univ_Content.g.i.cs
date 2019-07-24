@@ -8,7 +8,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/univ.context.tt")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("model/univ.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("modeldb/db.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("modeldb/db.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("res/html/page1.html")]
 
 

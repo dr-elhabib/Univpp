@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Univ.lib;
+using Univ.modeldb;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,11 +23,14 @@ namespace Univ
     public partial class MainWindow : Window
     {
         public MainWindow()
-
         {
             InitializeComponent();
-            this.DataContext = new WindowModelView(this);
-        }        
+
+            //       univdb db = new univdb();
+            //  MessageBox.Show((db.processes.ToList())[0].date + "");
+            this.DataContext = Ico.getValue<ContentApp>();
+
+        }
 
         private void FullScreenButton(object sender, RoutedEventArgs e)
         {
@@ -37,12 +42,8 @@ namespace Univ
         }
         private void ResizeButton(object sender, RoutedEventArgs e)
         {
-            this.WindowState ^= WindowState.Minimized;
+            this.WindowState = WindowState.Minimized;
         }
 
-        private void Frame_Navigated(object sender, NavigationEventArgs e)
-        {
-
-        }
     }
 }

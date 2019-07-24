@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="Univ.page.Addsa7ab "
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Univ.page"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontFamily="{StaticResource Medium}"
+             FlowDirection="RightToLeft"
+             Width="600"
+             >
+    <materialDesign:Card Padding="10"  Background="White"  >
+        <StackPanel>
+            <StackPanel>
+                <Border Margin="20" Width="200" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
+                    <TextBlock FontWeight="Bold" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="16" Text="إنشاء سحب إلتزام   "/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel >
+
+                <StackPanel>
+                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="معلومات العملية :"/>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text="  إسم العملية :   "/>
+                        <TextBlock Text="{Binding namepro}"/>
+
+                    </StackPanel>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text="    رصيد العملية :  "/>
+                        <TextBlock Text="{Binding Cost}"/>
+                    </StackPanel>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text="  المبلغ السحب  :  "/>
+                        <TextBlock Text="{Binding sa7abCost}"/>
+                    </StackPanel>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text="  تاريخ عدم السداد    :  "/>
+                        <TextBlock Text="{Binding date}"/>
+                    </StackPanel>
+                </StackPanel>
+                
+            </StackPanel>
+
+            <StackPanel 
+                
+                VerticalAlignment="Bottom"
+                Margin="10"
+        Orientation="Horizontal"
+        HorizontalAlignment="Right">
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+          Margin="8"
+          Command="{Binding savecommand}">
+                    إنشاء 
+                </Button>
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+          Margin="8"
+          Command="{Binding Cancelcommand}">
+إلفاء                 </Button>
+               
+            </StackPanel>
+        </StackPanel>
+
+    </materialDesign:Card>
+
+</UserControl>

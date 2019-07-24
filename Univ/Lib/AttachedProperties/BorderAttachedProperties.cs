@@ -16,12 +16,12 @@ namespace Univ
         /// <summary>
         /// Called when the parent border first loads
         /// </summary>
-        private RoutedEventHandler mBorder_Loaded;
+      //  private RoutedEventHandler mBorder_Loaded;
 
         /// <summary>
         /// Called when the border size changes
         /// </summary>
-        private SizeChangedEventHandler mBorder_SizeChanged;
+       // private SizeChangedEventHandler mBorder_SizeChanged;
 
         #endregion
 
