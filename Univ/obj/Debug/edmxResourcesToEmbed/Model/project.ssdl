@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_univModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tb_project">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nom" Type="text" Nullable="false" />
+    <Property Name="cost" Type="double" Nullable="false" />
+    <Property Name="type" Type="text" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'def.db_univ.tb_user' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tb_user">
+    <Key>
+      <PropertyRef Name="username" />
+      <PropertyRef Name="password" />
+      <PropertyRef Name="date_reg" />
+    </Key>
+    <Property Name="username" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="45" Nullable="false" />
+    <Property Name="date_reg" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="db_univModelStoreContainer">
+    <EntitySet Name="tb_project" EntityType="Self.tb_project" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="tb_user" EntityType="Self.tb_user" store:Type="Tables" store:Schema="db_univ">
+      <DefiningQuery>SELECT
+`tb_user`.`username`, 
+`tb_user`.`password`, 
+`tb_user`.`date_reg`
+FROM `tb_user` AS `tb_user`</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

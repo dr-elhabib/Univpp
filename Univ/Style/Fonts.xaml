@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:Univ">
+    <FontFamily x:Key="test">pack://application:,,,/Fonts/#Loew Next Arabic Black</FontFamily>
+    <FontFamily x:Key="Medium">pack://application:,,,/Fonts/#AirArabia</FontFamily>
+    <FontFamily x:Key="vip">pack://application:,,,/Fonts/#VIP Rawy Regular</FontFamily>
+    <FontFamily x:Key="al">pack://application:,,,/Fonts/#Al-Rashed Riyadh</FontFamily>
+    <FontFamily x:Key="FontAwesome">pack://application;,,,/Fonts/#FontAwesome</FontFamily>
+<FontFamily x:Key="fa_r">pack://application:,,,/Fonts/#Al-Rashed Riyadh</FontFamily>
+    <FontFamily x:Key="fa_l">pack://application:,,,/Fonts/#Al-Rashed Riyadh</FontFamily>
+    <FontFamily x:Key="test1">pack://application:,,,/Fonts/#Tajawal ExtraLight</FontFamily>
+    <FontFamily x:Key="Emma">pack://application:,,,/Fonts/#Emma Sophia</FontFamily>
+</ResourceDictionary>
