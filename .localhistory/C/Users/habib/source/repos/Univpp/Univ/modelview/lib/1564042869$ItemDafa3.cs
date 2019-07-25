@@ -72,7 +72,7 @@ namespace Univ.modelview
             bool can = true;
             foreach (var c in Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.id_part == card_dafa3.id_part && c.date < card_dafa3.date))
             {
-                if (c.tswiya == null)
+                if (c.visa == null)
                 {
                     can = false;
                     break;
@@ -83,10 +83,6 @@ namespace Univ.modelview
                 {
 
                     addtswiya(card_dafa3);
-                }
-                else
-                {
-                    MessageBox.Show("هنالك بطاقة ليست لها تأشيرة قبل هذه البطاقة ");
                 }
             });
             edittswiya = new Command(() => {

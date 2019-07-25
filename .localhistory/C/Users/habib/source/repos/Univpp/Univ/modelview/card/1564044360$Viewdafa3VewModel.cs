@@ -96,6 +96,7 @@ namespace Univ.modelview
                 d += m.cost;
             }
 
+            MessageBox.Show("" + d);
             this.newcost = (part.nowcost);
             this.old_cost = (d - part.nowcost);
 

@@ -12,57 +12,35 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class Addsa7abiVewModel : BaseViewModel
+    class Addmo7asabiVewModel : BaseViewModel
     {
 
         public part part { get; set; }
 
         public double Cost { get; set; }
-        public double sa7abCost { get; set; } = 0;
         
         public string namepro { get; set; }
-        public string date { get; set; }
-        public Command Cancelcommand { get; set; }
-
+        public string namepart { get; set; }
+        public string client { get; set; }
+        public string subject { get; set; }
+        public double cost { get; set; }
+      
         public Command savecommand { get; set; }
         public client ClientSelected { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
         public Action<ItemDafa3> saveElement;
-        public Addsa7abiVewModel(process process)
+        public Addmo7asabiVewModel(card_kanoni card_kanoni)
         {
-            this.namepro = process.Name;
-            this.Cost = process.NewCost;
-            this.date = Ico.getValue<Date>().GetPevDate().year1.Year + "/12/31";
-            Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(get_data(process));
-            IEnumerable<card_dafa3> get_data(process p)
-            {
-
-                var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.part.Id_Pro == p.Id && c.tswiya == null).ToList();
-                
-
-                    foreach (var c in cs)
-                {
-                    Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr=> pr.Id == c.id_part).First().nowcost -= c.Cost;
-                }
-                return cs;
-            }
-
-            foreach (var p in Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id_Pro == pr.Id_Pro).ToList())
-            {
-                double ps = 0d;
-                foreach (var m in p.card_mo7sabi.ToList().Where(c => c.visa != null).ToList()) {
-                    ps += m.cost;
-                }
-                ps -= p.nowcost;
-                sa7abCost += ps;
-            }
-
-
+            part = card_kanoni.part;
+            this.namepro = card_kanoni.part.process.Name;
+            this.cost = card_kanoni.cost;
+            this.namepart = part.Name;
+            this.client = card_kanoni.client.Name;
             //  var carda = Ico.getValue<db>().GetUnivdb().years.Where(y => y.year1.Year == DateTime.Now.Year).ToList().FirstOrDefault().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro)
             //    .ToList().FirstOrDefault();
 
-        /*    var carda = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => (c.card.year1.Id == Ico.getValue<db>().GetUnivdb().years.ToList()
+            var carda = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => (c.card.year1.Id == Ico.getValue<db>().GetUnivdb().years.ToList()
             .Where(y => y.year1.Year == DateTime.Now.Year).ToList().FirstOrDefault().Id)&& c.id_part == card_kanoni.id_part)
                 .ToList().OrderByDescending(c => c.num).ToList().FirstOrDefault();
             //.card_mo7sabi.Where(c=>c.id_part== card_kanoni.id_part).OrderByDescending(c=>c.num).LastOrDefault();
@@ -70,19 +48,19 @@ namespace Univ.modelview
             var numm = 1;
             if (carda != null) {
                 numm = carda.num + 1;
-                MessageBox.Show("" + carda.num);
             }
             var nums = (numm.ToString().Length == 1) ? "0" + numm.ToString() : numm.ToString();
-          */  
+            this.subject = "الإلتزام المحاسبي رقم "+ nums + " للعقد المتعلق بالعملية "+ part.process.Name;
+
             savecommand = new Command( () =>
             {
 
-/*
             var d = 0d;
-            foreach (var c in part.card_mo7sabi.ToList())
+            foreach (var c in Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p=>p.Id==part.Id).ToList().FirstOrDefault().card_mo7sabi.ToList())
             {
                 d += c.cost;
             }
+                MessageBox.Show(d+"");
                 if ((part.Cost - d) >= Cost)
                 {
                     acc();
@@ -129,14 +107,9 @@ namespace Univ.modelview
 
                     MessageBox.Show("المبلغ أكبر من الرصيد المتاح");
 
-                }*/
+                }
             });
 
-
-            Cancelcommand = new Command(() => {
-                con();
-
-            });
         }
     }
 

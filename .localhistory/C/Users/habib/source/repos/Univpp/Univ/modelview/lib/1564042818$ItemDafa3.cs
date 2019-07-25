@@ -69,25 +69,8 @@ namespace Univ.modelview
                 action_edit(card_dafa3);
             });
             tswiya = new Command(() => {
-            bool can = true;
-            foreach (var c in Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.id_part == card_dafa3.id_part && c.date < card_dafa3.date))
-            {
-                if (c.tswiya == null)
-                {
-                    can = false;
-                    break;
-                }
-            }
 
-                if (can)
-                {
-
-                    addtswiya(card_dafa3);
-                }
-                else
-                {
-                    MessageBox.Show("هنالك بطاقة ليست لها تأشيرة قبل هذه البطاقة ");
-                }
+                addtswiya(card_dafa3);
             });
             edittswiya = new Command(() => {
 

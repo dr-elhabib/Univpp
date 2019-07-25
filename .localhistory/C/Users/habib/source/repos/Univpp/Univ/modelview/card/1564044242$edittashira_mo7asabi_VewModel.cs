@@ -12,32 +12,30 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class AddtswiyaVewModel : BaseViewModel
+    class Edittashira_mo7asabi_VewModel : BaseViewModel
     {
-        public string tswiya { get; set; }
+        public string visa { get; set; }
         public string num { get; set; }
         public string part { get; set; }
         public string cost { get; set; }
+       
 
-
-        public Command Cancelcommand { get; set; }
 
         public Command savecommand { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
-        public AddtswiyaVewModel(card_dafa3 card_dafa3)
+        public Edittashira_mo7asabi_VewModel(card_mo7sabi card_mo7sabi)
         {
-            this.num = card_dafa3.num.ToString();
-            this.part = card_dafa3.part.Name;
-            this.cost = String.Format("{0:0.00}", card_dafa3.Cost);
+            this.num = card_mo7sabi.num.ToString();
+            this.visa = card_mo7sabi.visa;
+            this.part = card_mo7sabi.part.Name;
+            this.cost = String.Format("{0:0.00}", card_mo7sabi.cost);
             savecommand = new Command( () =>
             {
                 acc();
-                Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(d => d.Id == card_dafa3.Id).ToList().FirstOrDefault().tswiya=tswiya;
+                Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(d => d.Id == card_mo7sabi.Id).ToList().FirstOrDefault().visa= visa;
                 Ico.getValue<db>().savedb();
-                Card_dafa3Execl card_Dafa3Execl = new Card_dafa3Execl(Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(d => d.Id == card_dafa3.Id).ToList().FirstOrDefault());
-                card_Dafa3Execl.CreateCard();
-             con();
+                con();
             });
 
             Cancelcommand = new Command(() => {

@@ -27,8 +27,6 @@ namespace Univ.modelview
         public string bankclient { get; set; }
         public string codebankclient { get; set; }
 
-        public Command Cancelcommand { get; set; }
-
         public Command savecommand { get; set; }
         public Command back{get; set; }
         public client ClientSelected { get; set; }

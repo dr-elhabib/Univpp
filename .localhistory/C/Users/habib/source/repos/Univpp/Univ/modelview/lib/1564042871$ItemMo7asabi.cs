@@ -83,6 +83,7 @@ namespace Univ.modelview
 
             if (can)
             {
+                    MessageBox.Show("هنالك بطاقة ");
 
                     addtashira(card_mo7sabi);
                      }   

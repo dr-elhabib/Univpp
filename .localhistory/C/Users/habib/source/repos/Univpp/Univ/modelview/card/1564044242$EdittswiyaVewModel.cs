@@ -12,23 +12,23 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class AddtswiyaVewModel : BaseViewModel
+    class EdittswiyaVewModel : BaseViewModel
     {
         public string tswiya { get; set; }
         public string num { get; set; }
         public string part { get; set; }
         public string cost { get; set; }
+       
 
-
-        public Command Cancelcommand { get; set; }
 
         public Command savecommand { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
-        public AddtswiyaVewModel(card_dafa3 card_dafa3)
+        public EdittswiyaVewModel(card_dafa3 card_dafa3)
         {
             this.num = card_dafa3.num.ToString();
             this.part = card_dafa3.part.Name;
+            this.tswiya = card_dafa3.tswiya;
             this.cost = String.Format("{0:0.00}", card_dafa3.Cost);
             savecommand = new Command( () =>
             {
@@ -40,10 +40,6 @@ namespace Univ.modelview
              con();
             });
 
-            Cancelcommand = new Command(() => {
-                con();
-
-            });
         }
     }
 

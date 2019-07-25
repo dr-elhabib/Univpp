@@ -12,34 +12,32 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class Addtashira_7isabi_VewModel : BaseViewModel
+    class Edittashira_kanoni_VewModel : BaseViewModel
     {
         public string visa { get; set; }
         public string num { get; set; }
         public string part { get; set; }
+        public string cost { get; set; }
+       
 
-
-        public Command Cancelcommand { get; set; }
 
         public Command savecommand { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
-        public Addtashira_7isabi_VewModel(card_7isab card_7isab)
+        public Edittashira_kanoni_VewModel(card_kanoni card_kanoni)
         {
-            this.num = card_7isab.card.num.ToString();
-            this.part = card_7isab.card.process.Name;
+            this.num = card_kanoni.card.num.ToString();
+            this.visa = card_kanoni.visa;
+            this.part = card_kanoni.part.Name;
+            this.cost = String.Format("{0:0.00}", card_kanoni.cost);
             savecommand = new Command( () =>
             {
                 acc();
-                Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(d => d.Id == card_7isab.Id).ToList().FirstOrDefault().visa= visa;
+                Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(d => d.id == card_kanoni.id).ToList().FirstOrDefault().visa= visa;
                 Ico.getValue<db>().savedb();
                 con();
             });
 
-            Cancelcommand = new Command(() => {
-                con();
-
-            });
         }
     }
 

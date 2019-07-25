@@ -17,9 +17,8 @@ namespace Univ.modelview
         public string visa { get; set; }
         public string num { get; set; }
         public string part { get; set; }
+       
 
-
-        public Command Cancelcommand { get; set; }
 
         public Command savecommand { get; set; }
         public Action acc { set; get; }

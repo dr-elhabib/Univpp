@@ -28,7 +28,6 @@ namespace Univ.modelview
         public string codebankclient { get; set; }
 
         public Command savecommand { get; set; }
-        public Command Cancelcommand { get; set; }
         public client ClientSelected { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
@@ -59,7 +58,7 @@ namespace Univ.modelview
 
                 }
 
-                if ((d - d2) >= Cost)
+                if ((d - d2) > Cost)
                 {
 
                     acc();
@@ -95,12 +94,9 @@ namespace Univ.modelview
 
                 }
                 //              var cardm = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.Id == card_mo7sabi.Id).SingleOrDefault();
-                //    Ico.gtValue<ContentApp>().SetPage(new Viewdafa3(cardm));
+                //    Ico.getValue<ContentApp>().SetPage(new Viewdafa3(cardm));
             });
-            Cancelcommand = new Command(()=> {
-                con();
 
-            });
         }
     }
 

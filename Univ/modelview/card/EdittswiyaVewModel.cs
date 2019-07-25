@@ -22,6 +22,7 @@ namespace Univ.modelview
 
 
         public Command savecommand { get; set; }
+        public Command Cancelcommand { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
         public EdittswiyaVewModel(card_dafa3 card_dafa3)
@@ -40,6 +41,10 @@ namespace Univ.modelview
              con();
             });
 
+            Cancelcommand = new Command(() => {
+                con();
+
+            });
         }
     }
 

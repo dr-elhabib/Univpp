@@ -22,8 +22,7 @@ namespace Univ.modelview
         
         public string namepro { get; set; }
         public string date { get; set; }
-        public Command Cancelcommand { get; set; }
-
+      
         public Command savecommand { get; set; }
         public client ClientSelected { get; set; }
         public Action acc { set; get; }
@@ -132,11 +131,6 @@ namespace Univ.modelview
                 }*/
             });
 
-
-            Cancelcommand = new Command(() => {
-                con();
-
-            });
         }
     }
 

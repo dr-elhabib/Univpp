@@ -26,6 +26,7 @@ namespace Univ.modelview
         public double cost { get; set; }
       
         public Command savecommand { get; set; }
+        public Command Cancelcommand { get; set; }
         public client ClientSelected { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
@@ -108,6 +109,10 @@ namespace Univ.modelview
                     MessageBox.Show("المبلغ أكبر من الرصيد المتاح");
 
                 }
+            });
+            Cancelcommand = new Command(() => {
+                con();
+
             });
 
         }
