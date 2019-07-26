@@ -21,11 +21,8 @@ namespace Univ.lib
             this.card_kanoni = card_kanoni;
         }
 
+        
         public void CreateCard()
-        {
-            CreateP1();
-        }
-        public void CreateP1()
         {
 
             var p = new processes(card_kanoni.card.process);
@@ -79,7 +76,7 @@ namespace Univ.lib
             ExcelHlper excelHlper = new ExcelHlper("kanoni_Template",new string[] { "p" });
 
             excelHlper.EditMenyCell("p", Data);
-            excelHlper.SaveAs("kanoni"+a+".xlsx");
+            excelHlper.SaveAs(card_kanoni.card.location);
             excelHlper.Close();
         }
         public static void inserttype(int numtype, Double cost, Dictionary<string, string> Data)

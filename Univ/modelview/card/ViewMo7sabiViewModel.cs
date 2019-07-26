@@ -124,16 +124,18 @@ namespace Univ.modelview
             }));
 
             addmo7asabi = new Command(() => {
-       var card= Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.id_part == card_kanoni.id_part).ToList().FirstOrDefault();
-
-                if (card != null && card.card.year == Ico.getValue<Date>().GetPevDate()?.Id && Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c =>
-                   c.card.id_prosess == card_kanoni.card.id_prosess).ToList().ToList().Count == 0)
+                
+                var card = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.id_part == card_kanoni.id_part).ToList().FirstOrDefault();
+                var dn = 0.0;
+                foreach (var p in Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id_Pro == pr.Id_Pro).ToList())
                 {
-                    MessageBox.Show((card != null) + "");
-                    MessageBox.Show((card.card.year == Ico.getValue<Date>().GetPevDate()?.Id) + "");
-                    MessageBox.Show((Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c =>
-                         c.card.id_prosess == card_kanoni.card.id_prosess).ToList().ToList().Count == 0) + "");
+                    dn += p.mcost - p.nowcost;
+                }
 
+                if (card != null && card.card.year != Ico.getValue<Date>().GetNowDate()?.Id && Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c =>
+                   c.card.id_prosess == card_kanoni.card.id_prosess&&c.card.year== Ico.getValue<Date>().GetNowDate().Id).ToList().ToList().Count == 0&& dn != 0)
+                {
+                    
                     MessageBox.Show(" الرجاء التأكد من إستخراج بظاقة سحب إلتزام مسبقاا  ");
                 }
                 else {

@@ -30,7 +30,7 @@ namespace Univ.modelview
         public client ClientSelected { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
-        public Action<ItemDafa3> saveElement;
+        int numm;
         public Addmo7asabiVewModel(card_kanoni card_kanoni)
         {
             part = card_kanoni.part;
@@ -41,12 +41,11 @@ namespace Univ.modelview
             //  var carda = Ico.getValue<db>().GetUnivdb().years.Where(y => y.year1.Year == DateTime.Now.Year).ToList().FirstOrDefault().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro)
             //    .ToList().FirstOrDefault();
 
-            var carda = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => (c.card.year1.Id == Ico.getValue<db>().GetUnivdb().years.ToList()
-            .Where(y => y.year1.Year == DateTime.Now.Year).ToList().FirstOrDefault().Id) && c.id_part == card_kanoni.id_part)
+            var carda = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => (c.card.year == Ico.getValue<Date>().GetNowDate().Id) && c.id_part == card_kanoni.id_part)
                 .ToList().OrderByDescending(c => c.num).ToList().FirstOrDefault();
             //.card_mo7sabi.Where(c=>c.id_part== card_kanoni.id_part).OrderByDescending(c=>c.num).LastOrDefault();
 
-            var numm = 1;
+             numm = 1;
             if (carda != null)
             {
                 numm = carda.num + 1;
@@ -57,27 +56,48 @@ namespace Univ.modelview
             savecommand = new Command(() =>
             {
 
-                
+
                 if ((part.Cost - part.mcost) >= Cost)
                 {
                     acc();
+                    Creat_card(card_kanoni);
+                }
+                else
+                {
 
-                    var card = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro).OrderByDescending(c => c.num).ToList().FirstOrDefault();
+                    MessageBox.Show("المبلغ أكبر من الرصيد المتاح");
+
+                }
+            });
+            Cancelcommand = new Command(() =>
+            {
+                con();
+
+            });
+        }
+        public async Task Creat_card(card_kanoni card_kanoni)
+        {
+
+                await Task.Run(() =>
+                {
+                    var card = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro && c.year == Ico.getValue<Date>().GetNowDate().Id).OrderByDescending(c => c.num).ToList().FirstOrDefault();
                     var num = 1;
                     if (card != null)
                     {
                         num = card.num + 1;
                     }
 
+                    var d = DateTime.Now;
+                    var name = "بطاقة إلتزام محاسبي رقم " + num + " سنة " + d.Year;
 
                     var car = new card()
                     {
-                        date = DateTime.Now,
+                        date = d,
                         id_prosess = card_kanoni.part.Id_Pro,
                         num = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro).LastOrDefault().num + 1,
                         year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id
                      ,
-                        location = ""
+                        location = Ico.getValue<IO>().CREATE_F_mo7asabi(part.process.location) + "\\" + name
                     };
                     var card_mo7sabi = new card_mo7sabi()
                     {
@@ -96,22 +116,16 @@ namespace Univ.modelview
                     Ico.getValue<db>().GetUnivdb().cards.Add(car);
                     Ico.getValue<db>().GetUnivdb().card_mo7sabi.Add(card_mo7sabi);
                     Ico.getValue<db>().savedb();
+                    Card_mo7asabiExecl c7 = new Card_mo7asabiExecl(Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.card.num== num&&c.card.year==Ico.getValue<Date>().GetNowDate().Id).FirstOrDefault());
+                    c7.CreateCard();
 
                     con();
-                }
-                else
-                {
 
-                    MessageBox.Show("المبلغ أكبر من الرصيد المتاح");
 
-                }
-            });
-            Cancelcommand = new Command(() => {
-                con();
+                });
+            }
 
-            });
-
-        }
+        
     }
 
 }

@@ -65,7 +65,7 @@ namespace Univ.modelview
         public Command tashira { get; set; }
         public Command edittashira { get; set; }
 
-        public View7isabViewModel(process process)
+        public  View7isabViewModel(process process)
         {
             
             this.process = process;
@@ -79,33 +79,15 @@ namespace Univ.modelview
             var card_7 = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == process.Id).FirstOrDefault();
             if (card_7 == null)
             {
-                Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p=>p.Id==process.Id).First().NewCost = newcost;
-                var car = new card()
-                {
-                    date = DateTime.Now,
-                    id_prosess = process.Id,
-                    num = 1,
-                    year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id
-                 ,location=""   
-                };
-                card_7 = new card_7isab()
-                {
-                    card = car,
-                     visa=null
-                };
-                Ico.getValue<db>().GetUnivdb().cards.Add(car);
-                Ico.getValue<db>().GetUnivdb().card_7isab.Add(card_7);
-                Ico.getValue<db>().savedb();
-                card_7 = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == process.Id).FirstOrDefault();
-
-                
-            }
-          this.inTilData(card_7);
+                OpenSample4Dialog();
+                AcceptSample4Dialog();
+                this.CreateCard(card_7);
+            
+            }else
+            this.inTilData(card_7);
 
 
-            /*           Card_7isabExecl c7 = new Card_7isabExecl(card_7);
-                         c7.CreateP1();
-             */
+             
 
             back = new  Command(()=> {
                 Ico.getValue<ContentApp>().back();
@@ -162,6 +144,40 @@ namespace Univ.modelview
         {
             Sample4Content = new Progressbar();
         }
+        public async Task CreateCard( card_7isab card_7)
+        {
+            await Task.Run(() => {
+               
+                Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == process.Id).First().NewCost = newcost;
+
+                var d = DateTime.Now;
+                var name = "بطاقة  أخذ بحساب رقم " + 1 + " سنة " + d.Year;
+
+                var car = new card()
+                {
+                    date = DateTime.Now,
+                    id_prosess = process.Id,
+                    num = 1,
+                    year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id,
+                    location = process.location + "\\" + name,
+
+                };
+                card_7 = new card_7isab()
+                {
+                    card = car,
+                    visa = null
+                };
+                Ico.getValue<db>().GetUnivdb().cards.Add(car);
+                Ico.getValue<db>().GetUnivdb().card_7isab.Add(card_7);
+                Ico.getValue<db>().savedb();
+                card_7 = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == process.Id).FirstOrDefault();
+                Card_7isabExecl c7 = new Card_7isabExecl(card_7);
+                c7.CreateCard();
+                card = card_7.card;
+                CancelSample4Dialog();
+            });
+        }
 
     }
+
 }

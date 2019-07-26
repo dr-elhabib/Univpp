@@ -32,11 +32,10 @@ namespace Univ.modelview
                       Code = Code,
                       num=Num,
                       NewCost=totalCoast,
-                     location= Ico.getValue<IO>().CREATE_FOLDER(Code)
-               };
+                     location= Ico.getValue<IO>().CREATE_F_PRO(Code)
+               }; 
                 Ico.getValue<db>().GetUnivdb().processes.Add(p);
                 Ico.getValue<db>().GetUnivdb().SaveChanges();
-                
                 Ico.getValue<ContentApp>().page = new PCrad();
                 Ico.getValue<ContentApp>().clear();
             });

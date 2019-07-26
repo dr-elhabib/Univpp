@@ -23,19 +23,15 @@ namespace Univ.lib
 
         public void CreateCard()
         {
-            CreateP1();
-        }
-        public void CreateP1()
-        {
 
             var p = new processes(card_mo7sabi.card.process);
 
             inserttype(card_mo7sabi.part.num_type, card_mo7sabi.cost, Data);
-            
+
             Data["E8"] = p.Name;
             Data["E11"] = card_mo7sabi.subject;
-            Data["E13"] = "الحصة رقم "+ card_mo7sabi.part.num+" : "+ card_mo7sabi.part.Name;
-            Data["E15"] = " مؤسسة : "+ card_mo7sabi.client.Name;
+            Data["E13"] = "الحصة رقم " + card_mo7sabi.part.num + " : " + card_mo7sabi.part.Name;
+            Data["E15"] = " مؤسسة : " + card_mo7sabi.client.Name;
             ///////////////// start top section ////////////
             Data["Z4"] = p.code_.NumProsess[0] + "";
             Data["Y4"] = p.code_.NumProsess[1] + "";
@@ -71,20 +67,21 @@ namespace Univ.lib
             }
             /////////////////// finsh top section  //////////////
 
-            Data["G32"] = card_mo7sabi.cost+"";
+            Data["G32"] = card_mo7sabi.cost + "";
             Data["E36"] = card_mo7sabi.cost + "";
             Data["B36"] = card_mo7sabi.oldCost + "";
-            Data["L36"] = (card_mo7sabi.oldCost- card_mo7sabi.cost) + "";
-            
-
-
+            Data["L36"] = (card_mo7sabi.oldCost - card_mo7sabi.cost) + "";
 
             ExcelHlper excelHlper = new ExcelHlper("mo7asabi_Template", new string[] { "p" });
 
             excelHlper.EditMenyCell("p", Data);
-            excelHlper.SaveAs("mo7asabi_Template" + a+".xlsx");
+            excelHlper.SaveAs(card_mo7sabi.card.location);
             excelHlper.Close();
+
         }
+
+
+    
         public static void inserttype(int numtype, Double cost, Dictionary<string, string> Data)
         {
             switch (numtype)

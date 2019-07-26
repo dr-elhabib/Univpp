@@ -28,7 +28,7 @@ namespace Univ.lib
             excel = new ExcelHlper("dafa3_Template", new string[] { "p","p2" });
             CreateP1();
             CreateP2();
-            excel.SaveAs("dafa3_Template" + card_dafa3.num + ".xlsx");
+            excel.SaveAs( card_dafa3.location);
             excel.Close();
 
         }

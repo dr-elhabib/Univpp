@@ -10,20 +10,19 @@ namespace Univ.lib
 {
     class ExcelHlper
     {
-        private string Path { get; } = "C:\\Users\\habib\\Desktop\\";
         private string FileName { get; set; }
         private Excel.Application App { get; set; }
         private Dictionary<string,Excel.Worksheet> Worksheets { get; set; }
         public ExcelHlper(string FileName, string[] SheetNames)
         {
             this.FileName = FileName;
+         
             try
             {
                 App = new Excel.Application();
                 App.Visible = false;
                 Worksheets = new Dictionary<string, Excel.Worksheet>();
-                Console.Write(Path + FileName + ".xls");
-                var xlBook = App.Workbooks.Open(@"" + Path + FileName + ".xlsx");
+                var xlBook = App.Workbooks.Open(@"" + Ico.getValue<IO>().GetTemplatesPath() +"\\"+ FileName + ".xlsx");
                 foreach (string SheetName in SheetNames)
                    { 
                 Worksheets[SheetName]=(Microsoft.Office.Interop.Excel.Worksheet)xlBook.Worksheets.get_Item(SheetName); // Explicit cast is not required here
@@ -31,7 +30,6 @@ namespace Univ.lib
                 }
             }
             catch (Exception e) {
-                Console.Write(Path + FileName + ".xls");
                 App.Quit();
             }
         }
@@ -43,7 +41,6 @@ namespace Univ.lib
                 excelCell.Value2 = value;
             }
             catch (Exception e) {
-                Console.Write(Path + FileName + ".xls"+"  "+e);
                 App.Quit();
             }
         }
@@ -57,7 +54,14 @@ namespace Univ.lib
             }
         }
         public void SaveAs(string pathSAVE) {
-            App.ActiveWorkbook.SaveAs(Path+pathSAVE);
+            var p=pathSAVE+ ".xlsx";
+            if (System.IO.File.Exists(p))
+            {
+                System.IO.File.Delete(p);
+            }
+
+            App.ActiveWorkbook.SaveAs(p);
+
         }
         public void Close() {
             App.ActiveWorkbook.Close();

@@ -21,11 +21,8 @@ namespace Univ.lib
             this.card_7isab = card_7isab;
         }
 
+        
         public void CreateCard()
-        {
-            CreateP1();
-        }
-        public void CreateP1()
         {
 
             var p = new processes(card_7isab.card.process);
@@ -87,7 +84,7 @@ namespace Univ.lib
             ExcelHlper excelHlper = new ExcelHlper("7isab_Template",new string[] { "p" });
 
             excelHlper.EditMenyCell("p", Data);
-            excelHlper.SaveAs("7isab"+a+".xlsx");
+            excelHlper.SaveAs(card_7isab.card.location);
             excelHlper.Close();
         }
         public static void inserttype(int numtype, Double cost, Dictionary<string, string> Data)

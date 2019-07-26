@@ -17,6 +17,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -29,7 +30,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -131,7 +131,6 @@
     <Compile Include="lib\excel\Card_dafa3Execl.cs" />
     <Compile Include="lib\excel\Card_kanoniExecl.cs" />
     <Compile Include="lib\excel\Card_mo7asabiExecl.cs" />
-    <Compile Include="lib\excel\Card_mo7sabi.cs" />
     <Compile Include="lib\excel\ExcelHlper.cs" />
     <Compile Include="lib\Ico.cs" />
     <Compile Include="lib\IO.cs" />
@@ -486,6 +485,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="template\7isab_Template.xlsx" />
+    <None Include="template\dafa3_Template.xlsx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="template\kanoni_Template.xlsx" />
+    <None Include="template\mo7asabi_Template.xlsx" />
     <Resource Include="res\fonts\22876-gen01.ttf" />
     <Resource Include="res\fonts\air-arabia-1.ttf" />
     <Resource Include="res\fonts\air-arabia-3.ttf" />

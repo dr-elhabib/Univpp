@@ -28,8 +28,8 @@ namespace Univ.modelview
                  processes = new ObservableCollection<processesViewMODEL>(Ico.getValue<db>().GetUnivdb().processes.ToList().Select(p => new processesViewMODEL(p)).Where((l)=> l.Code.Contains(text) || l.Name.Contains(text)));
             });
             new_= new Command(()=>{
-                MainViewModel.page = new NewProcesses();
-              //  Ico.getValue<ContentApp>().page = new NewProcesses();
+          //      MainViewModel.page = new NewProcesses();
+               Ico.getValue<ContentApp>().page = new NewProcesses();
             });
 
         }
