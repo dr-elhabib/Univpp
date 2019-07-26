@@ -159,6 +159,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="page\card\Addtashira_sa7ab.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="page\card\Addtashira_mo7asabi.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -180,6 +184,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="page\card\Edittashira_kanoni.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\card\Edittashira_sa7ab.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -332,13 +340,15 @@
     <Compile Include="modelview\card\Addsa7abiVewModel.cs" />
     <Compile Include="modelview\card\Addtashira_7isabi_VewModel.cs" />
     <Compile Include="modelview\card\Addtashira_kanoni_VewModel.cs" />
+    <Compile Include="modelview\card\Addtashira_sa7ab_VewModel.cs" />
     <Compile Include="modelview\card\Addtashira_mo7asabi_VewModel.cs" />
     <Compile Include="modelview\card\AddtswiyaVewModel.cs" />
     <Compile Include="modelview\card\Editdafa3VewModel.cs" />
     <Compile Include="modelview\card\Editmo7asabiVewModel.cs" />
     <Compile Include="modelview\card\Edittashira_7isabi_VewModel.cs" />
     <Compile Include="modelview\card\Edittashira_kanoni_VewModel.cs" />
-    <Compile Include="modelview\card\edittashira_mo7asabi_VewModel.cs" />
+    <Compile Include="modelview\card\Edittashira_sa7ab_VewModel.cs" />
+    <Compile Include="modelview\card\Edittashira_mo7asabi_VewModel.cs" />
     <Compile Include="modelview\card\EdittswiyaVewModel.cs" />
     <Compile Include="modelview\card\View7isabViewModel.cs" />
     <Compile Include="modelview\card\Viewdafa3VewModel.cs" />
@@ -378,6 +388,9 @@
     <Compile Include="page\card\Addtashira_kanoni.xaml.cs">
       <DependentUpon>Addtashira_kanoni.xaml</DependentUpon>
     </Compile>
+    <Compile Include="page\card\Addtashira_sa7ab.xaml.cs">
+      <DependentUpon>Addtashira_sa7ab.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\card\Addtashira_mo7asabi.xaml.cs">
       <DependentUpon>Addtashira_mo7asabi.xaml</DependentUpon>
     </Compile>
@@ -395,6 +408,9 @@
     </Compile>
     <Compile Include="page\card\Edittashira_kanoni.xaml.cs">
       <DependentUpon>Edittashira_kanoni.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\card\Edittashira_sa7ab.xaml.cs">
+      <DependentUpon>Edittashira_sa7ab.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\card\Edittashira_mo7asabi.xaml.cs">
       <DependentUpon>Edittashira_mo7asabi.xaml</DependentUpon>

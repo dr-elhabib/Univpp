@@ -82,7 +82,7 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
-      //      this.inTilData(Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(c=>c.id== card_kanoni.id).ToList().SingleOrDefault());
+          this.inTilData(Ico.getValue<db>().GetUnivdb().processes.ToList().Where(c=>c.Id== process.Id).ToList().SingleOrDefault());
         }
 
         private void AcceptSample4Dialog()
@@ -103,23 +103,19 @@ namespace Univ.modelview
             {
                 this.oldcost = process.NewCost;
                 this.newcost = process.NewCost;
-            } Itemsa7abs = new ObservableCollection<Itemsa7ab>(Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c=>c.card.id_prosess==process.Id).ToList().Select(c => new Itemsa7ab(c)
+            }
+            Itemsa7abs = new ObservableCollection<Itemsa7ab>(Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c=>c.card.id_prosess==process.Id).ToList().Select(c => new Itemsa7ab(c)
             {
-                action_edit = (t) => {
-                 //   Sample4Content = new Editmo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
-                },
                 start=()=>{ AcceptSample4Dialog();
                     AcceptSample4Dialog();
                 },
                 end= CancelSample4Dialog,
                 addtashira = (t) => {
-                  //  Sample4Content = new Addtashira_mo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
+                  Sample4Content = new Addtashira_sa7ab(t, AcceptSample4Dialog, CancelSample4Dialog);
                     OpenSample4Dialog();
-                    this.inTilData(Ico.getValue<db>().GetUnivdb().processes.ToList().Where(N => N.Id == process.Id).ToList().SingleOrDefault());
                 },
                 edittashiraaction = (t) => {
-                    //Sample4Content = new Edittashira_mo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
+                    Sample4Content = new Edittashira_sa7ab(t, AcceptSample4Dialog, CancelSample4Dialog);
                     OpenSample4Dialog();
                 }
 
@@ -128,11 +124,24 @@ namespace Univ.modelview
             }));
 
             addmo7asabi = new Command(() => {
-            /*    if (Ico.getValue<Date>().GetPevDate() != null && process.cards.ToList().LastOrDefault().year1.Id== Ico.getValue<Date>().GetPevDate().Id)
+      /*      MessageBox.Show((process.cards.ToList().LastOrDefault() != null)+"");
+            MessageBox.Show((Ico.getValue<Date>().GetPevDate() != null )+"");
+                MessageBox.Show((process.cards.ToList().LastOrDefault().year1.Id != Ico.getValue<Date>().GetPevDate().Id) + "");
+                     MessageBox.Show((Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c => (c.card.id_prosess == process.Id) &&
+                (c.card.year1.Id == Ico.getValue<Date>().GetNowDate().Id)).ToList().Count != 0) + "");
+                */
+
+                    if ((Ico.getValue<Date>().GetPevDate() == null) ||(process.cards.ToList().LastOrDefault()!=null&&Ico.getValue<Date>().GetPevDate() != null && process.cards.ToList().LastOrDefault().year1.Id!= Ico.getValue<Date>().GetPevDate().Id&&Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c=>(c.card.id_prosess== process.Id)&&(c.card.year1.Id== Ico.getValue<Date>().GetNowDate().Id)).ToList().Count!=0))
                 {
+                    MessageBox.Show("لا تستطيغ إستخراج باقة سحب بعد");
+                }
+                else
+                {
+
                     Sample4Content = new Addsa7ab(process, AcceptSample4Dialog, CancelSample4Dialog);
                     OpenSample4Dialog();
-                }*/
+
+                }
             });
 
         }

@@ -15,7 +15,6 @@ namespace Univ.modelview
     class Addsa7abiVewModel : BaseViewModel
     {
 
-        public part part { get; set; }
 
         public double Cost { get; set; }
         public double sa7abCost { get; set; } = 0;
@@ -31,105 +30,83 @@ namespace Univ.modelview
         public Action<ItemDafa3> saveElement;
         public Addsa7abiVewModel(process process)
         {
-            this.namepro = process.Name;
-            this.Cost = process.NewCost;
-            this.date = Ico.getValue<Date>().GetPevDate().year1.Year + "/12/31";
+         //   this.date = Ico.getValue<Date>().GetPevDate().year1.Year + "/12/31";
             Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(get_data(process));
             IEnumerable<card_dafa3> get_data(process p)
             {
-
-                var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.part.Id_Pro == p.Id && c.tswiya == null).ToList();
-                
-
-                    foreach (var c in cs)
+                  var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.part.Id_Pro == p.Id && c.tswiya == null).ToList();
+                foreach (var c in cs)
                 {
                     Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr=> pr.Id == c.id_part).First().nowcost -= c.Cost;
                 }
+                Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(cs);
                 return cs;
             }
-
+            
             foreach (var p in Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id_Pro == pr.Id_Pro).ToList())
             {
-                double ps = 0d;
-                foreach (var m in p.card_mo7sabi.ToList().Where(c => c.visa != null).ToList()) {
-                    ps += m.cost;
+                foreach (var m in p.card_mo7sabi.ToList().Where(c => c.visa == null).ToList())
+                {
+
+                    Ico.getValue<db>().GetUnivdb().processes.ToList().Where(pr => pr.Id == process.Id).ToList().First().NewCost += m.cost;
+                    Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id == m.id_part).First().mcost-= m.cost;
+                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.Remove(Ico.getValue<db>().GetUnivdb().card_mo7sabi.
+                    ToList().Where(c => c.Id == m.Id).ToList().SingleOrDefault());
+                    Ico.getValue<db>().GetUnivdb().cards.Remove(Ico.getValue<db>().GetUnivdb().cards.
+                    ToList().Where(c => c.Id == m.id_card).ToList().SingleOrDefault());
+
                 }
-                ps -= p.nowcost;
-                sa7abCost += ps;
+            ///    this.sa7abCost+= Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id == p.Id).First().mcost-= Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id == p.Id).First().nowcost;
             }
-
-
-            //  var carda = Ico.getValue<db>().GetUnivdb().years.Where(y => y.year1.Year == DateTime.Now.Year).ToList().FirstOrDefault().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro)
-            //    .ToList().FirstOrDefault();
-
-        /*    var carda = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => (c.card.year1.Id == Ico.getValue<db>().GetUnivdb().years.ToList()
-            .Where(y => y.year1.Year == DateTime.Now.Year).ToList().FirstOrDefault().Id)&& c.id_part == card_kanoni.id_part)
-                .ToList().OrderByDescending(c => c.num).ToList().FirstOrDefault();
-            //.card_mo7sabi.Where(c=>c.id_part== card_kanoni.id_part).OrderByDescending(c=>c.num).LastOrDefault();
-            
-            var numm = 1;
-            if (carda != null) {
-                numm = carda.num + 1;
-                MessageBox.Show("" + carda.num);
+            var dn = 0.0;
+            foreach (var p in Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id_Pro == pr.Id_Pro).ToList())
+            {
+                dn += p.mcost-p.nowcost;
             }
-            var nums = (numm.ToString().Length == 1) ? "0" + numm.ToString() : numm.ToString();
-          */  
+            Ico.getValue<db>().savedb();
+            this.sa7abCost = dn;
+            this.namepro = process.Name;
+            this.Cost = Ico.getValue<db>().GetUnivdb().processes.ToList().Where(pr => pr.Id == process.Id).ToList().First().NewCost;
+
             savecommand = new Command( () =>
             {
 
-/*
-            var d = 0d;
-            foreach (var c in part.card_mo7sabi.ToList())
-            {
-                d += c.cost;
-            }
-                if ((part.Cost - d) >= Cost)
+                if (sa7abCost != 0)
                 {
-                    acc();
-
-                    var card = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro).OrderByDescending(c => c.num).ToList().FirstOrDefault();
-                    var num = 1;
-                    if (card != null)
-                    {
-                        num = card.num + 1;
-                    }
-
-
                     var car = new card()
                     {
                         date = DateTime.Now,
-                        id_prosess = card_kanoni.part.Id_Pro,
-                        num = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro).LastOrDefault().num + 1,
-                        year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id
-                     ,
+                        id_prosess = process.Id,
+                        num = 1,
+                        year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id,
                         location = ""
                     };
-                    var card_mo7sabi = new card_mo7sabi()
+                    var card_sa7ab = new card_sa7ab()
                     {
-                        id_client = card_kanoni.id_client,
-                        id_part = card_kanoni.id_part,
-                        cost = Cost,
-                        oldCost = card_kanoni.part.process.NewCost,
+                        cost = sa7abCost,
                         card = car,
-                        num = numm,
                         visa = null,
-                        subject = subject
-
+                        old_cost = Cost
 
                     };
 
-                    Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == card_kanoni.part.Id_Pro).ToList().First().NewCost -= Cost;
                     Ico.getValue<db>().GetUnivdb().cards.Add(car);
-                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.Add(card_mo7sabi);
-                    Ico.getValue<db>().savedb();
+                    Ico.getValue<db>().GetUnivdb().card_sa7ab.Add(card_sa7ab);
+                    Ico.getValue<db>().GetUnivdb().processes.ToList().Where(pr => pr.Id == process.Id).ToList().First().NewCost += sa7abCost;
 
-                    con();
+                    foreach (var p in Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id_Pro == pr.Id_Pro).ToList())
+                    {
+                        Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id == p.Id).First().mcost = p.nowcost;
+
+                    }
+
+                    Ico.getValue<db>().savedb();
                 }
                 else {
-
-                    MessageBox.Show("المبلغ أكبر من الرصيد المتاح");
-
-                }*/
+                    MessageBox.Show("لا تستطيع إستخراج بطاقة سحب لأن المبلغ = 0 دج");
+                }
+                  con();
+                
             });
 
 

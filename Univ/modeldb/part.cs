@@ -30,6 +30,7 @@ namespace Univ.modeldb
         public int num_type { get; set; }
         public string alpart { get; set; }
         public double nowcost { get; set; }
+        public double mcost { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<card_dafa3> card_dafa3 { get; set; }

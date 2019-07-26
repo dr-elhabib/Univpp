@@ -13,12 +13,12 @@
         <StackPanel>
             <StackPanel>
                 <Border Margin="20" Width="200" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
-                    <TextBlock FontWeight="Bold" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="16" Text=" إنشاء بطاقة دفع جديد "/>
+                    <TextBlock FontWeight="Bold" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="16" Text=" إنشاء تسوية للبطاقة  "/>
                 </Border>
             </StackPanel>
             <StackPanel >
                 <StackPanel>
-                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="معلومات  العميل :"/>
+                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="معلومات  البطاقة :"/>
                     <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
                         <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
                         <TextBlock Text="  رقم البطاقة :   "/>

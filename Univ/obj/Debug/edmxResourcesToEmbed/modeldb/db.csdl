@@ -1,5 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="Univ" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="univdb" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="cards" EntityType="Univ.card" />
+    <EntitySet Name="card_7isab" EntityType="Univ.card_7isab" />
+    <EntitySet Name="card_dafa3" EntityType="Univ.card_dafa3" />
+    <EntitySet Name="card_kanoni" EntityType="Univ.card_kanoni" />
+    <EntitySet Name="card_mo7sabi" EntityType="Univ.card_mo7sabi" />
+    <EntitySet Name="card_sa7ab" EntityType="Univ.card_sa7ab" />
+    <EntitySet Name="clients" EntityType="Univ.client" />
+    <EntitySet Name="parts" EntityType="Univ.part" />
+    <EntitySet Name="processes" EntityType="Univ.process" />
+    <EntitySet Name="years" EntityType="Univ.year" />
+    <AssociationSet Name="card_7isab_ibfk_1" Association="Univ.card_7isab_ibfk_1">
+      <End Role="card" EntitySet="cards" />
+      <End Role="card_7isab" EntitySet="card_7isab" />
+    </AssociationSet>
+    <AssociationSet Name="card_ibfk_1" Association="Univ.card_ibfk_1">
+      <End Role="year" EntitySet="years" />
+      <End Role="card" EntitySet="cards" />
+    </AssociationSet>
+    <AssociationSet Name="card_ibfk_2" Association="Univ.card_ibfk_2">
+      <End Role="process" EntitySet="processes" />
+      <End Role="card" EntitySet="cards" />
+    </AssociationSet>
+    <AssociationSet Name="card_kanoni_ibfk_1" Association="Univ.card_kanoni_ibfk_1">
+      <End Role="card" EntitySet="cards" />
+      <End Role="card_kanoni" EntitySet="card_kanoni" />
+    </AssociationSet>
+    <AssociationSet Name="card_mo7sabi_ibfk_1" Association="Univ.card_mo7sabi_ibfk_1">
+      <End Role="card" EntitySet="cards" />
+      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
+    </AssociationSet>
+    <AssociationSet Name="card_sa7ab_ibfk_1" Association="Univ.card_sa7ab_ibfk_1">
+      <End Role="card" EntitySet="cards" />
+      <End Role="card_sa7ab" EntitySet="card_sa7ab" />
+    </AssociationSet>
+    <AssociationSet Name="card_dafa3_ibfk_1" Association="Univ.card_dafa3_ibfk_1">
+      <End Role="part" EntitySet="parts" />
+      <End Role="card_dafa3" EntitySet="card_dafa3" />
+    </AssociationSet>
+    <AssociationSet Name="card_dafa3_ibfk_2" Association="Univ.card_dafa3_ibfk_2">
+      <End Role="year" EntitySet="years" />
+      <End Role="card_dafa3" EntitySet="card_dafa3" />
+    </AssociationSet>
+    <AssociationSet Name="card_kanoni_ibfk_2" Association="Univ.card_kanoni_ibfk_2">
+      <End Role="client" EntitySet="clients" />
+      <End Role="card_kanoni" EntitySet="card_kanoni" />
+    </AssociationSet>
+    <AssociationSet Name="card_kanoni_ibfk_3" Association="Univ.card_kanoni_ibfk_3">
+      <End Role="part" EntitySet="parts" />
+      <End Role="card_kanoni" EntitySet="card_kanoni" />
+    </AssociationSet>
+    <AssociationSet Name="card_mo7sabi_ibfk_2" Association="Univ.card_mo7sabi_ibfk_2">
+      <End Role="part" EntitySet="parts" />
+      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
+    </AssociationSet>
+    <AssociationSet Name="card_mo7sabi_ibfk_4" Association="Univ.card_mo7sabi_ibfk_4">
+      <End Role="client" EntitySet="clients" />
+      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
+    </AssociationSet>
+    <AssociationSet Name="par_ibfk_1" Association="Univ.par_ibfk_1">
+      <End Role="process" EntitySet="processes" />
+      <End Role="part" EntitySet="parts" />
+    </AssociationSet>
+  </EntityContainer>
   <EntityType Name="card">
     <Key>
       <PropertyRef Name="Id" />
@@ -9,13 +73,13 @@
     <Property Name="year" Type="Int32" Nullable="false" />
     <Property Name="id_prosess" Type="Int32" Nullable="false" />
     <Property Name="date" Type="DateTime" Nullable="false" />
-    <Property Name="location" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="card_7isab" Relationship="Self.card_7isab_ibfk_1" FromRole="card" ToRole="card_7isab" />
-    <NavigationProperty Name="year1" Relationship="Self.card_ibfk_1" FromRole="card" ToRole="year" />
-    <NavigationProperty Name="process" Relationship="Self.card_ibfk_2" FromRole="card" ToRole="processes" />
-    <NavigationProperty Name="card_kanoni" Relationship="Self.card_kanoni_ibfk_1" FromRole="card" ToRole="card_kanoni" />
-    <NavigationProperty Name="card_mo7sabi" Relationship="Self.card_mo7sabi_ibfk_1" FromRole="card" ToRole="card_mo7sabi" />
-    <NavigationProperty Name="card_sa7ab" Relationship="Self.card_sa7ab_ibfk_1" FromRole="card" ToRole="card_sa7ab" />
+    <Property Name="location" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="card_7isab" Relationship="Univ.card_7isab_ibfk_1" FromRole="card" ToRole="card_7isab" />
+    <NavigationProperty Name="year1" Relationship="Univ.card_ibfk_1" FromRole="card" ToRole="year" />
+    <NavigationProperty Name="process" Relationship="Univ.card_ibfk_2" FromRole="card" ToRole="process" />
+    <NavigationProperty Name="card_kanoni" Relationship="Univ.card_kanoni_ibfk_1" FromRole="card" ToRole="card_kanoni" />
+    <NavigationProperty Name="card_mo7sabi" Relationship="Univ.card_mo7sabi_ibfk_1" FromRole="card" ToRole="card_mo7sabi" />
+    <NavigationProperty Name="card_sa7ab" Relationship="Univ.card_sa7ab_ibfk_1" FromRole="card" ToRole="card_sa7ab" />
   </EntityType>
   <EntityType Name="card_7isab">
     <Key>
@@ -24,7 +88,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="visa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="id_card" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="card" Relationship="Self.card_7isab_ibfk_1" FromRole="card_7isab" ToRole="card" />
+    <NavigationProperty Name="card" Relationship="Univ.card_7isab_ibfk_1" FromRole="card_7isab" ToRole="card" />
   </EntityType>
   <EntityType Name="card_dafa3">
     <Key>
@@ -32,13 +96,15 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Cost" Type="Double" Nullable="false" />
-    <Property Name="alcost" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="alcost" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="num" Type="Int32" Nullable="false" />
-    <Property Name="location" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="location" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="DateTime" Nullable="false" />
     <Property Name="id_part" Type="Int32" Nullable="false" />
     <Property Name="tswiya" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="part" Relationship="Self.card_dafa3_ibfk_1" FromRole="card_dafa3" ToRole="part" />
+    <Property Name="id_year" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="part" Relationship="Univ.card_dafa3_ibfk_1" FromRole="card_dafa3" ToRole="part" />
+    <NavigationProperty Name="year" Relationship="Univ.card_dafa3_ibfk_2" FromRole="card_dafa3" ToRole="year" />
   </EntityType>
   <EntityType Name="card_kanoni">
     <Key>
@@ -50,9 +116,9 @@
     <Property Name="visa" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="id_client" Type="Int32" Nullable="false" />
     <Property Name="id_part" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="card" Relationship="Self.card_kanoni_ibfk_1" FromRole="card_kanoni" ToRole="card" />
-    <NavigationProperty Name="client" Relationship="Self.card_kanoni_ibfk_2" FromRole="card_kanoni" ToRole="client" />
-    <NavigationProperty Name="part" Relationship="Self.card_kanoni_ibfk_3" FromRole="card_kanoni" ToRole="part" />
+    <NavigationProperty Name="card" Relationship="Univ.card_kanoni_ibfk_1" FromRole="card_kanoni" ToRole="card" />
+    <NavigationProperty Name="client" Relationship="Univ.card_kanoni_ibfk_2" FromRole="card_kanoni" ToRole="client" />
+    <NavigationProperty Name="part" Relationship="Univ.card_kanoni_ibfk_3" FromRole="card_kanoni" ToRole="part" />
   </EntityType>
   <EntityType Name="card_mo7sabi">
     <Key>
@@ -66,10 +132,10 @@
     <Property Name="id_client" Type="Int32" Nullable="false" />
     <Property Name="visa" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="num" Type="Int32" Nullable="false" />
-    <Property Name="subject" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="card" Relationship="Self.card_mo7sabi_ibfk_1" FromRole="card_mo7sabi" ToRole="card" />
-    <NavigationProperty Name="part" Relationship="Self.card_mo7sabi_ibfk_2" FromRole="card_mo7sabi" ToRole="part" />
-    <NavigationProperty Name="client" Relationship="Self.card_mo7sabi_ibfk_4" FromRole="card_mo7sabi" ToRole="client" />
+    <Property Name="subject" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="card" Relationship="Univ.card_mo7sabi_ibfk_1" FromRole="card_mo7sabi" ToRole="card" />
+    <NavigationProperty Name="part" Relationship="Univ.card_mo7sabi_ibfk_2" FromRole="card_mo7sabi" ToRole="part" />
+    <NavigationProperty Name="client" Relationship="Univ.card_mo7sabi_ibfk_4" FromRole="card_mo7sabi" ToRole="client" />
   </EntityType>
   <EntityType Name="card_sa7ab">
     <Key>
@@ -80,51 +146,52 @@
     <Property Name="cost" Type="Double" Nullable="false" />
     <Property Name="old_cost" Type="Double" Nullable="false" />
     <Property Name="visa" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="card" Relationship="Self.card_sa7ab_ibfk_1" FromRole="card_sa7ab" ToRole="card" />
+    <NavigationProperty Name="card" Relationship="Univ.card_sa7ab_ibfk_1" FromRole="card_sa7ab" ToRole="card" />
   </EntityType>
   <EntityType Name="client">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="bank" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="num_account" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="gence" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="address" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="card_kanoni" Relationship="Self.card_kanoni_ibfk_2" FromRole="client" ToRole="card_kanoni" />
-    <NavigationProperty Name="card_mo7sabi" Relationship="Self.card_mo7sabi_ibfk_4" FromRole="client" ToRole="card_mo7sabi" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="bank" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="num_account" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="gence" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="card_kanoni" Relationship="Univ.card_kanoni_ibfk_2" FromRole="client" ToRole="card_kanoni" />
+    <NavigationProperty Name="card_mo7sabi" Relationship="Univ.card_mo7sabi_ibfk_4" FromRole="client" ToRole="card_mo7sabi" />
   </EntityType>
   <EntityType Name="part">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="Cost" Type="Double" Nullable="false" />
     <Property Name="Id_Pro" Type="Int32" Nullable="false" />
     <Property Name="num" Type="Int32" Nullable="false" />
     <Property Name="num_type" Type="Int32" Nullable="false" />
-    <Property Name="alpart" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="alpart" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="nowcost" Type="Double" Nullable="false" />
-    <NavigationProperty Name="card_dafa3" Relationship="Self.card_dafa3_ibfk_1" FromRole="part" ToRole="card_dafa3" />
-    <NavigationProperty Name="card_kanoni" Relationship="Self.card_kanoni_ibfk_3" FromRole="part" ToRole="card_kanoni" />
-    <NavigationProperty Name="card_mo7sabi" Relationship="Self.card_mo7sabi_ibfk_2" FromRole="part" ToRole="card_mo7sabi" />
-    <NavigationProperty Name="process" Relationship="Self.par_ibfk_1" FromRole="part" ToRole="processes" />
+    <Property Name="mcost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="card_dafa3" Relationship="Univ.card_dafa3_ibfk_1" FromRole="part" ToRole="card_dafa3" />
+    <NavigationProperty Name="card_kanoni" Relationship="Univ.card_kanoni_ibfk_3" FromRole="part" ToRole="card_kanoni" />
+    <NavigationProperty Name="card_mo7sabi" Relationship="Univ.card_mo7sabi_ibfk_2" FromRole="part" ToRole="card_mo7sabi" />
+    <NavigationProperty Name="process" Relationship="Univ.par_ibfk_1" FromRole="part" ToRole="process" />
   </EntityType>
   <EntityType Name="process">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Code" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Name" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Code" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="date" Type="DateTime" Nullable="false" />
-    <Property Name="num" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="num" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="NewCost" Type="Double" Nullable="false" />
-    <Property Name="location" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="cards" Relationship="Self.card_ibfk_2" FromRole="processes" ToRole="card" />
-    <NavigationProperty Name="parts" Relationship="Self.par_ibfk_1" FromRole="processes" ToRole="part" />
+    <Property Name="location" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="cards" Relationship="Univ.card_ibfk_2" FromRole="process" ToRole="card" />
+    <NavigationProperty Name="parts" Relationship="Univ.par_ibfk_1" FromRole="process" ToRole="part" />
   </EntityType>
   <EntityType Name="year">
     <Key>
@@ -132,11 +199,12 @@
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="year1" Type="DateTime" Nullable="false" />
-    <NavigationProperty Name="cards" Relationship="Self.card_ibfk_1" FromRole="year" ToRole="card" />
+    <NavigationProperty Name="cards" Relationship="Univ.card_ibfk_1" FromRole="year" ToRole="card" />
+    <NavigationProperty Name="card_dafa3" Relationship="Univ.card_dafa3_ibfk_2" FromRole="year" ToRole="card_dafa3" />
   </EntityType>
   <Association Name="card_7isab_ibfk_1">
-    <End Role="card" Type="Self.card" Multiplicity="1" />
-    <End Role="card_7isab" Type="Self.card_7isab" Multiplicity="*" />
+    <End Type="Univ.card" Role="card" Multiplicity="1" />
+    <End Type="Univ.card_7isab" Role="card_7isab" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="card">
         <PropertyRef Name="Id" />
@@ -147,8 +215,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_ibfk_1">
-    <End Role="year" Type="Self.year" Multiplicity="1" />
-    <End Role="card" Type="Self.card" Multiplicity="*" />
+    <End Type="Univ.year" Role="year" Multiplicity="1" />
+    <End Type="Univ.card" Role="card" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="year">
         <PropertyRef Name="Id" />
@@ -159,10 +227,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_ibfk_2">
-    <End Role="processes" Type="Self.process" Multiplicity="1" />
-    <End Role="card" Type="Self.card" Multiplicity="*" />
+    <End Type="Univ.process" Role="process" Multiplicity="1" />
+    <End Type="Univ.card" Role="card" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="processes">
+      <Principal Role="process">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="card">
@@ -171,8 +239,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_kanoni_ibfk_1">
-    <End Role="card" Type="Self.card" Multiplicity="1" />
-    <End Role="card_kanoni" Type="Self.card_kanoni" Multiplicity="*" />
+    <End Type="Univ.card" Role="card" Multiplicity="1" />
+    <End Type="Univ.card_kanoni" Role="card_kanoni" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="card">
         <PropertyRef Name="Id" />
@@ -183,8 +251,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_mo7sabi_ibfk_1">
-    <End Role="card" Type="Self.card" Multiplicity="1" />
-    <End Role="card_mo7sabi" Type="Self.card_mo7sabi" Multiplicity="*" />
+    <End Type="Univ.card" Role="card" Multiplicity="1" />
+    <End Type="Univ.card_mo7sabi" Role="card_mo7sabi" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="card">
         <PropertyRef Name="Id" />
@@ -195,8 +263,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_sa7ab_ibfk_1">
-    <End Role="card" Type="Self.card" Multiplicity="1" />
-    <End Role="card_sa7ab" Type="Self.card_sa7ab" Multiplicity="*" />
+    <End Type="Univ.card" Role="card" Multiplicity="1" />
+    <End Type="Univ.card_sa7ab" Role="card_sa7ab" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="card">
         <PropertyRef Name="Id" />
@@ -207,8 +275,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_dafa3_ibfk_1">
-    <End Role="part" Type="Self.part" Multiplicity="1" />
-    <End Role="card_dafa3" Type="Self.card_dafa3" Multiplicity="*" />
+    <End Type="Univ.part" Role="part" Multiplicity="1" />
+    <End Type="Univ.card_dafa3" Role="card_dafa3" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="part">
         <PropertyRef Name="Id" />
@@ -218,9 +286,21 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="card_dafa3_ibfk_2">
+    <End Type="Univ.year" Role="year" Multiplicity="1" />
+    <End Type="Univ.card_dafa3" Role="card_dafa3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_dafa3">
+        <PropertyRef Name="id_year" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="card_kanoni_ibfk_2">
-    <End Role="client" Type="Self.client" Multiplicity="1" />
-    <End Role="card_kanoni" Type="Self.card_kanoni" Multiplicity="*" />
+    <End Type="Univ.client" Role="client" Multiplicity="1" />
+    <End Type="Univ.card_kanoni" Role="card_kanoni" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="client">
         <PropertyRef Name="Id" />
@@ -231,8 +311,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_kanoni_ibfk_3">
-    <End Role="part" Type="Self.part" Multiplicity="1" />
-    <End Role="card_kanoni" Type="Self.card_kanoni" Multiplicity="*" />
+    <End Type="Univ.part" Role="part" Multiplicity="1" />
+    <End Type="Univ.card_kanoni" Role="card_kanoni" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="part">
         <PropertyRef Name="Id" />
@@ -243,8 +323,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_mo7sabi_ibfk_2">
-    <End Role="part" Type="Self.part" Multiplicity="1" />
-    <End Role="card_mo7sabi" Type="Self.card_mo7sabi" Multiplicity="*" />
+    <End Type="Univ.part" Role="part" Multiplicity="1" />
+    <End Type="Univ.card_mo7sabi" Role="card_mo7sabi" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="part">
         <PropertyRef Name="Id" />
@@ -255,8 +335,8 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="card_mo7sabi_ibfk_4">
-    <End Role="client" Type="Self.client" Multiplicity="1" />
-    <End Role="card_mo7sabi" Type="Self.card_mo7sabi" Multiplicity="*" />
+    <End Type="Univ.client" Role="client" Multiplicity="1" />
+    <End Type="Univ.card_mo7sabi" Role="card_mo7sabi" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="client">
         <PropertyRef Name="Id" />
@@ -267,10 +347,10 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="par_ibfk_1">
-    <End Role="processes" Type="Self.process" Multiplicity="1" />
-    <End Role="part" Type="Self.part" Multiplicity="*" />
+    <End Type="Univ.process" Role="process" Multiplicity="1" />
+    <End Type="Univ.part" Role="part" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="processes">
+      <Principal Role="process">
         <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="part">
@@ -278,64 +358,4 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="univdb" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="cards" EntityType="Self.card" />
-    <EntitySet Name="card_7isab" EntityType="Self.card_7isab" />
-    <EntitySet Name="card_dafa3" EntityType="Self.card_dafa3" />
-    <EntitySet Name="card_kanoni" EntityType="Self.card_kanoni" />
-    <EntitySet Name="card_mo7sabi" EntityType="Self.card_mo7sabi" />
-    <EntitySet Name="card_sa7ab" EntityType="Self.card_sa7ab" />
-    <EntitySet Name="clients" EntityType="Self.client" />
-    <EntitySet Name="parts" EntityType="Self.part" />
-    <EntitySet Name="processes" EntityType="Self.process" />
-    <EntitySet Name="years" EntityType="Self.year" />
-    <AssociationSet Name="card_7isab_ibfk_1" Association="Self.card_7isab_ibfk_1">
-      <End Role="card" EntitySet="cards" />
-      <End Role="card_7isab" EntitySet="card_7isab" />
-    </AssociationSet>
-    <AssociationSet Name="card_ibfk_1" Association="Self.card_ibfk_1">
-      <End Role="year" EntitySet="years" />
-      <End Role="card" EntitySet="cards" />
-    </AssociationSet>
-    <AssociationSet Name="card_ibfk_2" Association="Self.card_ibfk_2">
-      <End Role="processes" EntitySet="processes" />
-      <End Role="card" EntitySet="cards" />
-    </AssociationSet>
-    <AssociationSet Name="card_kanoni_ibfk_1" Association="Self.card_kanoni_ibfk_1">
-      <End Role="card" EntitySet="cards" />
-      <End Role="card_kanoni" EntitySet="card_kanoni" />
-    </AssociationSet>
-    <AssociationSet Name="card_mo7sabi_ibfk_1" Association="Self.card_mo7sabi_ibfk_1">
-      <End Role="card" EntitySet="cards" />
-      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
-    </AssociationSet>
-    <AssociationSet Name="card_sa7ab_ibfk_1" Association="Self.card_sa7ab_ibfk_1">
-      <End Role="card" EntitySet="cards" />
-      <End Role="card_sa7ab" EntitySet="card_sa7ab" />
-    </AssociationSet>
-    <AssociationSet Name="card_dafa3_ibfk_1" Association="Self.card_dafa3_ibfk_1">
-      <End Role="part" EntitySet="parts" />
-      <End Role="card_dafa3" EntitySet="card_dafa3" />
-    </AssociationSet>
-    <AssociationSet Name="card_kanoni_ibfk_2" Association="Self.card_kanoni_ibfk_2">
-      <End Role="client" EntitySet="clients" />
-      <End Role="card_kanoni" EntitySet="card_kanoni" />
-    </AssociationSet>
-    <AssociationSet Name="card_kanoni_ibfk_3" Association="Self.card_kanoni_ibfk_3">
-      <End Role="part" EntitySet="parts" />
-      <End Role="card_kanoni" EntitySet="card_kanoni" />
-    </AssociationSet>
-    <AssociationSet Name="card_mo7sabi_ibfk_2" Association="Self.card_mo7sabi_ibfk_2">
-      <End Role="part" EntitySet="parts" />
-      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
-    </AssociationSet>
-    <AssociationSet Name="card_mo7sabi_ibfk_4" Association="Self.card_mo7sabi_ibfk_4">
-      <End Role="client" EntitySet="clients" />
-      <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
-    </AssociationSet>
-    <AssociationSet Name="par_ibfk_1" Association="Self.par_ibfk_1">
-      <End Role="processes" EntitySet="processes" />
-      <End Role="part" EntitySet="parts" />
-    </AssociationSet>
-  </EntityContainer>
 </Schema>

@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="Univ.page.Edittashira_sa7ab"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Univ.page"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontFamily="{StaticResource Medium}"
+             FlowDirection="RightToLeft"
+             Width="600"
+             >
+    <materialDesign:Card Padding="10"  Background="White"  >
+        <StackPanel>
+            <StackPanel>
+                <Border Margin="20" Width="200" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
+                    <TextBlock FontWeight="Bold" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="16" Text=" تعديل معلومات التأشيرة "/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel >
+
+                <StackPanel>
+                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="معلومات  البطاقة :"/>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text="  رقم البطاقة :   "/>
+                        <TextBlock Text="{Binding num}"/>
+
+                    </StackPanel>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text="  إسم العملية :  "/>
+                        <TextBlock Text="{Binding part}"/>
+
+
+                    </StackPanel>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text=" مبلغ البطاقة :  "/>
+                        <TextBlock Text="{Binding cost}"/>
+
+
+                    </StackPanel>
+                </StackPanel>
+                <StackPanel Margin="3 0 0 0" Orientation="Vertical">
+                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text=" ملومات التأشيرة  :"/>
+                    <StackPanel  Margin="3 10 0 0" Orientation="Vertical">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="RenameBox" />
+                            <TextBlock Margin="5 5 0 5" Text="   التأشيرة    : " VerticalAlignment="Center"/>
+                            <TextBlock Text="*" Foreground="Red" VerticalAlignment="Center"/>
+
+                        </StackPanel>
+                        <TextBox  BorderThickness="1"   Margin="10" Text="{Binding visa}" VerticalContentAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" 
+                                 AcceptsReturn="True" Width="350" Height="100"/>
+                    </StackPanel>
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel 
+                
+                VerticalAlignment="Bottom"
+                Margin="10"
+        Orientation="Horizontal"
+        HorizontalAlignment="Right">
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+          Margin="8"
+          Command="{Binding savecommand}">
+                    حفظ 
+                </Button>
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+          Margin="8"
+          Command="{Binding Cancelcommand}">
+إلفاء                 </Button>
+               
+            </StackPanel>
+        </StackPanel>
+
+    </materialDesign:Card>
+
+</UserControl>

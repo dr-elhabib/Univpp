@@ -75,7 +75,7 @@ namespace Univ.modelview
 
             AddDafa3 = new Command(()=> {
                 Sample4Content = new Adddafa3(part, AcceptSample4Dialog, CancelSample4Dialog,()=> {
-  this.inTilData(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p=>p.Id==part.Id).ToList().SingleOrDefault());
+                    this.inTilData(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p=>p.Id==part.Id).ToList().SingleOrDefault());
                 });
                 OpenSample4Dialog();
 
@@ -90,14 +90,9 @@ namespace Univ.modelview
             this.process = part.process;
             this.part = new Part(part);
             ItemDafa3S = CreateItem();
-            double d = 0;
-            foreach (var m in part.card_mo7sabi.ToList())
-            {
-                d += m.cost;
-            }
 
             this.newcost = (part.nowcost);
-            this.old_cost = (d - part.nowcost);
+            this.old_cost = (part.mcost - part.nowcost);
 
         }
         private void OpenSample4Dialog()

@@ -31,6 +31,7 @@
     <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
     <Property Name="id_part" Type="int" Nullable="false" />
     <Property Name="tswiya" Type="text" />
+    <Property Name="id_year" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="card_kanoni">
     <Key>
@@ -90,6 +91,7 @@
     <Property Name="num_type" Type="int" Nullable="false" />
     <Property Name="alpart" Type="text" Nullable="false" />
     <Property Name="nowcost" Type="double" Nullable="false" />
+    <Property Name="mcost" Type="double" Nullable="false" />
   </EntityType>
   <EntityType Name="processes">
     <Key>
@@ -131,6 +133,18 @@
       </Principal>
       <Dependent Role="card_dafa3">
         <PropertyRef Name="id_part" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="card_dafa3_ibfk_2">
+    <End Role="year" Type="Self.year" Multiplicity="1" />
+    <End Role="card_dafa3" Type="Self.card_dafa3" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="year">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="card_dafa3">
+        <PropertyRef Name="id_year" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -271,6 +285,10 @@
     </AssociationSet>
     <AssociationSet Name="card_dafa3_ibfk_1" Association="Self.card_dafa3_ibfk_1">
       <End Role="part" EntitySet="part" />
+      <End Role="card_dafa3" EntitySet="card_dafa3" />
+    </AssociationSet>
+    <AssociationSet Name="card_dafa3_ibfk_2" Association="Self.card_dafa3_ibfk_2">
+      <End Role="year" EntitySet="year" />
       <End Role="card_dafa3" EntitySet="card_dafa3" />
     </AssociationSet>
     <AssociationSet Name="card_ibfk_1" Association="Self.card_ibfk_1">

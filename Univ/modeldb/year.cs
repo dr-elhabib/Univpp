@@ -18,6 +18,7 @@ namespace Univ.modeldb
         public year()
         {
             this.cards = new HashSet<card>();
+            this.card_dafa3 = new HashSet<card_dafa3>();
         }
     
         public int Id { get; set; }
@@ -25,5 +26,7 @@ namespace Univ.modeldb
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<card> cards { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<card_dafa3> card_dafa3 { get; set; }
     }
 }

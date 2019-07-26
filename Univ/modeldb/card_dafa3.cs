@@ -22,7 +22,9 @@ namespace Univ.modeldb
         public System.DateTime date { get; set; }
         public int id_part { get; set; }
         public string tswiya { get; set; }
+        public int id_year { get; set; }
     
         public virtual part part { get; set; }
+        public virtual year year { get; set; }
     }
 }

@@ -124,10 +124,23 @@ namespace Univ.modelview
             }));
 
             addmo7asabi = new Command(() => {
+       var card= Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.id_part == card_kanoni.id_part).ToList().FirstOrDefault();
 
-                Sample4Content = new Addmo7asabi(card_kanoni, AcceptSample4Dialog, CancelSample4Dialog);
-                OpenSample4Dialog();
+                if (card != null && card.card.year == Ico.getValue<Date>().GetPevDate()?.Id && Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c =>
+                   c.card.id_prosess == card_kanoni.card.id_prosess).ToList().ToList().Count == 0)
+                {
+                    MessageBox.Show((card != null) + "");
+                    MessageBox.Show((card.card.year == Ico.getValue<Date>().GetPevDate()?.Id) + "");
+                    MessageBox.Show((Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c =>
+                         c.card.id_prosess == card_kanoni.card.id_prosess).ToList().ToList().Count == 0) + "");
 
+                    MessageBox.Show(" الرجاء التأكد من إستخراج بظاقة سحب إلتزام مسبقاا  ");
+                }
+                else {
+
+                    Sample4Content = new Addmo7asabi(card_kanoni, AcceptSample4Dialog, CancelSample4Dialog);
+                    OpenSample4Dialog();
+                }
             });
 
         }

@@ -47,19 +47,8 @@ namespace Univ.modelview
 
             savecommand = new Command( () =>
             {;
-            var d = 0d;
-            foreach (var c in part.card_mo7sabi.ToList())
-            {
-                d += c.cost;
-            }
-            var d2 = 0d;
-            foreach (var c in part.card_dafa3.ToList())
-            {
-                d2 += c.Cost;
-
-                }
-
-                if ((d - d2) >= Cost)
+            
+                if ((part.mcost- part.nowcost) >= Cost)
                 {
 
                     acc();
@@ -78,6 +67,7 @@ namespace Univ.modelview
                         Cost = Cost,
                         alcost = AlCost,
                         location = " ",
+                        id_year= Ico.getValue<Date>().GetNowDate().Id,
                         tswiya = null
 
                     };

@@ -15,22 +15,21 @@ namespace Univ.lib
 
         public Date() {
             var d = DateTime.Now;
-          var dn=  Ico.getValue<db>().GetUnivdb().years.ToList().Where(Y => Y.year1.Year == d.Year).ToList().SingleOrDefault();
-            if (dn!=null) {
+            var dn = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault();  //  Where(Y => Y.year1.Year == d.Year).ToList().SingleOrDefault();
+            if(dn!=null) {
                this._date = dn;
             }
-            else
+             else
             {
                 this._date = Ico.getValue<db>().GetUnivdb().years.Add(new year() {
                     year1=d
                 });
                 Ico.getValue<db>().savedb();
             }
-            this._prev_date = Ico.getValue<db>().GetUnivdb().years.ToList().Where(Y => Y.year1.Year == (d.Year - 1)).ToList().SingleOrDefault();
+            this._prev_date = Ico.getValue<db>().GetUnivdb().years.ToList().Where(Y => Y.year1.Year == (this._date.year1.Year - 1)).ToList().SingleOrDefault();
            
         }
         public year GetNowDate() {
-            MessageBox.Show(_date.ToString());
             return _date;
         }
         public year GetPevDate() {

@@ -32,7 +32,6 @@
                         <TextBlock Text="  إسم  الحصة :  "/>
                         <TextBlock Text="{Binding namepart}"/>
 
-
                     </StackPanel>
                     <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
                         <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
@@ -55,8 +54,6 @@
                         <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
                         <TextBlock Text="  إسم  بنك :  "/>
                         <TextBlock Text="{Binding bankclient}"/>
-
-
                     </StackPanel>
                     <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
                         <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />

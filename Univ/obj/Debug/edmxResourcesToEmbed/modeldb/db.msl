@@ -4,120 +4,122 @@
     <EntitySetMapping Name="cards">
       <EntityTypeMapping TypeName="Univ.card">
         <MappingFragment StoreEntitySet="card">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="num" ColumnName="num" />
-          <ScalarProperty Name="year" ColumnName="year" />
-          <ScalarProperty Name="id_prosess" ColumnName="id_prosess" />
-          <ScalarProperty Name="date" ColumnName="date" />
           <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id_prosess" ColumnName="id_prosess" />
+          <ScalarProperty Name="year" ColumnName="year" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="card_7isab">
       <EntityTypeMapping TypeName="Univ.card_7isab">
         <MappingFragment StoreEntitySet="card_7isab">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="visa" ColumnName="visa" />
           <ScalarProperty Name="id_card" ColumnName="id_card" />
+          <ScalarProperty Name="visa" ColumnName="visa" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="card_dafa3">
       <EntityTypeMapping TypeName="Univ.card_dafa3">
         <MappingFragment StoreEntitySet="card_dafa3">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Cost" ColumnName="Cost" />
-          <ScalarProperty Name="alcost" ColumnName="alcost" />
-          <ScalarProperty Name="num" ColumnName="num" />
-          <ScalarProperty Name="location" ColumnName="location" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="id_part" ColumnName="id_part" />
+          <ScalarProperty Name="id_year" ColumnName="id_year" />
           <ScalarProperty Name="tswiya" ColumnName="tswiya" />
+          <ScalarProperty Name="id_part" ColumnName="id_part" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="alcost" ColumnName="alcost" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="card_kanoni">
       <EntityTypeMapping TypeName="Univ.card_kanoni">
         <MappingFragment StoreEntitySet="card_kanoni">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_card" ColumnName="id_card" />
-          <ScalarProperty Name="cost" ColumnName="cost" />
-          <ScalarProperty Name="visa" ColumnName="visa" />
-          <ScalarProperty Name="id_client" ColumnName="id_client" />
           <ScalarProperty Name="id_part" ColumnName="id_part" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="visa" ColumnName="visa" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="id_card" ColumnName="id_card" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="card_mo7sabi">
       <EntityTypeMapping TypeName="Univ.card_mo7sabi">
         <MappingFragment StoreEntitySet="card_mo7sabi">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="cost" ColumnName="cost" />
-          <ScalarProperty Name="id_card" ColumnName="id_card" />
-          <ScalarProperty Name="id_part" ColumnName="id_part" />
-          <ScalarProperty Name="oldCost" ColumnName="oldCost" />
-          <ScalarProperty Name="id_client" ColumnName="id_client" />
-          <ScalarProperty Name="visa" ColumnName="visa" />
-          <ScalarProperty Name="num" ColumnName="num" />
           <ScalarProperty Name="subject" ColumnName="subject" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="visa" ColumnName="visa" />
+          <ScalarProperty Name="id_client" ColumnName="id_client" />
+          <ScalarProperty Name="oldCost" ColumnName="oldCost" />
+          <ScalarProperty Name="id_part" ColumnName="id_part" />
+          <ScalarProperty Name="id_card" ColumnName="id_card" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="card_sa7ab">
       <EntityTypeMapping TypeName="Univ.card_sa7ab">
         <MappingFragment StoreEntitySet="card_sa7ab">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_card" ColumnName="id_card" />
-          <ScalarProperty Name="cost" ColumnName="cost" />
-          <ScalarProperty Name="old_cost" ColumnName="old_cost" />
           <ScalarProperty Name="visa" ColumnName="visa" />
+          <ScalarProperty Name="old_cost" ColumnName="old_cost" />
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="id_card" ColumnName="id_card" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="clients">
       <EntityTypeMapping TypeName="Univ.client">
         <MappingFragment StoreEntitySet="client">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="bank" ColumnName="bank" />
-          <ScalarProperty Name="num_account" ColumnName="num_account" />
-          <ScalarProperty Name="gence" ColumnName="gence" />
           <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="gence" ColumnName="gence" />
+          <ScalarProperty Name="num_account" ColumnName="num_account" />
+          <ScalarProperty Name="bank" ColumnName="bank" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="parts">
       <EntityTypeMapping TypeName="Univ.part">
         <MappingFragment StoreEntitySet="part">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Cost" ColumnName="Cost" />
-          <ScalarProperty Name="Id_Pro" ColumnName="Id_Pro" />
-          <ScalarProperty Name="num" ColumnName="num" />
-          <ScalarProperty Name="num_type" ColumnName="num_type" />
-          <ScalarProperty Name="alpart" ColumnName="alpart" />
+          <ScalarProperty Name="mcost" ColumnName="mcost" />
           <ScalarProperty Name="nowcost" ColumnName="nowcost" />
+          <ScalarProperty Name="alpart" ColumnName="alpart" />
+          <ScalarProperty Name="num_type" ColumnName="num_type" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="Id_Pro" ColumnName="Id_Pro" />
+          <ScalarProperty Name="Cost" ColumnName="Cost" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="processes">
       <EntityTypeMapping TypeName="Univ.process">
         <MappingFragment StoreEntitySet="processes">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Code" ColumnName="Code" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="date" ColumnName="date" />
-          <ScalarProperty Name="num" ColumnName="num" />
-          <ScalarProperty Name="NewCost" ColumnName="NewCost" />
           <ScalarProperty Name="location" ColumnName="location" />
+          <ScalarProperty Name="NewCost" ColumnName="NewCost" />
+          <ScalarProperty Name="num" ColumnName="num" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="years">
       <EntityTypeMapping TypeName="Univ.year">
         <MappingFragment StoreEntitySet="year">
-          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="year1" ColumnName="year" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
