@@ -8,6 +8,7 @@
     <EntitySet Name="card_mo7sabi" EntityType="Univ.card_mo7sabi" />
     <EntitySet Name="card_sa7ab" EntityType="Univ.card_sa7ab" />
     <EntitySet Name="clients" EntityType="Univ.client" />
+    <EntitySet Name="p_sa7ab" EntityType="Univ.p_sa7ab" />
     <EntitySet Name="parts" EntityType="Univ.part" />
     <EntitySet Name="processes" EntityType="Univ.process" />
     <EntitySet Name="years" EntityType="Univ.year" />
@@ -58,6 +59,14 @@
     <AssociationSet Name="card_mo7sabi_ibfk_4" Association="Univ.card_mo7sabi_ibfk_4">
       <End Role="client" EntitySet="clients" />
       <End Role="card_mo7sabi" EntitySet="card_mo7sabi" />
+    </AssociationSet>
+    <AssociationSet Name="p_sa7ab_ibfk_2" Association="Univ.p_sa7ab_ibfk_2">
+      <End Role="card_sa7ab" EntitySet="card_sa7ab" />
+      <End Role="p_sa7ab" EntitySet="p_sa7ab" />
+    </AssociationSet>
+    <AssociationSet Name="p_sa7ab_ibfk_1" Association="Univ.p_sa7ab_ibfk_1">
+      <End Role="part" EntitySet="parts" />
+      <End Role="p_sa7ab" EntitySet="p_sa7ab" />
     </AssociationSet>
     <AssociationSet Name="par_ibfk_1" Association="Univ.par_ibfk_1">
       <End Role="process" EntitySet="processes" />
@@ -147,6 +156,7 @@
     <Property Name="old_cost" Type="Double" Nullable="false" />
     <Property Name="visa" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="card" Relationship="Univ.card_sa7ab_ibfk_1" FromRole="card_sa7ab" ToRole="card" />
+    <NavigationProperty Name="p_sa7ab" Relationship="Univ.p_sa7ab_ibfk_2" FromRole="card_sa7ab" ToRole="p_sa7ab" />
   </EntityType>
   <EntityType Name="client">
     <Key>
@@ -160,6 +170,17 @@
     <Property Name="address" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="card_kanoni" Relationship="Univ.card_kanoni_ibfk_2" FromRole="client" ToRole="card_kanoni" />
     <NavigationProperty Name="card_mo7sabi" Relationship="Univ.card_mo7sabi_ibfk_4" FromRole="client" ToRole="card_mo7sabi" />
+  </EntityType>
+  <EntityType Name="p_sa7ab">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_sa7ab" Type="Int32" Nullable="false" />
+    <Property Name="id_part" Type="Int32" Nullable="false" />
+    <Property Name="cost" Type="Double" Nullable="false" />
+    <NavigationProperty Name="card_sa7ab" Relationship="Univ.p_sa7ab_ibfk_2" FromRole="p_sa7ab" ToRole="card_sa7ab" />
+    <NavigationProperty Name="part" Relationship="Univ.p_sa7ab_ibfk_1" FromRole="p_sa7ab" ToRole="part" />
   </EntityType>
   <EntityType Name="part">
     <Key>
@@ -177,6 +198,7 @@
     <NavigationProperty Name="card_dafa3" Relationship="Univ.card_dafa3_ibfk_1" FromRole="part" ToRole="card_dafa3" />
     <NavigationProperty Name="card_kanoni" Relationship="Univ.card_kanoni_ibfk_3" FromRole="part" ToRole="card_kanoni" />
     <NavigationProperty Name="card_mo7sabi" Relationship="Univ.card_mo7sabi_ibfk_2" FromRole="part" ToRole="card_mo7sabi" />
+    <NavigationProperty Name="p_sa7ab" Relationship="Univ.p_sa7ab_ibfk_1" FromRole="part" ToRole="p_sa7ab" />
     <NavigationProperty Name="process" Relationship="Univ.par_ibfk_1" FromRole="part" ToRole="process" />
   </EntityType>
   <EntityType Name="process">
@@ -343,6 +365,30 @@
       </Principal>
       <Dependent Role="card_mo7sabi">
         <PropertyRef Name="id_client" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="p_sa7ab_ibfk_2">
+    <End Type="Univ.card_sa7ab" Role="card_sa7ab" Multiplicity="1" />
+    <End Type="Univ.p_sa7ab" Role="p_sa7ab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card_sa7ab">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="p_sa7ab">
+        <PropertyRef Name="id_sa7ab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="p_sa7ab_ibfk_1">
+    <End Type="Univ.part" Role="part" Multiplicity="1" />
+    <End Type="Univ.p_sa7ab" Role="p_sa7ab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="part">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="p_sa7ab">
+        <PropertyRef Name="id_part" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

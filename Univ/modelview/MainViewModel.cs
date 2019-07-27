@@ -11,7 +11,7 @@ using Univ.page;
 
 namespace Univ
 {
-    class MainViewModel:BaseViewModel {
+    class MainViewModel {
         public static Page page { get; set; } = new PCrad();
 
         public MainViewModel() {

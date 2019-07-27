@@ -243,7 +243,6 @@ namespace Univ.lib
             Data1["G31"] = card_dafa3.alcost;
             Data1["R19"] = card_dafa3.tswiya;
             excel.EditMenyCell("p2", Data1);
-            MessageBox.Show("P2");
 
         }
 

@@ -14,7 +14,7 @@ namespace Univ.modelview
 
 
 
-    class EditpartViewModel : BaseViewModel
+    class EditpartViewModel : BaseViewModel<part>
     {
         public process process { get; set; }
         public List<TypePart> types { get;set;}
@@ -55,8 +55,7 @@ namespace Univ.modelview
                 p.Cost = cost;
                 p.alpart = alhcost;
                 Ico.getValue<db>().savedb();
-                Ico.getValue<ContentApp>().page = new ViewProcesses(Ico.getValue<db>().GetUnivdb().processes.ToList().Where(par => par.Id == part.process.Id).FirstOrDefault());
-
+                Ico.getValue<ContentApp>().back();
             });
         }
     }

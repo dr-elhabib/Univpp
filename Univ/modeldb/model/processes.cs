@@ -35,7 +35,6 @@ namespace Univ.modeldb.model
         public char[] NumProsess { get; set; }
         public Code_(string Code)
         {
-            MessageBox.Show(Code.Length+"");
             NK =new  char[3];
             chapter = new char[3];
             NumProsess = new char[2];

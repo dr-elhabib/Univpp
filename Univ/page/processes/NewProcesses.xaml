@@ -15,8 +15,25 @@
 >
         <StackPanel >
 
-            <Border Margin="20" Width="250" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
-                <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="10" Text=" إضافةعملية جديد "/>
+            <materialDesign:ColorZone Grid.Row="0"
+                                      Padding="5"
+            Mode="PrimaryLight"
+            Background="Transparent"
+            >
+                <Grid>
+                    <Button   Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{Binding back}"  ToolTip="  إلى الخلف"  HorizontalAlignment="Left">
+                        <materialDesign:PackIcon Kind="ArrowRight" HorizontalAlignment="Right" Width="30" Height="30"  Foreground="Black" />
+                    </Button>
+                    <Button   Style="{StaticResource MaterialDesignToolForegroundButton}" ToolTip="تعدبل معلومات العملية " HorizontalAlignment="Right">
+                        <materialDesign:PackIcon  Kind="PlaylistEdit"  Width="30" Height="30"  Foreground="Black" />
+                    </Button>
+
+
+                </Grid>
+            </materialDesign:ColorZone>
+
+            <Border Margin="0 0 0 50" Width="250" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
+                <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="10" Text=" إضافة عملية جديدة "/>
             </Border>
 
             <Grid   >
@@ -71,10 +88,12 @@
                 </StackPanel>
 
             </Grid>
-            <Button  Margin="3 0  50 0" HorizontalAlignment="Right" Command="{Binding save}" BorderBrush="Green" materialDesign:ShadowAssist.ShadowDepth="Depth0"  VerticalAlignment="Bottom"
+            <StackPanel Margin="10">
+                <Button  Margin="3 0  50 0" HorizontalAlignment="Right" Command="{Binding save}" BorderBrush="Green" materialDesign:ShadowAssist.ShadowDepth="Depth0"  VerticalAlignment="Bottom"
                      Background="Transparent"    >
                 <TextBlock Text="حفظ" Foreground="Green" FontWeight="Bold"  />
             </Button>
+            </StackPanel>
         </StackPanel>
     </materialDesign:Card>
 </Page>

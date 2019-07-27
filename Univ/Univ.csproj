@@ -127,6 +127,7 @@
     <Compile Include="lib\Date.cs" />
     <Compile Include="lib\db.cs" />
     <Compile Include="lib\Enum\TypeEnum.cs" />
+    <Compile Include="lib\excel\Card_sa7abExecl.cs" />
     <Compile Include="lib\excel\Card_7isabExecl.cs" />
     <Compile Include="lib\excel\Card_dafa3Execl.cs" />
     <Compile Include="lib\excel\Card_kanoniExecl.cs" />
@@ -134,6 +135,7 @@
     <Compile Include="lib\excel\ExcelHlper.cs" />
     <Compile Include="lib\Ico.cs" />
     <Compile Include="lib\IO.cs" />
+    <Compile Include="lib\MPage.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -223,6 +225,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="page\client\ViewClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\lib\YesOrNo.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -330,6 +336,9 @@
     <Compile Include="modeldb\process.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
+    <Compile Include="modeldb\p_sa7ab.cs">
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
     <Compile Include="modeldb\year.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
@@ -361,6 +370,7 @@
     <Compile Include="modelview\lib\ItemDafa3.cs" />
     <Compile Include="modelview\lib\ItemMo7asabi.cs" />
     <Compile Include="modelview\lib\ItemPart .cs" />
+    <Compile Include="modelview\lib\YesOrNoModelView.cs" />
     <Compile Include="modelview\lib\Itemsa7ab.cs" />
     <Compile Include="modelview\MainViewModel.cs" />
     <Compile Include="modelview\part\AddpartCardViewModel.cs" />
@@ -438,6 +448,9 @@
     <Compile Include="page\client\ViewClient.xaml.cs">
       <DependentUpon>ViewClient.xaml</DependentUpon>
     </Compile>
+    <Compile Include="page\lib\YesOrNo.xaml.cs">
+      <DependentUpon>YesOrNo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\lib\Progressbar.xaml.cs">
       <DependentUpon>ProgressBar.xaml</DependentUpon>
     </Compile>
@@ -491,6 +504,7 @@
     </None>
     <None Include="template\kanoni_Template.xlsx" />
     <None Include="template\mo7asabi_Template.xlsx" />
+    <None Include="template\sa7ab_Template.xlsx" />
     <Resource Include="res\fonts\22876-gen01.ttf" />
     <Resource Include="res\fonts\air-arabia-1.ttf" />
     <Resource Include="res\fonts\air-arabia-3.ttf" />

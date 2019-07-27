@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class ViewMo7sabiViewModel : BaseViewModel
+    class ViewMo7sabiViewModel : BaseViewModel<card_kanoni>
     {
 
         public bool IsSample4DialogOpen
@@ -66,12 +66,16 @@ namespace Univ.modelview
         public ViewMo7sabiViewModel(card_kanoni card_kanoni)
         {
             this.card_kanoni = card_kanoni;
-            inTilData(card_kanoni);
+
+            this.actionUP = () => {
+                this.val = Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(p => p.id == card_kanoni.id).ToList().FirstOrDefault();
+            };
+            inTilData();
 
             back = new  Command(()=> {
                 Ico.getValue<ContentApp>().back();
             });
-
+             
         }
 
 
@@ -84,7 +88,7 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
-            this.inTilData(Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(c=>c.id== card_kanoni.id).ToList().SingleOrDefault());
+            this.inTilData();
         }
 
         private void AcceptSample4Dialog()
@@ -93,26 +97,72 @@ namespace Univ.modelview
         }
 
 
-        public void inTilData(card_kanoni card_kanoni)
+        public void inTilData()
         {
-            this.process = card_kanoni.card.process;
-            this.part = new Part(card_kanoni.part);
-            this.client = card_kanoni.client.Name;
-            this.newcost = card_kanoni.part.process.NewCost;
-            ItemMo7asabis = new ObservableCollection<ItemMo7asabi>(card_kanoni.part.card_mo7sabi.Select(c => new ItemMo7asabi(c)
+            this.UpDate();
+            this.process = val.card.process;
+            this.part = new Part(val.part);
+            this.client = val.client.Name;
+            this.newcost = val.part.process.NewCost;
+            ItemMo7asabis = new ObservableCollection<ItemMo7asabi>(val.part.card_mo7sabi.Select(card_mo7sabi => new ItemMo7asabi(card_mo7sabi)
             {
                 action_edit = (t) => {
                     Sample4Content = new Editmo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
                     OpenSample4Dialog();
                 },
-                start=()=>{ AcceptSample4Dialog();
-                    AcceptSample4Dialog();
+                start=()=>{
+
+                    OpenSample4Dialog();
+
+                    Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه البطاقة من الحصة ,لا يمكن التراجع عن الحذف",
+                       async () => {
+                           AcceptSample4Dialog();
+                           await Task.Run(() => {
+
+
+                Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == card_mo7sabi.part.Id_Pro).ToList().SingleOrDefault().NewCost += card_mo7sabi.cost;
+                Ico.getValue<db>().changedNumCard(card_mo7sabi.card);
+                Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(get_data(card_mo7sabi));
+                IEnumerable<card_dafa3> get_data(card_mo7sabi card)
+                {
+
+                    var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => (c.id_part == card_mo7sabi.id_part) && (c.tswiya == null) && (c.date > card_mo7sabi.card.date));
+
+                    foreach (var c in cs)
+                    {
+                        Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).First().nowcost -= c.Cost;
+                    }
+                    return cs;
+                }
+            foreach (var c in Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.part.Id_Pro == Ico.getValue<db>().GetUnivdb().cards.
+            ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().id_prosess && c.card.date > Ico.getValue<db>().GetUnivdb().cards.
+            ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().date)) {
+                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id==c.Id).ToList().FirstOrDefault().oldCost += card_mo7sabi.cost;
+                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id == c.Id).ToList().FirstOrDefault().num -= 1;
+                }
+          
+                Ico.getValue<db>().GetUnivdb().card_mo7sabi.Remove(Ico.getValue<db>().GetUnivdb().card_mo7sabi.
+                ToList().Where(c => c.Id == card_mo7sabi.Id).ToList().SingleOrDefault());
+                Ico.getValue<db>().GetUnivdb().cards.Remove(Ico.getValue<db>().GetUnivdb().cards.
+                ToList().Where(c => c.Id == card_mo7sabi.id_card).ToList().SingleOrDefault());
+                Ico.getValue<db>().savedb();
+             
+                               CancelSample4Dialog();
+
+                           });
+
+                           
+                       },
+                        () => {
+
+                            CancelSample4Dialog();
+                        });
                 },
                 end= CancelSample4Dialog,
                 addtashira = (t) => {
                     Sample4Content = new Addtashira_mo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
                     OpenSample4Dialog();
-                    this.inTilData(Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(N => N.id == card_kanoni.id).ToList().SingleOrDefault());
+                    this.inTilData();
                 },
                 edittashiraaction = (t) => {
                     Sample4Content = new Edittashira_mo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);

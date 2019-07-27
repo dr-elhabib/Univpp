@@ -13,7 +13,7 @@ using System.Windows;
 
 namespace Univ.modelview.lib
 {
-    class AddCardMo7asabi : BaseViewModel
+    class AddCardMo7asabi : BaseViewModel<processes>
     {
         public List<CommboxItem> list { get; set; }
 

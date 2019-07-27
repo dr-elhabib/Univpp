@@ -14,7 +14,7 @@ namespace Univ.modelview
 
 
 
-    class ViewpartViewModel : BaseViewModel
+    class ViewpartViewModel : BaseViewModel<part>
     {
         public process process { get; set; }
 
@@ -28,6 +28,7 @@ namespace Univ.modelview
         public Command back { get; set; }
         public ViewpartViewModel(part part)
         {
+            
             this.cost = part.Cost;
             this.name = part.Name;
             this.process = part.process;

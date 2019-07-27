@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class Viewsa7abViewModel : BaseViewModel
+    class Viewsa7abViewModel : BaseViewModel<process>
     {
 
         public bool IsSample4DialogOpen
@@ -50,8 +50,6 @@ namespace Univ.modelview
 
         public process process { get; set; }
                
-        public double oldcost { get; set; } =0;
-
         
         public double newcost { get; set; } =0;
 
@@ -64,7 +62,11 @@ namespace Univ.modelview
 
         public Viewsa7abViewModel(process process)
         {
-            inTilData(process);
+
+            this.actionUP = () => {
+                this.val = Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == process.Id).ToList().FirstOrDefault();
+            };
+            inTilData();
 
             back = new  Command(()=> {
                 Ico.getValue<ContentApp>().back();
@@ -82,7 +84,7 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
-          this.inTilData(Ico.getValue<db>().GetUnivdb().processes.ToList().Where(c=>c.Id== process.Id).ToList().SingleOrDefault());
+            this.inTilData();
         }
 
         private void AcceptSample4Dialog()
@@ -91,19 +93,12 @@ namespace Univ.modelview
         }
 
 
-        public void inTilData(process process)
+        public void inTilData()
         {
-            this.process = process;
-            var cl = Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().ToList().LastOrDefault();
-            if (cl != null)
-            {
-                this.oldcost = cl.old_cost;
-            }
-            else
-            {
-                this.oldcost = process.NewCost;
-                this.newcost = process.NewCost;
-            }
+            actionUP();
+            this.process = val;
+               this.newcost = val.NewCost;
+            
             Itemsa7abs = new ObservableCollection<Itemsa7ab>(Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c=>c.card.id_prosess==process.Id).ToList().Select(c => new Itemsa7ab(c)
             {
                 start=()=>{ AcceptSample4Dialog();

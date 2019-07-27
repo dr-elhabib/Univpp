@@ -12,7 +12,7 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class AddtswiyaVewModel : BaseViewModel
+    class AddtswiyaVewModel : BaseViewModel<card_dafa3>
     {
         public string tswiya { get; set; }
         public string num { get; set; }
@@ -35,8 +35,6 @@ namespace Univ.modelview
                 acc();
                 Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(d => d.Id == card_dafa3.Id).ToList().FirstOrDefault().tswiya=tswiya;
                 Ico.getValue<db>().savedb();
-                Card_dafa3Execl card_Dafa3Execl = new Card_dafa3Execl(Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(d => d.Id == card_dafa3.Id).ToList().FirstOrDefault());
-                card_Dafa3Execl.CreateCard();
              con();
             });
 

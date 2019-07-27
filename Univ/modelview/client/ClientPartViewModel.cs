@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Univ.modelview
 {
-    class ClientPartViewModel:BaseViewModel
+    class ClientPartViewModel:BaseViewModel<client>
     {
 
         public string Name { get; set; }

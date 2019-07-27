@@ -13,24 +13,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Univ.lib;
 
 namespace Univ.page
 {
     /// <summary>
     /// Interaction logic for PCrad.xaml
     /// </summary>
-    public partial class PCrad : Page
+    public partial class PCrad : Page,MPage
     {
+        private processesViewModel MD  {get;set;}
+
         public PCrad()
         {
+           MD = new processesViewModel();
             InitializeComponent();
-            this.DataContext = new processesViewModel();
+            this.DataContext = MD;
         }
+        public Action Reload { get => MD.inTilData  ; set => Reload = value; }
 
-        private void Ser_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
-        }
     }
-    
+
 }

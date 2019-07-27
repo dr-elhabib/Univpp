@@ -33,7 +33,6 @@ namespace Univ.lib
             {
                 types.insert(pr.num_type, pr.Cost);
                 Allcost += pr.Cost;
-                MessageBox.Show(String.Format("{0:0.00}", pr.Cost));
             }
 
             types.leadData(Data);

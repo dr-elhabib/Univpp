@@ -14,18 +14,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Univ.lib;
 
 namespace Univ.page
 {
     /// <summary>
     /// Interaction logic for ViewProcesses.xaml
     /// </summary>
-    public partial class ViewProcesses : Page
+    public partial class ViewProcesses : Page, MPage
     {
+        private ViewProcessViewModel MD  {get;set;}
         public ViewProcesses(process process)
         {
+          MD=  new ViewProcessViewModel(process);
             InitializeComponent();
-            this.DataContext = new ViewProcessViewModel(process);
+            this.DataContext = MD;
         }
+
+        public Action Reload { get => MD.inTilData; set => Reload = value; }
     }
 }

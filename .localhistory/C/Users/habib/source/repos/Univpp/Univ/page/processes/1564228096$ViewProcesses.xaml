@@ -1,0 +1,215 @@
+﻿<Page x:Class="Univ.page.ViewProcesses"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Univ.page"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      xmlns:uc="clr-namespace:Univ.page"
+      Title="NewProcesses"
+      FontFamily="{StaticResource Medium}"
+      >
+    <materialDesign:DialogHost
+         IsOpen="{Binding IsSample4DialogOpen}"
+          DialogContent="{Binding Sample4Content}"
+          CloseOnClickAway="True"
+        >
+        <materialDesign:Card       
+        Padding="0 0 0 30"   
+        materialDesign:ShadowAssist.ShadowDepth="Depth5">
+        <Grid
+                  FlowDirection="RightToLeft"
+
+            >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <materialDesign:ColorZone Grid.Row="0"
+                                      Padding="5"
+            Mode="PrimaryLight"
+            Background="Transparent"
+            >
+                <Grid>
+                    <Button   Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{Binding back}"  ToolTip="  إلى الخلف"  HorizontalAlignment="Left">
+                        <materialDesign:PackIcon Kind="ArrowRight" HorizontalAlignment="Right" Width="30" Height="30"  Foreground="Black" />
+                    </Button>
+                    <Button   Style="{StaticResource MaterialDesignToolForegroundButton}" ToolTip="تعدبل معلومات العملية " HorizontalAlignment="Right">
+                        <materialDesign:PackIcon  Kind="PlaylistEdit"  Width="30" Height="30"  Foreground="Black" />
+                    </Button>
+                  
+
+                </Grid>
+            </materialDesign:ColorZone>
+            <StackPanel>
+                <Border Margin="20" Width="250" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
+                    <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="10" Text="   عرض معلومات العملية "/>
+                </Border>
+            </StackPanel>
+           
+            <StackPanel Grid.Row="1" >
+                    <StackPanel   Width="800"  Grid.Row="1">
+                        <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="0 0 0 0">
+                        <StackPanel  >
+                            <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="  معلومات العملية  الأساسية :"/>
+
+                            <StackPanel Margin="20"  >
+                                <StackPanel Margin="10" Orientation="Horizontal">
+                                    <materialDesign:PackIcon Width="25" Height="25" Kind="Barcode" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="5 5 0 5 " Text="كود العملية    : " VerticalAlignment="Center"/>
+                                    <TextBlock Margin="5" Text="{Binding code ,FallbackValue=NK123456789123}"/>
+                                </StackPanel>
+
+                                <StackPanel Margin="10"  Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Width="25" Height="25" Kind="RenameBox" VerticalAlignment="Center"/>
+                                        <TextBlock Margin="5 5 0 5 " Text=" إسم   العملية الكامل    : " VerticalAlignment="Center"/>
+                                        <TextBlock  Margin="5" TextWrapping="Wrap" TextAlignment="Center"
+                                  Text='{Binding name,FallbackValue=" عملية تصميم وإنتاج تجريبية عام 2015 لجاامعة الشهيد حمة بخضر"}' />
+
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="10"  Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="Numeric" />
+                                        <TextBlock Margin="5 5 0 5 " Text="رقم العملية القابت : " VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding num, FallbackValue='16/206'}"  Margin="5" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="10"  Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="DateRange" />
+                                        <TextBlock Margin="5 5 0 5 " Text="سنة العملية : " VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding date,FallbackValue='2015/02/12'}" Margin="5" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Margin="10"  Orientation="Vertical">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="FlaskEmpty" />
+                                        <TextBlock Margin="5 5 0 5 " Text=" رصيد العكلية المتاح : " VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding nowcost,FallbackValue='100000'}" Margin="5" VerticalAlignment="Center"/>
+                                        <TextBlock Text="دج" Margin="5" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </StackPanel>
+                        </StackPanel>
+                    </Border>
+                        <StackPanel   >
+                        <Grid  Margin="0 0 0 10">
+                            <TextBlock HorizontalAlignment="Left" Foreground="Green" FontSize="18" Margin="5" Text="  معلومات محتوى العملية :"/>
+
+                                <Button HorizontalAlignment="Right" Visibility="{Binding visibility}"
+                                    ToolTip="إضافة حصة جديدة"
+                                    Style="{StaticResource MaterialDesignToolForegroundButton}" Command="{Binding addpart}" Width="30" Height="30">
+                                <materialDesign:PackIcon Kind="PlaylistAdd" HorizontalAlignment="Right" Foreground="Green" Width="30" Height="30" />
+                            </Button>
+                        </Grid>
+
+                        <StackPanel>
+                                <ItemsControl ItemsSource="{Binding parts}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                        <Border BorderBrush="Gray" BorderThickness="0 0 0 0">
+                                            <StackPanel>
+                                                <StackPanel Orientation="Horizontal" Margin=" 20 10 0 0">
+                                                    <TextBlock Margin="0 5 0 0 " Text="{Binding num}"/>
+                                                    <TextBlock  Margin="0 5 0 0 " Text=" - "/>
+                                                    <TextBlock  Margin="5" Foreground="Orange" Text=" إسم الحصة:  "/>
+                                                    <TextBlock TextAlignment="Center" Width="300" Margin="5" Text="{Binding Name}"/>
+                                                    <TextBlock Margin="5" Text=" تكلفة الحصة :  "  Foreground="Orange"/>
+                                                    <StackPanel  Width="120" Orientation="Horizontal">
+                                                        <TextBlock TextAlignment="Center" Margin="5" Text="{Binding Cost}"/>
+                                                        <TextBlock Margin="5" Text=" دج"/>
+                                                    </StackPanel >
+                                                    <StackPanel Margin="25 0 0 0  " Orientation="Horizontal">
+
+                                                        <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                                                           ToolTip="عرض معلومات الحصة"
+                                                         Command="{Binding view }" HorizontalAlignment="Left">
+                                                            <materialDesign:PackIcon Kind="Show"  HorizontalAlignment="Right" Foreground="Gray" />
+                                                        </Button>
+                                                        <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                                                           ToolTip=" إلتزام قانوني "
+                                                         Command="{Binding add_kanoni}" HorizontalAlignment="Left">
+                                                            <materialDesign:PackIcon  Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="File"  />
+                                                        </Button>
+                                                        <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                                                           ToolTip=" إلتزام محاسبي "
+                                                         Command="{Binding add_Mo7asabi}" HorizontalAlignment="Left">
+                                                            <materialDesign:PackIcon  Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="File"  />
+                                                        </Button>
+                                                        <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                                                           ToolTip=" بطاقات  الدفع  "
+                                                         Command="{Binding dafa3action }" HorizontalAlignment="Left">
+                                                            <materialDesign:PackIcon Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="File"  />
+                                                        </Button>
+                                                        <Button  Margin="5 0 0 0 " 
+                                                                 Visibility="{Binding visibility}"
+                                                                 Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                                                           ToolTip="تعديل معلومات الحصة"
+                                                         Command="{Binding edit }" HorizontalAlignment="Left">
+                                                            <materialDesign:PackIcon Kind="PlaylistEdit" HorizontalAlignment="Right" Foreground="Orange" />
+                                                        </Button>
+                                                            <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                          ToolTip="حذف  البطاقة"
+                                                                             Visibility="{Binding visibility}"
+                                                         Command="{Binding remove}" HorizontalAlignment="Left">
+                                                                <materialDesign:PackIcon Kind="PlaylistRemove" HorizontalAlignment="Right" Foreground="Red" />
+                                                            </Button>
+                                                        </StackPanel>
+                                                </StackPanel>
+                                                <Line X1="70" Y1="10" X2="780" Y2="10" Stroke="Gray" StrokeThickness="1" />
+                                            </StackPanel>
+                                        </Border>
+                                    </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+
+                            </StackPanel>
+
+
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+            </StackPanel>
+            <Grid Grid.Row="2" Margin="0 20 0 20">
+                <StackPanel  Orientation="Horizontal"  HorizontalAlignment="Center"  >
+
+                    <Button Width="65" Height="65"
+                            ToolTip="أحذ بحساب"
+                            Margin=" 15 5 15 5"    Command="{Binding card_7isab}"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0" 
+                            BorderThickness="1" Background="Transparent" Foreground="#0077CC" Padding="5" BorderBrush="#0077CC">
+                        <StackPanel >
+                            <materialDesign:PackIcon Width="30" HorizontalAlignment="Center" Height="30" Kind="File"  />
+
+                            <Viewbox>
+                                <TextBlock FontSize="6" Text="أخذ بحساب "/>
+                            </Viewbox>
+                        </StackPanel>
+                    </Button>
+                        <Button Width="65" Height="65"
+                        ToolTip="أحذ بحساب"
+                        Margin=" 15 5 15 5"    Command="{Binding card_s7ab}"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0" 
+                        BorderThickness="1" Background="Transparent" Foreground="#0077CC" Padding="5" BorderBrush="#0077CC">
+                            <StackPanel >
+                                <materialDesign:PackIcon Width="30" HorizontalAlignment="Center" Height="30" Kind="File"  />
+
+                                <Viewbox>
+                                    <TextBlock FontSize="9" Text="سحب الالتزام "/>
+                                </Viewbox>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+            </Grid>
+        </Grid>
+
+    </materialDesign:Card>
+    </materialDesign:DialogHost>
+</Page>

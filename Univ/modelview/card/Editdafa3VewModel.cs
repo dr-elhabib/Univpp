@@ -12,7 +12,7 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class Editdafa3VewModel : BaseViewModel
+    class Editdafa3VewModel : BaseViewModel<card_dafa3>
     {
 
         public part part { get; set; }

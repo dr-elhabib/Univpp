@@ -14,14 +14,19 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class processesViewModel: BaseViewModel
+    class processesViewModel: BaseViewModel<process>
     {
         public int Count { get; set; }
         public CommandPar Serech { get; set; }
         public Command new_ { get; set; }
         public ObservableCollection<processesViewMODEL> processes { get; set; }
+
         public processesViewModel() {
-            this.processes = new ObservableCollection<processesViewMODEL>(Ico.getValue<db>().GetUnivdb().processes.ToList().Select(p => new processesViewMODEL(p)));
+            actionUP = () =>
+            {
+                this.processes = new ObservableCollection<processesViewMODEL>(Ico.getValue<db>().GetUnivdb().processes.ToList().Select(p => new processesViewMODEL(p)));
+            };
+            inTilData();
             Count = processes.Count;
             Serech = new CommandPar((t)=>{
                 var text= (string)t;
@@ -34,6 +39,9 @@ namespace Univ.modelview
 
         }
 
-
+        public void inTilData()
+        {
+            actionUP();
+        }
     }
 }

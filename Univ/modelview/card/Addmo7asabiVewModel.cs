@@ -12,7 +12,7 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class Addmo7asabiVewModel : BaseViewModel
+    class Addmo7asabiVewModel : BaseViewModel<card_kanoni>
     {
 
         public part part { get; set; }
@@ -95,7 +95,7 @@ namespace Univ.modelview
                         date = d,
                         id_prosess = card_kanoni.part.Id_Pro,
                         num = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro).LastOrDefault().num + 1,
-                        year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id
+                        year = Ico.getValue<Date>().GetNowDate().Id
                      ,
                         location = Ico.getValue<IO>().CREATE_F_mo7asabi(part.process.location) + "\\" + name
                     };

@@ -12,7 +12,7 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class Edittashira_7isabi_VewModel : BaseViewModel
+    class Edittashira_7isabi_VewModel : BaseViewModel<card_7isab>
     {
         public string visa { get; set; }
         public string num { get; set; }

@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Univ.modelview
 {
- public  class ItemMo7asabi : BaseViewModel
+ public  class ItemMo7asabi : BaseViewModel<card_mo7sabi>
     {
 
         public DateTime date { get; set; }
@@ -98,33 +98,7 @@ namespace Univ.modelview
             });
             remove = new Command(() => {
                 start();
-                Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == card_mo7sabi.part.Id_Pro).ToList().SingleOrDefault().NewCost += card_mo7sabi.cost;
-                Ico.getValue<db>().changedNumCard(card_mo7sabi.card);
-                Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(get_data(card_mo7sabi));
-                IEnumerable<card_dafa3> get_data(card_mo7sabi card)
-                {
-
-                    var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => (c.id_part == card_mo7sabi.id_part) && (c.tswiya == null) && (c.date > card_mo7sabi.card.date));
-
-                    foreach (var c in cs)
-                    {
-                        Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).First().nowcost -= c.Cost;
-                    }
-                    return cs;
-                }
-            foreach (var c in Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.part.Id_Pro == Ico.getValue<db>().GetUnivdb().cards.
-            ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().id_prosess && c.card.date > Ico.getValue<db>().GetUnivdb().cards.
-            ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().date)) {
-                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id==c.Id).ToList().FirstOrDefault().oldCost += card_mo7sabi.cost;
-                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id == c.Id).ToList().FirstOrDefault().num -= 1;
-                }
-          
-                Ico.getValue<db>().GetUnivdb().card_mo7sabi.Remove(Ico.getValue<db>().GetUnivdb().card_mo7sabi.
-                ToList().Where(c => c.Id == card_mo7sabi.Id).ToList().SingleOrDefault());
-                Ico.getValue<db>().GetUnivdb().cards.Remove(Ico.getValue<db>().GetUnivdb().cards.
-                ToList().Where(c => c.Id == card_mo7sabi.id_card).ToList().SingleOrDefault());
-                Ico.getValue<db>().savedb();
-                end();
+               
             });
             add_Mo7asabi = new Command(() => {
                 //                Ico.getValue<ContentApp>().page = new AddPartCard(part);

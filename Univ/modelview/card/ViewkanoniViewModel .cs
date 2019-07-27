@@ -15,7 +15,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class ViewkanoniViewModel : BaseViewModel
+    class ViewkanoniViewModel : BaseViewModel<card_kanoni>
     {
 
         public bool IsSample4DialogOpen
@@ -74,21 +74,24 @@ namespace Univ.modelview
             card_Kanoni.CreateCard();
             */
 
-            inTilData(card);
+            this.actionUP = () => {
+                this.val = Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(p => p.id == card.id).ToList().FirstOrDefault();
+            };
+            inTilData();
 
             back = new Command(() => {
                 Ico.getValue<ContentApp>().back();
             });
 
         }
-        public void inTilData(card_kanoni card)
+        public void inTilData()
         {
-            this.card = card.card;
-            this.process = card.card.process;
-            this.cost = card.cost;
+            this.card = val.card;
+            this.process = val.card.process;
+            this.cost = val.cost;
 
-            this.part = new Part(card.part);
-            this.client = card.client.Name;
+            this.part = new Part(val.part);
+            this.client = val.client.Name;
 
 
 
@@ -96,23 +99,22 @@ namespace Univ.modelview
             tashiravis = Visibility.Visible;
             edittashiravis = Visibility.Collapsed;
 
-            if (card.visa != null)
+            if (val.visa != null)
             {
                 visibility = Visibility.Collapsed;
                 edittashiravis = Visibility.Visible;
                 tashiravis = Visibility.Collapsed;
 
-                visa = card.visa;
+                visa = val.visa;
             }
 
             tashira = new Command(() => {
-                Sample4Content = new Addtashira_kanoni(card, AcceptSample4Dialog, CancelSample4Dialog);
+                Sample4Content = new Addtashira_kanoni(val, AcceptSample4Dialog, CancelSample4Dialog);
                 OpenSample4Dialog();
-                this.inTilData(Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(N => N.id == card.id).ToList().SingleOrDefault());
-
+                this.inTilData();
             });
             edittashira = new Command(() => {
-                Sample4Content = new Edittashira_kanoni(card, AcceptSample4Dialog, CancelSample4Dialog);
+                Sample4Content = new Edittashira_kanoni(val, AcceptSample4Dialog, CancelSample4Dialog);
                 OpenSample4Dialog();
 
             });
@@ -127,8 +129,7 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
-            this.inTilData(Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(N => N.id_card == card.Id).ToList().SingleOrDefault());
-
+            this.inTilData();
         }
 
         private void AcceptSample4Dialog()

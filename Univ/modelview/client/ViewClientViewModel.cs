@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Univ.modelview
 {
-    class ViewClientViewModel:BaseViewModel
+    class ViewClientViewModel:BaseViewModel<client>
     {
         public ObservableCollection<ClientPartViewModel> partsClient { get; set; }
         public Command new_ { get; set; }

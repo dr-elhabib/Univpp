@@ -12,15 +12,16 @@ namespace Univ.modelview
 
 
 
-    class AddpartViewModel:BaseViewModel
+    class AddpartViewModel:BaseViewModel<process>
     {
         public process process { get; set; }
         public List<TypePart> types { get;set;}
-        public int numtype { get;set;}
+        public TypePart numtype { get; set; }
         public int cost { get; set; }
         public string name { get; set; }
         public string alhcost { get; set; }
 
+        public Command back { get; set; }
         public Command save { get; set; }
         public int num { get; set; }
         public AddpartViewModel(process process )
@@ -44,13 +45,20 @@ namespace Univ.modelview
                     Name=name,
                     Cost=cost,
                     Id_Pro=process.Id,
-                    num_type=numtype,
+                    num_type= numtype.numType,
                     num=num,
                     alpart= alhcost
                 };
 
                 Ico.getValue<db>().GetUnivdb().parts.Add(part);
                 Ico.getValue<db>().GetUnivdb().SaveChanges();
+                Ico.getValue<ContentApp>().back();
+
+            });
+            back = new Command(()=> {
+
+                Ico.getValue<ContentApp>().back();
+
             });
         }
     }

@@ -86,8 +86,8 @@
                                                 materialDesign:HintAssist.Hint="  إختر النوع"
                                                 ScrollViewer.VerticalScrollBarVisibility="Hidden"
                                                 DisplayMemberPath="name" 
-                                                SelectedValuePath="numtype" 
-                                                SelectedValue="{Binding numType}" />
+                                                SelectedValuePath="typePart" 
+                                                SelectedValue="{Binding numtype}" />
                                     </StackPanel>
                                     <StackPanel Margin="3 10 0 0" Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
@@ -128,7 +128,7 @@
                         </StackPanel>
                     </Border>
                 </Grid>
-                <StackPanel 
+                <StackPanel  Margin="20"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Orientation="Horizontal">

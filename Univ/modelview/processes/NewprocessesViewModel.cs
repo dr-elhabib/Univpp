@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class NewprocessesViewModel: BaseViewModel
+    class NewprocessesViewModel: BaseViewModel<process>
     {
         public string Name { get; set; }
         public string Code { get; set; }

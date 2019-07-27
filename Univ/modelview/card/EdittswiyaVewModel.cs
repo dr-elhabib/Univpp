@@ -12,7 +12,7 @@ using Univ.page;
 
 namespace Univ.modelview
 {
-    class EdittswiyaVewModel : BaseViewModel
+    class EdittswiyaVewModel : BaseViewModel<card_dafa3>
     {
         public string tswiya { get; set; }
         public string num { get; set; }

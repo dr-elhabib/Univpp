@@ -29,7 +29,6 @@
                         <materialDesign:PackIcon Kind="Menu" Foreground="#FF313131"/>
                     </Button>
                     <StackPanel Orientation="Horizontal"  HorizontalAlignment="Left">
-
                         <Button Style="{StaticResource PowerButton}" Click="Power">
                             <materialDesign:PackIcon Foreground="Red" Kind="Power"/>
                         </Button>

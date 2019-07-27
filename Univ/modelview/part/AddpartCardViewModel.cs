@@ -15,7 +15,7 @@ namespace Univ.modelview
 
 
 
-    class AddpartCardViewModel : BaseViewModel
+    class AddpartCardViewModel : BaseViewModel<part>
     {
         public List<client> clients { get; set; }
         public client client { get; set; }
@@ -31,6 +31,9 @@ namespace Univ.modelview
         public AddpartCardViewModel(part part, Action accept, Action Cancel)
         {
 
+            this.actionUP = () => {
+                this.val = Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == part.Id).ToList().FirstOrDefault();
+            };
             this.namepart = part.Name;
             this.cost = part.Cost;
             this.nameprocess = part.process.Name;
@@ -82,7 +85,7 @@ namespace Univ.modelview
                 var card = new card()
                 {
                     id_prosess = part.process.Id,
-                    year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id,
+                    year = Ico.getValue<Date>().GetNowDate().Id,
                     num = num,
                     location = Ico.getValue<IO>().CREATE_F_kanoni(part.process.location) + "\\" + name,
                     date = DateTime.Now,

@@ -15,11 +15,8 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class ViewProcessViewModel:BaseViewModel
+    class ViewProcessViewModel : BaseViewModel<process>
     {
-
-
-
 
 
         public bool IsSample4DialogOpen
@@ -47,10 +44,10 @@ namespace Univ.modelview
         public Visibility visibility { get; set; } = Visibility.Visible;
         public string name { get; set; }
         public string code { get; set; }
-        public string num { get; set; } 
-        public string date { get; set; } 
-        public double nowcost { get; set; } 
-        public ObservableCollection<ItemPart> parts { get; set; } 
+        public string num { get; set; }
+        public string date { get; set; }
+        public double nowcost { get; set; }
+        public ObservableCollection<ItemPart> parts { get; set; }
         public Command back { get; set; }
         public Command addpart { get; set; }
         public Command card_7isab { get; set; }
@@ -58,67 +55,50 @@ namespace Univ.modelview
         public Command viewcardmo7sabi { get; set; }
         public Command card_s7ab { get; set; }
 
-        public ViewProcessViewModel(process process) {
+        public ViewProcessViewModel(process process)
+        {
 
-            this.name = process.Name;
-            this.code = process.Code;
-            this.num = process.num;
-            var lc = process.cards;
-            if(lc.ToList().Count>0) {
-                if (lc.ToList().FirstOrDefault().card_7isab?.ToList().FirstOrDefault().visa != null) {
-                    visibility = Visibility.Hidden;
-                }
-            }            this.date = process.date.GetDateTimeFormats()[0];
-            this.nowcost = process.NewCost;
-            parts =new ObservableCollection<ItemPart>( process.parts.ToList().Select(p => new ItemPart(p) {
-                action = (t) => {
-                    parts.Remove(t);
-                },
-
-                action_kanoni = () => {
-
-                    
-                    var card =Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(c=>c.id_part==p.Id).FirstOrDefault();
-                    
-                    if (card == null)
-                    {
-                        Sample4Content = new AddPartCard(p, AcceptSample4Dialog, CancelSample4Dialog);
-                        OpenSample4Dialog();
-                    }
-                    else {
-                        Ico.getValue<ContentApp>().page = new Viewkanoni(card);
-
-                    }
-                }
-            }));
-            back = new Command(()=> {
+            this.actionUP = () =>
+            {
+                this.val = Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == process.Id).ToList().FirstOrDefault();
+            };
+            this.inTilData();
+            back = new Command(() =>
+            {
                 Ico.getValue<ContentApp>().back();
+                this.inTilData();
+
             });
-            addpart = new Command(()=> {
-                Ico.getValue<ContentApp>().page=new AddPart(process);
+            addpart = new Command(() =>
+            {
+                Ico.getValue<ContentApp>().page = new AddPart(val);
             });
-            card_s7ab = new Command(()=> {
-                Ico.getValue<ContentApp>().page=new Viewsa7ab(process);
+            card_s7ab = new Command(() =>
+            {
+                Ico.getValue<ContentApp>().page = new Viewsa7ab(val);
             });
-            card_7isab = new Command(()=> {
+            card_7isab = new Command(() =>
+            {
                 //   Univ.lib.Card_7isab card = new Univ.lib.Card_7isab(new processes(process));
                 Ico.getValue<ContentApp>().page = new View7isab(process);
 
             });
-            viewcardmo7sabi = new Command(()=> {
+            viewcardmo7sabi = new Command(() =>
+            {
                 //  Ico.getValue<ContentApp>().page = new Addmo7asbi( process);
                 OpenSample4Dialog();
             });
-            card_mo7asbi = new Command(() => {
-         //  Task.Run(()=> { Card_mo7sabi card = new Card_mo7sabi(new processes(process)); });
-                });
+            card_mo7asbi = new Command(() =>
+            {
+                //  Task.Run(()=> { Card_mo7sabi card = new Card_mo7sabi(new processes(process)); });
+            });
 
-            
-            
+
+
         }
 
 
-        
+
         private void OpenSample4Dialog()
         {
             IsSample4DialogOpen = true;
@@ -131,9 +111,75 @@ namespace Univ.modelview
 
         private void AcceptSample4Dialog()
         {
-                Sample4Content = new Progressbar();
+            Sample4Content = new Progressbar();
         }
+
+
+        public void inTilData()
+        {
+            this.actionUP();
+
+            this.name = val.Name;
+            this.code = val.Code;
+            this.num = val.num;
+            var lc = val.cards;
+            if (lc.ToList().Count > 0)
+            {
+                var a=lc.ToList().Where(c=>c.card_7isab.Count>0).FirstOrDefault();
+                if (a != null)
+                {
+                    if (a.card_7isab?.ToList().FirstOrDefault().visa != null)
+                    {
+                        visibility = Visibility.Hidden;
+                    }
+                }
+            }
+            this.date = val.date.GetDateTimeFormats()[0];
+            this.nowcost = val.NewCost;
+            parts = new ObservableCollection<ItemPart>(val.parts.ToList().Select(p => new ItemPart(p)
+            {
+                action = (t) =>
+                {
+                    OpenSample4Dialog();
+
+                    Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه الحصة من العملية ,لا يمكن التراجع عن الحذف", 
+                       async ()=>{
+                           AcceptSample4Dialog();
+                           await Task.Run(() => {
+                               Ico.getValue<db>().GetUnivdb().parts.Remove(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id == p.Id).FirstOrDefault());
+                               CancelSample4Dialog();
+
+                           });
+
+                           parts.Remove(t);
+
+                       },
+                        ()=> {
+
+                            CancelSample4Dialog();
+                        });
+                },
+
+                action_kanoni = () =>
+                {
+
+
+                    var card = Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(c => c.id_part == p.Id).FirstOrDefault();
+
+                    if (card == null)
+                    {
+                        Sample4Content = new AddPartCard(p, AcceptSample4Dialog, CancelSample4Dialog);
+                        OpenSample4Dialog();
+                    }
+                    else
+                    {
+                        Ico.getValue<ContentApp>().page = new Viewkanoni(card);
+
+                    }
+                }
+            }));
+
+        }
+
     }
-
-
-}
+    }

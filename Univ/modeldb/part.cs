@@ -20,6 +20,7 @@ namespace Univ.modeldb
             this.card_dafa3 = new HashSet<card_dafa3>();
             this.card_kanoni = new HashSet<card_kanoni>();
             this.card_mo7sabi = new HashSet<card_mo7sabi>();
+            this.p_sa7ab = new HashSet<p_sa7ab>();
         }
     
         public int Id { get; set; }
@@ -38,6 +39,8 @@ namespace Univ.modeldb
         public virtual ICollection<card_kanoni> card_kanoni { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<card_mo7sabi> card_mo7sabi { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<p_sa7ab> p_sa7ab { get; set; }
         public virtual process process { get; set; }
     }
 }

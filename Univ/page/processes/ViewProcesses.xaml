@@ -51,7 +51,7 @@
             </StackPanel>
            
             <StackPanel Grid.Row="1" >
-                    <StackPanel   Width="800"  Grid.Row="1">
+                    <StackPanel  Width="850"    Grid.Row="1">
                         <Border Grid.Column="0" BorderBrush="Gray" BorderThickness="0 0 0 0">
                         <StackPanel  >
                             <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="  معلومات العملية  الأساسية :"/>
@@ -153,8 +153,13 @@
                                                          Command="{Binding edit }" HorizontalAlignment="Left">
                                                             <materialDesign:PackIcon Kind="PlaylistEdit" HorizontalAlignment="Right" Foreground="Orange" />
                                                         </Button>
-
-                                                    </StackPanel>
+                                                            <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}"
+                                                          ToolTip="حذف الحصة"
+                                                                             Visibility="{Binding visibility}"
+                                                         Command="{Binding remove}" HorizontalAlignment="Left">
+                                                                <materialDesign:PackIcon Kind="PlaylistRemove" HorizontalAlignment="Right" Foreground="Red" />
+                                                            </Button>
+                                                        </StackPanel>
                                                 </StackPanel>
                                                 <Line X1="70" Y1="10" X2="780" Y2="10" Stroke="Gray" StrokeThickness="1" />
                                             </StackPanel>

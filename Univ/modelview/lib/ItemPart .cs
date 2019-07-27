@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Univ.modelview.lib
 {
-    class ItemPart : BaseViewModel
+    class ItemPart : BaseViewModel<part>
     {
         public string Name { get; set; }
         public double Cost { get; set; }
@@ -34,9 +34,13 @@ namespace Univ.modelview.lib
             var lc = part.process.cards;
             if (lc.ToList().Count > 0)
             {
-                if (lc.ToList().FirstOrDefault().card_7isab?.ToList().FirstOrDefault().visa != null)
+                var a = lc.ToList().Where(c => c.card_7isab.Count > 0).FirstOrDefault();
+                if (a != null)
                 {
-                    visibility = Visibility.Hidden;
+                    if (a.card_7isab?.ToList().FirstOrDefault().visa != null)
+                    {
+                        visibility = Visibility.Hidden;
+                    }
                 }
             }
             remove = new Command(() =>

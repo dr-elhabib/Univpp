@@ -16,16 +16,12 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class EditprocessesViewModel : BaseViewModel
+    class EditprocessesViewModel : BaseViewModel<process>
     {
         public string Name { get; set; }
         public string Code { get; set; }
         public string Num { get; set; }
-        public DateTime date { get; set; } = DateTime.Now;
-        Action<object> actiondelete_type;
-        Action actionadd_type;
-        Action<object> actiondelete_part;
-        Action actionadd_part;
+        public DateTime date { get; set; } 
         public Command save { get; set; }
         public Command back { get; set; }
 
@@ -38,31 +34,24 @@ namespace Univ.modelview
      
             save = new Command(() =>
             {
-                MessageBox.Show(" data of " + process.Id);
 
                 var pr = Ico.getValue<db>().GetUnivdb().processes.Single(p => p.Id == process.Id);
-
-//                Ico.getValue<db>().GetUnivdb().parts.RemoveRange(pr.parts);
-
+                
 
                 pr.Name = Name;
                 pr.date = date;
                 pr.Code = Code;
                 pr.num = Num;
                 Ico.getValue<db>().savedb();
-                MessageBox.Show("data svaed");
-                // Your code...
-                // Could also be before try if you know the exception occurs in SaveChanges
+                Ico.getValue<ContentApp>().back();
 
 
 
-
-                Ico.getValue<ContentApp>().page = new PCrad();
-                Ico.getValue<ContentApp>().clear();
             });
             back = new Command(() =>
             {
                 Ico.getValue<ContentApp>().back();
+
             });
 
 

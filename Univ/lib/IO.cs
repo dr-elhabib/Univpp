@@ -11,9 +11,10 @@ namespace Univ.lib
 {
     class IO
     {
-       private string Path { get; set; }
-       private string TemplatesPath { get; set; }= "C:\\Users\\habib\\source\\repos\\Univpp\\Univ\\template";
-        public IO(string path =null) {
+        private string Path { get; set; }
+        private string TemplatesPath { get; set; } = "C:\\Users\\habib\\source\\repos\\Univpp\\Univ\\template";
+        public IO(string path = null)
+        {
             if (path == null)
             {
                 this.Path = "C:\\ملفات";
@@ -22,19 +23,23 @@ namespace Univ.lib
                     System.IO.Directory.CreateDirectory(Path);
                 }
             }
-            else {
+            else
+            {
                 this.Path = path;
             }
-          
+
 
         }
-        public string GetPath() {
+        public string GetPath()
+        {
             return Path;
         }
-        public string GetTemplatesPath() {
+        public string GetTemplatesPath()
+        {
             return TemplatesPath;
         }
-        public void SetPath(string path ) {
+        public void SetPath(string path)
+        {
             this.Path = path;
         }
         /*
@@ -42,7 +47,8 @@ namespace Univ.lib
         {
 
         }
-*/        public string CREATE_F_PRO(string file)
+*/
+        public string CREATE_F_PRO(string file)
         {
             var P = Path + "\\" + file;
             if (!System.IO.Directory.Exists(P))
@@ -91,6 +97,14 @@ namespace Univ.lib
                 System.IO.Directory.CreateDirectory(P);
             }
             return P;
+        }
+
+        public void DELETE_FILE(string file)
+        {
+            if (System.IO.File.Exists(file))
+            {
+                System.IO.File.Delete(file);
+            }
         }
     }
 }

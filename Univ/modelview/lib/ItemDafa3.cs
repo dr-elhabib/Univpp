@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Univ.modelview
 {
- public  class ItemDafa3:BaseViewModel
+ public  class ItemDafa3:BaseViewModel<card_dafa3>
     {
 
         public DateTime date { get; set; }
@@ -43,20 +43,15 @@ namespace Univ.modelview
             visibility = Visibility.Visible;
             tswiyavis = Visibility.Visible;
             edittswiyavis = Visibility.Collapsed;
-            MessageBox.Show(card_dafa3.tswiya);
 
             if (card_dafa3.tswiya!=null)
             {
                 visibility = Visibility.Collapsed;
                 edittswiyavis = Visibility.Visible;
                 tswiyavis = Visibility.Collapsed;
-                MessageBox.Show(card_dafa3.tswiya);
             }
 
             remove = new Command(() => {
-                Ico.getValue<db>().GetUnivdb().parts.ToList().Where(c => c.Id == card_dafa3.id_part).ToList().SingleOrDefault().nowcost -= Cost;
-                Ico.getValue<db>().GetUnivdb().card_dafa3.Remove(Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.Id == card_dafa3.Id).FirstOrDefault());
-                Ico.getValue<db>().savedb();
                 //     var cardm = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.Id == mo7asbi.Id).SingleOrDefault();
                 //     Ico.getValue<ContentApp>().SetPage(new Viewdafa3(cardm));
                 action(Cost);

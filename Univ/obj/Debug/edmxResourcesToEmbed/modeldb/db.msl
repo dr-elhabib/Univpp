@@ -87,6 +87,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="p_sa7ab">
+      <EntityTypeMapping TypeName="Univ.p_sa7ab">
+        <MappingFragment StoreEntitySet="p_sa7ab">
+          <ScalarProperty Name="cost" ColumnName="cost" />
+          <ScalarProperty Name="id_part" ColumnName="id_part" />
+          <ScalarProperty Name="id_sa7ab" ColumnName="id_sa7ab" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="parts">
       <EntityTypeMapping TypeName="Univ.part">
         <MappingFragment StoreEntitySet="part">

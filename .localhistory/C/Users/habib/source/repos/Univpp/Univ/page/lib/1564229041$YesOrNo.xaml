@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="Univ.page.lib.YesOrNo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Univ.page.lib"
+             FontFamily="{ StaticResource Medium}"
+            xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             FlowDirection="RightToLeft"
+>
+    <materialDesign:Card Width="500"  Background="White">
+        <StackPanel>
+            <StackPanel  >
+                <materialDesign:PackIcon Kind="Help" 
+                        Height="60"
+                                         Foreground="Red"
+                                    Margin="0 10 0 0 "
+                                         Width="60"
+                                         HorizontalAlignment="Center" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+
+
+                <TextBlock Margin="20"  TextAlignment="Center" TextWrapping="Wrap" Text="{Binding Mes,FallbackValue='هل أنت متأكد من حذف البطاقة لابمكن الرجوع عن هذا الامر'}" HorizontalAlignment="Center" 
+                       FontWeight="Bold"
+                       VerticalAlignment="Center"/>
+            </StackPanel>
+
+            <StackPanel 
+                
+                Margin="10"
+        Orientation="Horizontal"
+        HorizontalAlignment="Right">
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+          Margin="8"
+                   Foreground="Green"
+          Command="{Binding yes}">
+                    موافق
+                </Button>
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+                    Foreground="Red"
+          Margin="8"
+          Command="{Binding no}">
+                    إلفاء</Button>
+
+            </StackPanel>
+        </StackPanel>
+
+    </materialDesign:Card>
+</UserControl>

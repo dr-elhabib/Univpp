@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Univ.modelview
 {
-    class AddclientVievModel : BaseViewModel
+    class AddclientVievModel : BaseViewModel<client>
     {
         public string Name { get; set; }
         public string numaccount { get; set; }

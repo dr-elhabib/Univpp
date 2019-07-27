@@ -81,14 +81,6 @@
                                     <StackPanel Margin="10"  Orientation="Vertical">
                                         <StackPanel Orientation="Horizontal">
                                             <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="FlaskEmpty" />
-                                            <TextBlock Margin="5 5 0 5 " Text=" رصيد العملية القديم : " VerticalAlignment="Center"/>
-                                            <TextBlock Text="{Binding oldcost,FallbackValue='100000'}" Margin="5" VerticalAlignment="Center"/>
-                                            <TextBlock Text="دج" Margin="5" VerticalAlignment="Center"/>
-                                        </StackPanel>
-                                    </StackPanel>
-                                    <StackPanel Margin="10"  Orientation="Vertical">
-                                        <StackPanel Orientation="Horizontal">
-                                            <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="FlaskEmpty" />
                                             <TextBlock Margin="5 5 0 5 " Text=" رصيد العملية الجديد : " VerticalAlignment="Center"/>
                                             <TextBlock Text="{Binding newcost,FallbackValue='100000'}" Margin="5" VerticalAlignment="Center"/>
                                             <TextBlock Text="دج" Margin="5" VerticalAlignment="Center"/>

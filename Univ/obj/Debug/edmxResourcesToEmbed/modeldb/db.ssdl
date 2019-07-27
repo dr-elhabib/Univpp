@@ -79,6 +79,15 @@
     <Property Name="gence" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="address" Type="text" Nullable="false" />
   </EntityType>
+  <EntityType Name="p_sa7ab">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id_sa7ab" Type="int" Nullable="false" />
+    <Property Name="id_part" Type="int" Nullable="false" />
+    <Property Name="cost" Type="double" Nullable="false" />
+  </EntityType>
   <EntityType Name="part">
     <Key>
       <PropertyRef Name="Id" />
@@ -256,6 +265,30 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="p_sa7ab_ibfk_1">
+    <End Role="part" Type="Self.part" Multiplicity="1" />
+    <End Role="p_sa7ab" Type="Self.p_sa7ab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="part">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="p_sa7ab">
+        <PropertyRef Name="id_part" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="p_sa7ab_ibfk_2">
+    <End Role="card_sa7ab" Type="Self.card_sa7ab" Multiplicity="1" />
+    <End Role="p_sa7ab" Type="Self.p_sa7ab" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="card_sa7ab">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="p_sa7ab">
+        <PropertyRef Name="id_sa7ab" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="par_ibfk_1">
     <End Role="processes" Type="Self.processes" Multiplicity="1" />
     <End Role="part" Type="Self.part" Multiplicity="*" />
@@ -276,6 +309,7 @@
     <EntitySet Name="card_mo7sabi" EntityType="Self.card_mo7sabi" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="card_sa7ab" EntityType="Self.card_sa7ab" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="client" EntityType="Self.client" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="p_sa7ab" EntityType="Self.p_sa7ab" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="part" EntityType="Self.part" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="processes" EntityType="Self.processes" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="year" EntityType="Self.year" Schema="db_univ" store:Type="Tables" />
@@ -326,6 +360,14 @@
     <AssociationSet Name="card_sa7ab_ibfk_1" Association="Self.card_sa7ab_ibfk_1">
       <End Role="card" EntitySet="card" />
       <End Role="card_sa7ab" EntitySet="card_sa7ab" />
+    </AssociationSet>
+    <AssociationSet Name="p_sa7ab_ibfk_1" Association="Self.p_sa7ab_ibfk_1">
+      <End Role="part" EntitySet="part" />
+      <End Role="p_sa7ab" EntitySet="p_sa7ab" />
+    </AssociationSet>
+    <AssociationSet Name="p_sa7ab_ibfk_2" Association="Self.p_sa7ab_ibfk_2">
+      <End Role="card_sa7ab" EntitySet="card_sa7ab" />
+      <End Role="p_sa7ab" EntitySet="p_sa7ab" />
     </AssociationSet>
     <AssociationSet Name="par_ibfk_1" Association="Self.par_ibfk_1">
       <End Role="processes" EntitySet="processes" />

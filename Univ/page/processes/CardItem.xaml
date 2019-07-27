@@ -10,10 +10,10 @@
              FontFamily="{StaticResource Medium}"
              >
 
-    <materialDesign:Flipper Padding="0"  Width="240" Height="180"  >
+    <materialDesign:Flipper Padding="0"  Width="240" Height="200"  >
         <materialDesign:Flipper.FrontContent  >
             <materialDesign:Card BorderThickness="1">
-                <Grid  Background="White" Width="240" Height="180" >
+                <Grid  Background="White" Width="240" Height="200" >
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
@@ -31,16 +31,22 @@
                         </Grid>
                     </materialDesign:ColorZone>
                     <StackPanel  Grid.Row="1">
-                        <StackPanel Margin="5 10 0 0 " Orientation="Horizontal">
+                        <StackPanel Margin="5 10 0 10 " Orientation="Horizontal">
                             <materialDesign:PackIcon  Kind="RenameBox" VerticalAlignment="Stretch" Margin="2" />
                             <TextBlock Text=" الإسم :  " Margin="2"  VerticalAlignment="Center" />
                             <TextBlock  TextAlignment="Center" Width="150"  Padding="0"  Margin="5 10 5 0" VerticalAlignment="Bottom" TextWrapping="Wrap"  Text="{Binding Name}"   />
                         </StackPanel>
                     <StackPanel  Margin="5 0 0 0 "  VerticalAlignment="Bottom" Orientation="Horizontal">
                             <materialDesign:PackIcon  Kind="FlaskEmpty" VerticalAlignment="Center" Margin="2" />
+                            <TextBlock Text="التاريخ   :"  Margin="2"  VerticalAlignment="Center" />
+                            <TextBlock Margin="5" TextAlignment="Center"   Padding="0"   TextWrapping="Wrap"  Text="{Binding date}"   />
+
+                        </StackPanel>
+                    <StackPanel  Margin="5 0 0 0 "  VerticalAlignment="Bottom" Orientation="Horizontal">
+                            <materialDesign:PackIcon  Kind="FlaskEmpty" VerticalAlignment="Center" Margin="2" />
                             <TextBlock Text=" التكلفة :"  Margin="2"  VerticalAlignment="Center" />
-                            <TextBlock Margin="5" TextAlignment="Center"   Padding="0"   TextWrapping="Wrap"  Text="{Binding Cost}"   />
-                            <TextBlock Margin="5"   Text="دج"   />
+                            <TextBlock Margin="5" TextAlignment="Center"   Padding="0"  Foreground="red"  TextWrapping="Wrap"  Text="{Binding Cost}"   />
+                            <TextBlock Margin="5" Foreground="red"  Text="دج"   />
 
 
                         </StackPanel>
@@ -49,8 +55,8 @@
                             <materialDesign:PackIcon  Kind="FlaskEmpty" VerticalAlignment="Center" Margin="2" />
 
                             <TextBlock Text=" الرصيد الحالي :"  Margin="2"  VerticalAlignment="Center" />
-                            <TextBlock Margin="5" TextAlignment="Center"   Padding="0"   TextWrapping="Wrap"  Text="{Binding Cost}"   />
-                            <TextBlock Margin="5"   Text="دج"   />
+                            <TextBlock Margin="5" TextAlignment="Center" Foreground="Green"   Padding="0"   TextWrapping="Wrap"  Text="{Binding nowCost}"   />
+                            <TextBlock Margin="5"   Text="دج"   Foreground="Green" />
 
 
                         </StackPanel>
@@ -63,7 +69,7 @@
         
         <materialDesign:Flipper.BackContent>
             <materialDesign:Card>
-            <Grid  Width="240"   Height="180" Background="White">
+            <Grid  Width="240"   Height="200" Background="White">
 
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />

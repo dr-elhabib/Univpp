@@ -17,7 +17,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class Viewdafa3VewModel : BaseViewModel
+    class Viewdafa3VewModel : BaseViewModel<part>
     {
 
 
@@ -66,7 +66,12 @@ namespace Univ.modelview
         public Command AddDafa3 { get; set; }
         public Viewdafa3VewModel(part  part)
         {
-            this.inTilData(part);
+
+            this.actionUP = () => {
+                this.val = Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == part.Id).ToList().FirstOrDefault();
+            };
+
+            this.inTilData();
             this.client=part.card_kanoni.ToList().FirstOrDefault().client.Name;
             visa = "لم يتحصل على فيزا إلى حد الان ..";
             back =new  Command(()=> {
@@ -75,7 +80,7 @@ namespace Univ.modelview
 
             AddDafa3 = new Command(()=> {
                 Sample4Content = new Adddafa3(part, AcceptSample4Dialog, CancelSample4Dialog,()=> {
-                    this.inTilData(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p=>p.Id==part.Id).ToList().SingleOrDefault());
+                    this.inTilData();
                 });
                 OpenSample4Dialog();
 
@@ -85,14 +90,14 @@ namespace Univ.modelview
 
         }
 
-        public void inTilData(part part) {
-
-            this.process = part.process;
-            this.part = new Part(part);
+        public void inTilData() {
+            this.actionUP();
+            this.process = val.process;
+            this.part = new Part(val);
             ItemDafa3S = CreateItem();
 
-            this.newcost = (part.nowcost);
-            this.old_cost = (part.mcost - part.nowcost);
+            this.newcost = (val.nowcost);
+            this.old_cost = (val.mcost - val.nowcost);
 
         }
         private void OpenSample4Dialog()
@@ -103,7 +108,7 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
-            this.inTilData(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == part.part.Id).ToList().SingleOrDefault());
+            this.inTilData();
 
         }
 
@@ -115,22 +120,42 @@ namespace Univ.modelview
         public ObservableCollection<ItemDafa3> CreateItem() {
 
 
-            return new ObservableCollection<ItemDafa3>(part.part.card_dafa3.Select(c => new ItemDafa3(c)
+            return new ObservableCollection<ItemDafa3>(part.part.card_dafa3.Select(ct => new ItemDafa3(ct)
             {
                 action = (t) => {
-                    newcost -= t;
-                    this.inTilData(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == part.part.Id).ToList().SingleOrDefault());
+
+                    OpenSample4Dialog();
+
+                    Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه الحصة من العملية ,لا يمكن التراجع عن الحذف",
+                       async () => {
+                           AcceptSample4Dialog();
+                           await Task.Run(() => {
+
+                               Ico.getValue<db>().GetUnivdb().parts.ToList().Where(c => c.Id == ct.id_part).ToList().SingleOrDefault().nowcost -= t;
+                               Ico.getValue<db>().GetUnivdb().card_dafa3.Remove(Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.Id == ct.Id).FirstOrDefault());
+                               Ico.getValue<db>().savedb();
+
+                               CancelSample4Dialog();
+
+                           });
+
+
+                       },
+                        () => {
+
+                            CancelSample4Dialog();
+                        });
                 },
                 action_edit = (t) => {
                     Sample4Content = new Editdafa3(t, AcceptSample4Dialog, CancelSample4Dialog);
                     OpenSample4Dialog();
 
-                    this.inTilData(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == part.part.Id).ToList().SingleOrDefault());
+                    this.inTilData();
                 },
                 addtswiya = (t) => {
                     Sample4Content = new Addtswiya(t, AcceptSample4Dialog, CancelSample4Dialog);
                     OpenSample4Dialog();
-                    this.inTilData(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == part.part.Id).ToList().SingleOrDefault());
+                    this.inTilData();
                 },
                 edittswiyaaction = (t) => {
                     Sample4Content = new Edittswiya(t, AcceptSample4Dialog, CancelSample4Dialog);

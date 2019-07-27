@@ -14,6 +14,12 @@ namespace Univ.modeldb
     
     public partial class card_sa7ab
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public card_sa7ab()
+        {
+            this.p_sa7ab = new HashSet<p_sa7ab>();
+        }
+    
         public int id { get; set; }
         public int id_card { get; set; }
         public double cost { get; set; }
@@ -21,5 +27,7 @@ namespace Univ.modeldb
         public string visa { get; set; }
     
         public virtual card card { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<p_sa7ab> p_sa7ab { get; set; }
     }
 }

@@ -32,6 +32,7 @@ namespace Univ.modeldb
         public virtual DbSet<card_mo7sabi> card_mo7sabi { get; set; }
         public virtual DbSet<card_sa7ab> card_sa7ab { get; set; }
         public virtual DbSet<client> clients { get; set; }
+        public virtual DbSet<p_sa7ab> p_sa7ab { get; set; }
         public virtual DbSet<part> parts { get; set; }
         public virtual DbSet<process> processes { get; set; }
         public virtual DbSet<year> years { get; set; }

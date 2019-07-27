@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace Univ.lib
 {
-    class ContentApp : BaseViewModel
+    class ContentApp : BaseViewModel<Page>
     {
         private Page _page { get; set; } = new PCrad();
 
@@ -45,9 +45,13 @@ namespace Univ.lib
             {
 
                 page = prev.curent;
+                if (page is MPage) {
+                    (page as MPage).Reload();
+                }
                 prev = prev.prev;
 
             }
+
         }
         public void clear()
         {

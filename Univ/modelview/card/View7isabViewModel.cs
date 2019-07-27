@@ -14,7 +14,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class View7isabViewModel:BaseViewModel
+    class View7isabViewModel:BaseViewModel<card_7isab>
     {
 
 
@@ -67,7 +67,12 @@ namespace Univ.modelview
 
         public  View7isabViewModel(process process)
         {
-            
+            this.actionUP = () =>
+            {
+                this.val = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == process.Id).FirstOrDefault();
+
+            };
+
             this.process = process;
             parts = process.parts.ToList();
 
@@ -82,10 +87,14 @@ namespace Univ.modelview
                 OpenSample4Dialog();
                 AcceptSample4Dialog();
                 this.CreateCard(card_7);
-            
-            }else
-            this.inTilData(card_7);
 
+            }
+            else
+            {
+
+
+                this.inTilData();
+            }
 
              
 
@@ -94,33 +103,33 @@ namespace Univ.modelview
             });
 
         }
-        public void inTilData(card_7isab card_7isab)
+        public void inTilData( )
         {
-            this.card = card_7isab.card;
-            this.visa = card_7isab.visa;
+            this.actionUP();
+            this.card = val.card;
+            this.visa = val.visa;
 
 
             visibility = Visibility.Visible;
             tashiravis = Visibility.Visible;
             edittashiravis = Visibility.Collapsed;
 
-            if (card_7isab.visa != null)
+            if (val.visa != null)
             {
                 visibility = Visibility.Collapsed;
                 edittashiravis = Visibility.Visible;
                 tashiravis = Visibility.Collapsed;
 
-                visa = card_7isab.visa;
+                visa = val.visa;
             }
 
             tashira = new Command(() => {
-                Sample4Content = new Addtashira_7isabi(card_7isab, AcceptSample4Dialog, CancelSample4Dialog);
+                Sample4Content = new Addtashira_7isabi(val, AcceptSample4Dialog, CancelSample4Dialog);
                 OpenSample4Dialog();
-                this.inTilData(Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(N => N.Id == card_7isab.Id).ToList().SingleOrDefault());
-
+                this.inTilData();
             });
             edittashira = new Command(() => {
-                Sample4Content = new Edittashira_7isabi(card_7isab, AcceptSample4Dialog, CancelSample4Dialog);
+                Sample4Content = new Edittashira_7isabi(val, AcceptSample4Dialog, CancelSample4Dialog);
                 OpenSample4Dialog();
 
             });
@@ -136,8 +145,7 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
-            this.inTilData(Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(N => N.id_card == card.Id).ToList().SingleOrDefault());
-
+            this.inTilData();
         }
 
         private void AcceptSample4Dialog()
@@ -158,7 +166,7 @@ namespace Univ.modelview
                     date = DateTime.Now,
                     id_prosess = process.Id,
                     num = 1,
-                    year = Ico.getValue<db>().GetUnivdb().years.ToList().LastOrDefault().Id,
+                    year = Ico.getValue<Date>().GetNowDate().Id,
                     location = process.location + "\\" + name,
 
                 };
@@ -174,6 +182,8 @@ namespace Univ.modelview
                 Card_7isabExecl c7 = new Card_7isabExecl(card_7);
                 c7.CreateCard();
                 card = card_7.card;
+                this.inTilData();
+
                 CancelSample4Dialog();
             });
         }
