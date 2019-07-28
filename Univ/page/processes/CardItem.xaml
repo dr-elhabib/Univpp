@@ -97,7 +97,36 @@
                         <StackPanel  Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
 
 
-                            <Button  BorderThickness="0"
+                            <Button Width="80" Height="80"
+                                    Visibility="{Binding visshow}"
+                            ToolTip="عرض المعلومات "
+                            Margin=" 15 5 15 5"    Command="{Binding view}"
+                            materialDesign:ShadowAssist.ShadowDepth="Depth0" 
+                            BorderThickness="0" Background="Transparent" Foreground="#0077CC" Padding="5" BorderBrush="#0077CC">
+                                <StackPanel >
+                                    <materialDesign:PackIcon Width="30" HorizontalAlignment="Center" Height="30" Kind="Show"  />
+
+                                    <Viewbox>
+                                        <TextBlock FontSize="6" Text="عرض المعلومات"/>
+                                    </Viewbox>
+                                </StackPanel>
+                            </Button>
+
+                            <Button  
+                                Visibility="{Binding visibility}"
+                                BorderThickness="0"
+                                     ToolTip=" حذف العملية"
+                                     Command="{Binding removte}"
+                                     Width="50" Height="50"
+                                      Background="{x:Null}"
+                                     BorderBrush="{x:Null}"
+                                    Style="{StaticResource PowerButton }" >
+                                <materialDesign:PackIcon  Kind="DeleteForever" Height="20" Width="20" Margin="5" />
+                            </Button>
+                            <Button  
+                                                        Visibility="{Binding visibility}"
+
+                                BorderThickness="0"
                                      ToolTip=" تعديل معومات العملية"
                                      Command="{Binding edit}"
                                      Width="50" Height="50"
@@ -107,6 +136,8 @@
                                 <materialDesign:PackIcon Kind="Settings" Height="20" Width="20" Margin="5" />
                             </Button>
                             <Button 
+                                                                Visibility="{Binding visibility}"
+
                                   ToolTip=" عرض معومات العملية"
                                   Command="{Binding view}"
                                   Width="50" Height="50"

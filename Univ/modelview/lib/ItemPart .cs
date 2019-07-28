@@ -37,9 +37,9 @@ namespace Univ.modelview.lib
                 var a = lc.ToList().Where(c => c.card_7isab.Count > 0).FirstOrDefault();
                 if (a != null)
                 {
-                    if (a.card_7isab?.ToList().FirstOrDefault().visa != null)
+                    if (a.card_7isab?.ToList().FirstOrDefault() != null)
                     {
-                        visibility = Visibility.Hidden;
+                        visibility = Visibility.Collapsed;
                     }
                 }
             }

@@ -17,7 +17,11 @@ namespace Univ.modelview
         public string Cost { get; set; } 
         public string nowCost { get; set; }
         public string date { get; set; }
+        public Command removte { get; set; }
         public Command view { get; set; }
+        public Action removeaction { get; set; }
+        public Visibility visshow { get; set;}
+        public Visibility visibility { get; set;}
         public Command edit { get; set; }
         public processesViewMODEL(process process)
         {
@@ -28,6 +32,21 @@ namespace Univ.modelview
             foreach (part p in process.parts.ToList()) {
                 d += p.Cost;
               }
+            var lc = process.cards;
+            visibility = Visibility.Visible;
+            visshow = Visibility.Collapsed;
+            if (lc.ToList().Count > 0)
+            {
+                var a = lc.ToList().Where(c => c.card_7isab.Count > 0).FirstOrDefault();
+                if (a != null)
+                {
+                    if (a.card_7isab?.ToList().FirstOrDefault() != null)
+                    {
+                        visibility = Visibility.Collapsed;
+                        visshow = Visibility.Visible;
+                    }
+                }
+            }
             Cost = String.Format("{0:0.00}", d);
             nowCost = String.Format("{0:0.00}", process.NewCost);
             view = new Command(()=> {
@@ -36,6 +55,12 @@ namespace Univ.modelview
             edit = new Command(()=> {
                 Ico.getValue<ContentApp>().page = new EditProcesses(process);
                // MessageBox.Show(Ico.getValue<ContentApp>().page.ToString());
+            });
+            removte = new Command(()=> {
+                //  Ico.getValue<ContentApp>().page = new EditProcesses(process);
+                // MessageBox.Show(Ico.getValue<ContentApp>().page.ToString());
+
+                removeaction();
             });
 
         }
