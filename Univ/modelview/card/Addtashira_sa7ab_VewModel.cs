@@ -30,13 +30,16 @@ namespace Univ.modelview
             this.num = card_sa7ab.card.num.ToString();
             this.part = card_sa7ab.card.process.Name;
             this.cost = String.Format("{0:0.00}", card_sa7ab.cost);
-            savecommand = new Command( () =>
+            savecommand = new Command(async () =>
             {
-                    acc();
-                    Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(d => d.id == card_sa7ab. id).ToList().FirstOrDefault().visa = visa;
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() =>
+                {
+                    Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(d => d.id == card_sa7ab.id).ToList().FirstOrDefault().visa = visa;
                     Ico.getValue<db>().savedb();
-                    con();
-               
+                    acc();
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
             });
 
             Cancelcommand = new Command(() => {

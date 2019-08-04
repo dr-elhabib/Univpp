@@ -21,7 +21,6 @@ namespace Univ.lib
 
         private static void BindViewModel()
         {
-            ikernel.Bind<ContentApp>().ToConstant(new ContentApp());
             ikernel.Bind<db>().ToConstant(new db());
             ikernel.Bind<Date>().ToConstant(new Date());
             ikernel.Bind<IO>().ToConstant(new IO());
@@ -30,6 +29,12 @@ namespace Univ.lib
 
             return ikernel.Get<T>();
         }
-        
+        public static void setValue<T>( T t)
+        {
+
+            ikernel.Bind<T>().ToConstant(t);
+        }
+
+
     }
 }

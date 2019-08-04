@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using Univ.page.lib;
+using System.Text.RegularExpressions;
 
 namespace Univ.modelview
 {
@@ -24,6 +26,7 @@ namespace Univ.modelview
         public DateTime date { get; set; } 
         public Command save { get; set; }
         public Command back { get; set; }
+        private List<string> erour = new List<string>();
 
         public EditprocessesViewModel(process process)
         {
@@ -32,19 +35,73 @@ namespace Univ.modelview
             this.Code = process.Code;
             this.Num = process.num;
      
-            save = new Command(() =>
+            save = new Command(async () =>
             {
+            erour = new List<string>();
+            if (Name.ToString().Length == 0)
+            {
+                erour.Add("الرجاء كتابة إسم العملية ");
 
-                var pr = Ico.getValue<db>().GetUnivdb().processes.Single(p => p.Id == process.Id);
-                
+            }
+            if (Code.ToString().Length != 15)
+            {
+                erour.Add(" كود العملية  يجب أن يحتوي على 15 حرف" );
 
-                pr.Name = Name;
-                pr.date = date;
-                pr.Code = Code;
-                pr.num = Num;
-                Ico.getValue<db>().savedb();
-                Ico.getValue<ContentApp>().back();
+            }
 
+            if (Num.ToString().Length == 0)
+            {
+                erour.Add("الرجاء كتابة رقم الثابت للعملية ");
+
+                }
+                else
+                {
+                    string pattern = "[1-9]+/[1-9]+";
+                    Regex rgx = new Regex(pattern);
+                    if (!rgx.IsMatch(Num.ToString())) {
+                        erour.Add("الرجاء كتابة رقم   ");
+
+                    }
+                    
+
+                }
+
+                OpenSample4Dialog();
+
+                if (erour.Count == 0)
+            {
+                    AcceptSample4Dialog();
+
+                    await Task.Run(()=> {
+
+
+                        var pr = Ico.getValue<db>().GetUnivdb().processes.Single(p => p.Id == process.Id);
+
+                        
+                        pr.Name = Name;
+                        pr.date = date;
+                        pr.Code = Code;
+                        pr.num = Num;
+                        Ico.getValue<db>().savedb();
+
+                        CancelSample4Dialog();
+
+
+                    });
+
+                    Ico.getValue<ContentApp>().back();
+
+                }
+                else
+                {
+
+
+                    Sample4Content = new Messagebox(erour, () => {
+                        CancelSample4Dialog();
+
+                    });
+
+                }
 
 
             });
@@ -56,5 +113,44 @@ namespace Univ.modelview
 
 
         }
-    }    
+
+        public bool IsSample4DialogOpen
+        {
+            get { return _isSample4DialogOpen; }
+            set
+            {
+                if (_isSample4DialogOpen == value) return;
+                _isSample4DialogOpen = value;
+            }
+        }
+
+        public UserControl Sample4Content
+        {
+            get { return _sample4Content; }
+            set
+            {
+                if (_sample4Content == value) return;
+                _sample4Content = value;
+            }
+        }
+        private bool _isSample4DialogOpen;
+        private UserControl _sample4Content;
+
+
+        private void OpenSample4Dialog()
+        {
+            IsSample4DialogOpen = true;
+        }
+
+        private void CancelSample4Dialog()
+        {
+            IsSample4DialogOpen = false;
+        }
+
+        private void AcceptSample4Dialog()
+        {
+            Sample4Content = new Progressbar();
+        }
+
+    }
 }

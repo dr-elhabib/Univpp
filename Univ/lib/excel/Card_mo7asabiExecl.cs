@@ -24,13 +24,19 @@ namespace Univ.lib
         public void CreateCard()
         {
 
-            var p = new processes(card_mo7sabi.card.process);
+            var p = new processes(this.card_mo7sabi.card.process);
 
             inserttype(card_mo7sabi.part.num_type, card_mo7sabi.cost, Data);
 
             Data["E8"] = p.Name;
             Data["E11"] = card_mo7sabi.subject;
-            Data["E13"] = "الحصة رقم " + card_mo7sabi.part.num + " : " + card_mo7sabi.part.Name;
+            if (card_mo7sabi.part.process.parts.ToList().Count != 1)
+            {
+                if (card_mo7sabi.part.num_type != 7)
+                {
+                    Data["E13"] = "الحصة رقم " + card_mo7sabi.part.num + " : " + card_mo7sabi.part.Name;
+                }
+            }
             Data["E15"] = " مؤسسة : " + card_mo7sabi.client.Name;
             ///////////////// start top section ////////////
             Data["Z4"] = p.code_.NumProsess[0] + "";

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Univ.page;
+using Univ.page.lib;
 
 namespace Univ.modelview
 {
@@ -44,7 +45,7 @@ namespace Univ.modelview
             this.codebankclient = client.num_account;
             this.bankclient = client.bank;
             this.Cost = card_mo7sabi.cost;
-            savecommand = new Command(() =>
+            savecommand = new Command(async() =>
            {
 
            var d = 0d;
@@ -52,21 +53,27 @@ namespace Univ.modelview
            {
                d += c.Cost;
            }
+
+               Ico.getValue<ContentApp>().OpenSample4Dialog();
                if ((part.Cost - d) > Cost)
                {
-
-                   acc();
-                   Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.Id == card_mo7sabi.Id).SingleOrDefault().cost = Cost;
-                   //                Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).First().nowcost -= (card_mo7sabi.cost - Cost);
-                   //           Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == card_mo7sabi.part.Id_Pro).First().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).First().nowcost -= (card_mo7sabi.cost - Cost);
-                   Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == card_mo7sabi.part.Id_Pro).First().NewCost += (card_mo7sabi.cost - Cost);
-                   Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(get_data(card_mo7sabi));
-                   Ico.getValue<db>().savedb();
-                   con();
-               }
+                   
+                   Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                   await Task.Run(() =>
+                   {
+                       Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.Id == card_mo7sabi.Id).SingleOrDefault().cost = Cost;
+                        //                Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).First().nowcost -= (card_mo7sabi.cost - Cost);
+                        //           Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == card_mo7sabi.part.Id_Pro).First().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).First().nowcost -= (card_mo7sabi.cost - Cost);
+                        Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == card_mo7sabi.part.Id_Pro).First().NewCost += (card_mo7sabi.cost - Cost);
+                       Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(get_data(card_mo7sabi));
+                       Ico.getValue<db>().savedb();
+                       acc();
+                       Ico.getValue<ContentApp>().CancelSample4Dialog();
+                   });
+                    }
                else {
-
-                   MessageBox.Show("المبلغ أكبر من الرصيد المتاح");
+                   Ico.getValue<ContentApp>().Sample4Content = new Messagebox(new List<string> { " المبلغ أكبر من الرصيد المتاح  " }, Ico.getValue<ContentApp>().CancelSample4Dialog);
+                   
 
                }
 
@@ -76,7 +83,7 @@ namespace Univ.modelview
             IEnumerable<card_dafa3> get_data(card_mo7sabi card)
             {
 
-                var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => (c.id_part == card_mo7sabi.id_part) && (c.tswiya == null) && (c.date > card_mo7sabi.card.date));
+                var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => (c.id_part == card_mo7sabi.id_part) && (c.kasima == null) && (c.date > card_mo7sabi.card.date));
 
                 foreach (var c in cs)
                 {
@@ -86,8 +93,7 @@ namespace Univ.modelview
             }
 
             Cancelcommand = new Command(() => {
-                con();
-
+                Ico.getValue<ContentApp>().CancelSample4Dialog();
             });
         }
 

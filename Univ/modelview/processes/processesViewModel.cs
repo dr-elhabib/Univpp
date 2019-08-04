@@ -56,8 +56,43 @@ namespace Univ.modelview
 
                             AcceptSample4Dialog();
                             await Task.Run(()=> {
+                                var ps=      Ico.getValue<db>().GetUnivdb().processes.ToList().Where(pro => pro.Id == p.Id).ToList().FirstOrDefault();
+                                
 
-                               Ico.getValue<db>().GetUnivdb().processes.Remove(Ico.getValue<db>().GetUnivdb().processes.ToList().Where(pro => pro.Id == p.Id).ToList().FirstOrDefault());
+                                foreach(var i in ps.cards.ToList()){
+                                Ico.getValue<db>().GetUnivdb().card_7isab.RemoveRange(i.card_7isab);
+
+                                }
+
+                                foreach (var i in ps.cards.ToList()){
+
+                                    Ico.getValue<db>().GetUnivdb().card_kanoni.RemoveRange(i.card_kanoni);
+
+                                }
+
+                                foreach (var i in ps.cards.ToList()){
+
+                                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.RemoveRange(i.card_mo7sabi);
+
+                                }
+
+                                foreach (var i in ps.cards.ToList())
+                                {
+
+                                    foreach (var ic in ps.parts.ToList())
+                                    {
+                                        Ico.getValue<db>().GetUnivdb().card_dafa3.RemoveRange(ic.card_dafa3);
+                                        Ico.getValue<db>().GetUnivdb().p_sa7ab.RemoveRange(ic.p_sa7ab);
+
+                                    }
+
+                                    Ico.getValue<db>().GetUnivdb().card_sa7ab.RemoveRange(i.card_sa7ab);
+
+                                }
+
+                                Ico.getValue<db>().GetUnivdb().cards.RemoveRange(ps.cards);
+                                Ico.getValue<db>().GetUnivdb().parts.RemoveRange(ps.parts);
+                                 Ico.getValue<db>().GetUnivdb().processes.Remove(ps);
                                 Ico.getValue<db>().savedb();
 
                                 CancelSample4Dialog();
@@ -106,8 +141,9 @@ namespace Univ.modelview
                      );
             });
             new_= new Command(()=>{
-          //      MainViewModel.page = new NewProcesses();
-               Ico.getValue<ContentApp>().page = new NewProcesses();
+
+                Ico.getValue<ContentApp>().page = new NewProcesses();
+
             });
 
         }

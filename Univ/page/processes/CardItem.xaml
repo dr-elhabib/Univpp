@@ -34,7 +34,8 @@
                         <StackPanel Margin="5 10 0 10 " Orientation="Horizontal">
                             <materialDesign:PackIcon  Kind="RenameBox" VerticalAlignment="Stretch" Margin="2" />
                             <TextBlock Text=" الإسم :  " Margin="2"  VerticalAlignment="Center" />
-                            <TextBlock  TextAlignment="Center" Width="150"  Padding="0"  Margin="5 10 5 0" VerticalAlignment="Bottom" TextWrapping="Wrap"  Text="{Binding Name}"   />
+                            <TextBlock  TextAlignment="Center" Width="150" Height="40"
+                                        Padding="0"  Margin="5 10 5 0" VerticalAlignment="Bottom" TextWrapping="WrapWithOverflow"    Text="{Binding Name}"   />
                         </StackPanel>
                     <StackPanel  Margin="5 0 0 0 "  VerticalAlignment="Bottom" Orientation="Horizontal">
                             <materialDesign:PackIcon  Kind="FlaskEmpty" VerticalAlignment="Center" Margin="2" />

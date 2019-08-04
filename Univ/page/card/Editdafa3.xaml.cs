@@ -25,13 +25,12 @@ namespace Univ.page
     public partial class Editdafa3 : UserControl
     {
 
-
-        public Editdafa3(card_dafa3 card_dafa3, Action accept, Action Cancel)
+        public Editdafa3(card_dafa3 part, Action accept)
         {
             InitializeComponent();
-            this.DataContext = new Editdafa3VewModel(card_dafa3) {
-                acc=accept,
-                con=Cancel                
+            this.DataContext = new Editdafa3VewModel(part) {
+                acc=accept,              
+                
             };
         }
 

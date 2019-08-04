@@ -27,7 +27,6 @@ namespace Univ.modelview
         public client ClientSelected { get; set; }
         public Action acc { set; get; }
         public Action con { set; get; }
-        public Action<ItemDafa3> saveElement;
         List<p_sa7ab> ps = new List<p_sa7ab>();
 
         public Addsa7abiVewModel(process process)
@@ -84,7 +83,7 @@ namespace Univ.modelview
             savecommand = new Command( () =>
             {
 
-                if (sa7abCost != 0)
+                if(sa7abCost != 0)
                 {
                     acc();
                     Craete_Card(process);
@@ -137,12 +136,13 @@ namespace Univ.modelview
 
                 Ico.getValue<db>().savedb();
                 var i = Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c => c.card.year == Ico.getValue<Date>().GetNowDate().Id).FirstOrDefault().id;
-                foreach (p_sa7ab p in ps)
+                foreach ( p_sa7ab p in ps)
                 {
                     p.id_sa7ab = i;
                     Ico.getValue<db>().GetUnivdb().p_sa7ab.Add(p);
 
                 }
+
                 Ico.getValue<db>().savedb();
                 Card_sa7abExecl c7 = new Card_sa7abExecl(Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c => c.card.year== Ico.getValue<Date>().GetNowDate().Id).FirstOrDefault());
                 c7.CreateCard();

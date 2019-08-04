@@ -63,10 +63,14 @@ namespace Univ.modelview
         public Action<card_mo7sabi> addtashira { get; set; }
 
         public Command tashira { get; set; }
+        public Command open { get; set; }
+        public Command print { get; set; }
         public Command edittashira { get; set; }
 
         public  View7isabViewModel(process process)
         {
+            
+
             this.actionUP = () =>
             {
                 this.val = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == process.Id).FirstOrDefault();
@@ -75,18 +79,37 @@ namespace Univ.modelview
 
             this.process = process;
             parts = process.parts.ToList();
-
             foreach (part part in parts)
             {
                 newcost += part.Cost;
             }
-
-            var card_7 = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == process.Id).FirstOrDefault();
-            if (card_7 == null)
+            if (process.edit == true)
             {
-                OpenSample4Dialog();
-                AcceptSample4Dialog();
+                try
+                {
+
+                    var card_7 = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == process.Id).FirstOrDefault();
+
+                if (card_7 != null)
+                {
+                        Ico.getValue<IO>().DELETE_FILE(card_7.card.location + ".xlsx");
+                      Ico.getValue<db>().GetUnivdb().card_7isab.Remove(Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.Id == card_7.Id).FirstOrDefault());
+                    Ico.getValue<db>().GetUnivdb().cards.Remove(Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.Id == card_7.id_card).FirstOrDefault());
+                }
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+
                 this.CreateCard(card_7);
+            }               catch (Exception e)
+                {
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new Messagebox(new List<string> { "الملف مستخدم من طرف بنامج اخر الرجاء إغلاقه وأعد المحاولة" }, () =>
+                    {
+                        Ico.getValue<ContentApp>().CancelSample4Dialog();
+                    });
+                    Ico.getValue<ContentApp>().back();
+
+                }
 
             }
             else
@@ -96,9 +119,7 @@ namespace Univ.modelview
                 this.inTilData();
             }
 
-             
-
-            back = new  Command(()=> {
+            back = new Command(() => {
                 Ico.getValue<ContentApp>().back();
             });
 
@@ -124,40 +145,47 @@ namespace Univ.modelview
             }
 
             tashira = new Command(() => {
-                Sample4Content = new Addtashira_7isabi(val, AcceptSample4Dialog, CancelSample4Dialog);
-                OpenSample4Dialog();
-                this.inTilData();
+                 Ico.getValue<ContentApp>().OpenSample4Dialog();
+
+                Ico.getValue<ContentApp>().Sample4Content = new YesOrNo(" إذا أضفت التأشيرة لن تستطيع تعديل على بيانات العملية , الرجاء والتأكد قبل ذالك ", () => {
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
+
+                    Ico.getValue<ContentApp>().Sample4Content = new Addtashira_7isabi(val, inTilData);
+
+                }, Ico.getValue<ContentApp>().CancelSample4Dialog);
+
             });
             edittashira = new Command(() => {
-                Sample4Content = new Edittashira_7isabi(val, AcceptSample4Dialog, CancelSample4Dialog);
-                OpenSample4Dialog();
+                Ico.getValue<ContentApp>().Sample4Content = new Edittashira_7isabi(val, inTilData);
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
 
             });
 
+            open = new Command(async () => {
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() => {
+                    ExcelHlper.OpenFile(val.card.location);
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
+            });
+            print = new Command(async() => {
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() => {
+                    ExcelHlper.PrintFile(val.card.location);
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
 
-        }
+            });
 
-        private void OpenSample4Dialog()
-        {
-            IsSample4DialogOpen = true;
-        }
-
-        private void CancelSample4Dialog()
-        {
-            IsSample4DialogOpen = false;
-            this.inTilData();
-        }
-
-        private void AcceptSample4Dialog()
-        {
-            Sample4Content = new Progressbar();
         }
         public async Task CreateCard( card_7isab card_7)
         {
             await Task.Run(() => {
                
                 Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == process.Id).First().NewCost = newcost;
-
+                Ico.getValue<db>().GetUnivdb().processes.ToList().Where(p => p.Id == process.Id).First().edit = false;
                 var d = DateTime.Now;
                 var name = "بطاقة  أخذ بحساب رقم " + 1 + " سنة " + d.Year;
 
@@ -184,7 +212,7 @@ namespace Univ.modelview
                 card = card_7.card;
                 this.inTilData();
 
-                CancelSample4Dialog();
+                Ico.getValue<ContentApp>().CancelSample4Dialog();
             });
         }
 

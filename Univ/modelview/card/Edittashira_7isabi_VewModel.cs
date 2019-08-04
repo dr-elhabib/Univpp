@@ -29,17 +29,20 @@ namespace Univ.modelview
             this.num = card_7isab.card.num.ToString();
             this.visa = card_7isab.visa;
             this.part = card_7isab.card.process.Name;
-            savecommand = new Command( () =>
+            savecommand = new Command( async() =>
             {
-                acc();
-                Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(d => d.Id == card_7isab.Id).ToList().FirstOrDefault().visa= visa;
-                Ico.getValue<db>().savedb();
-                con();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() =>
+                {
+                    Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(d => d.Id == card_7isab.Id).ToList().FirstOrDefault().visa = visa;
+                    Ico.getValue<db>().savedb();
+                    acc();
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
             });
 
             Cancelcommand = new Command(() => {
-                con();
-
+                Ico.getValue<ContentApp>().CancelSample4Dialog();
             });
         }
     }

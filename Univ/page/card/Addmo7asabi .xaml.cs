@@ -24,14 +24,14 @@ namespace Univ.page
     /// </summary>
     public partial class Addmo7asabi : UserControl
     {
+        public UserControl Sample4Content;
 
-
-        public Addmo7asabi(card_kanoni card_kanoni, Action accept, Action Cancel)
+        public Addmo7asabi(card_kanoni card_kanoni, Action accept)
         {
             InitializeComponent();
             this.DataContext = new Addmo7asabiVewModel(card_kanoni) {
                 acc=accept,
-                con=Cancel                
+                  THIS=this
             };
         }
 

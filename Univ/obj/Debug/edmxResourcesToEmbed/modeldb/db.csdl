@@ -112,6 +112,7 @@
     <Property Name="id_part" Type="Int32" Nullable="false" />
     <Property Name="tswiya" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="id_year" Type="Int32" Nullable="false" />
+    <Property Name="kasima" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="part" Relationship="Univ.card_dafa3_ibfk_1" FromRole="card_dafa3" ToRole="part" />
     <NavigationProperty Name="year" Relationship="Univ.card_dafa3_ibfk_2" FromRole="card_dafa3" ToRole="year" />
   </EntityType>
@@ -192,7 +193,6 @@
     <Property Name="Id_Pro" Type="Int32" Nullable="false" />
     <Property Name="num" Type="Int32" Nullable="false" />
     <Property Name="num_type" Type="Int32" Nullable="false" />
-    <Property Name="alpart" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
     <Property Name="nowcost" Type="Double" Nullable="false" />
     <Property Name="mcost" Type="Double" Nullable="false" />
     <NavigationProperty Name="card_dafa3" Relationship="Univ.card_dafa3_ibfk_1" FromRole="part" ToRole="card_dafa3" />
@@ -212,6 +212,7 @@
     <Property Name="num" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
     <Property Name="NewCost" Type="Double" Nullable="false" />
     <Property Name="location" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="edit" Type="Boolean" />
     <NavigationProperty Name="cards" Relationship="Univ.card_ibfk_2" FromRole="process" ToRole="card" />
     <NavigationProperty Name="parts" Relationship="Univ.par_ibfk_1" FromRole="process" ToRole="part" />
   </EntityType>

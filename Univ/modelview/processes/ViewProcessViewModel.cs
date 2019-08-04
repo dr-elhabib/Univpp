@@ -46,7 +46,10 @@ namespace Univ.modelview
         public string code { get; set; }
         public string num { get; set; }
         public string date { get; set; }
+
         public double nowcost { get; set; }
+        public double withscrol { get; set; } = 20;
+
         public ObservableCollection<ItemPart> parts { get; set; }
         public Command back { get; set; }
         public Command addpart { get; set; }
@@ -66,7 +69,6 @@ namespace Univ.modelview
             back = new Command(() =>
             {
                 Ico.getValue<ContentApp>().back();
-                this.inTilData();
 
             });
             addpart = new Command(() =>
@@ -80,7 +82,7 @@ namespace Univ.modelview
             card_7isab = new Command(() =>
             {
                 //   Univ.lib.Card_7isab card = new Univ.lib.Card_7isab(new processes(process));
-                Ico.getValue<ContentApp>().page = new View7isab(process);
+                Ico.getValue<ContentApp>().page = new View7isab(val);
 
             });
             viewcardmo7sabi = new Command(() =>
@@ -107,6 +109,7 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
+            inTilData();
         }
 
         private void AcceptSample4Dialog()
@@ -128,7 +131,7 @@ namespace Univ.modelview
                 var a=lc.ToList().Where(c=>c.card_7isab.Count>0).FirstOrDefault();
                 if (a != null)
                 {
-                    if (a.card_7isab?.ToList().FirstOrDefault() != null)
+                    if (a.card_7isab?.ToList().FirstOrDefault() != null && a.card_7isab?.ToList().FirstOrDefault().visa != null)
                     {
                         visibility = Visibility.Collapsed;
                     }
@@ -140,40 +143,66 @@ namespace Univ.modelview
             {
                 action = (t) =>
                 {
-                    OpenSample4Dialog();
+                    var prr = Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id == p.Id).FirstOrDefault();
+                    if (prr.card_mo7sabi.ToList().Count == 0&&prr.card_dafa3.ToList().Count == 0)
+                    {
 
-                    Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه الحصة من العملية ,لا يمكن التراجع عن الحذف", 
-                       async ()=>{
-                           AcceptSample4Dialog();
-                           await Task.Run(() => {
-                               Ico.getValue<db>().GetUnivdb().parts.Remove(Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pr => pr.Id == p.Id).FirstOrDefault());
-                               CancelSample4Dialog();
+                        Ico.getValue<ContentApp>().OpenSample4Dialog();
+                        Ico.getValue<ContentApp>().Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه الحصة من العملية ,لا يمكن التراجع عن الحذف",
+                           async () => {
+                               AcceptSample4Dialog();
+                               await Task.Run(() => {
+                                    Ico.getValue<db>().GetUnivdb().parts.ToList().Where(pro => pro.Id == p.Id).First().process.edit = true;
+
+                                   Ico.getValue<db>().GetUnivdb().parts.Remove(prr);
+                                   Ico.getValue<db>().savedb();
+                                  
+                                   Ico.getValue<ContentApp>().CancelSample4Dialog();
 
                            });
 
-                           parts.Remove(t);
+                               parts.Remove(t);
 
-                       },
-                        ()=> {
+                           }, Ico.getValue<ContentApp>().CancelSample4Dialog);
 
-                            CancelSample4Dialog();
-                        });
+                    }
+                    else
+                    {
+                        Ico.getValue<ContentApp>().OpenSample4Dialog();
+                        Ico.getValue<ContentApp>().Sample4Content = new Messagebox(new List<string> { "الرجاء حذف جميع البطاقات الخاصة بالحصة  ومن ثم أعد المحاولة مرة أخرى " },
+                         Ico.getValue<ContentApp>().CancelSample4Dialog);
+
+                    }
+
+
+
                 },
 
                 action_kanoni = () =>
                 {
 
-
-                    var card = Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(c => c.id_part == p.Id).FirstOrDefault();
-
-                    if (card == null)
+                    var m = Ico.getValue<db>().GetUnivdb().card_7isab.ToList().Where(c => c.card.id_prosess == p.Id_Pro).ToList().Count;
+                    if (m > 0)
                     {
-                        Sample4Content = new AddPartCard(p, AcceptSample4Dialog, CancelSample4Dialog);
-                        OpenSample4Dialog();
+                        var card = Ico.getValue<db>().GetUnivdb().card_kanoni.ToList().Where(c => c.id_part == p.Id).FirstOrDefault();
+
+                        if (card != null && card.cost == p.Cost)
+                        {
+                            Ico.getValue<ContentApp>().page = new Viewkanoni(card);
+                        }
+                        else
+                        {
+                            Ico.getValue<ContentApp>().OpenSample4Dialog();
+                            Ico.getValue<ContentApp>().Sample4Content = new AddPartCard(p, AcceptSample4Dialog, CancelSample4Dialog);
+                            Ico.getValue<ContentApp>().OpenSample4Dialog();
+
+                     }
                     }
                     else
                     {
-                        Ico.getValue<ContentApp>().page = new Viewkanoni(card);
+                        Ico.getValue<ContentApp>().OpenSample4Dialog();
+                        Ico.getValue<ContentApp>().Sample4Content = new Messagebox(new List<string> { "الرجاء إستخراج بطاقة إخذ حساب للعملية أولا ... " },
+                        Ico.getValue<ContentApp>().CancelSample4Dialog);
 
                     }
                 }

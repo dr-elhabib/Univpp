@@ -26,12 +26,12 @@ namespace Univ.page
     {
 
 
-        public Edittashira_kanoni( card_kanoni card_kanoni, Action accept, Action Cancel)
+        public Edittashira_kanoni( card_kanoni card_kanoni, Action accept)
         {
             InitializeComponent();
             this.DataContext = new Edittashira_kanoni_VewModel(card_kanoni) {
                 acc=accept,
-                con=Cancel
+              
             };
         }
 

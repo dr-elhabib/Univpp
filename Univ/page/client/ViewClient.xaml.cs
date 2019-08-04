@@ -21,11 +21,17 @@ namespace Univ.page
     /// </summary>
     public partial class ViewClient : Page
     {
+        private ViewClientViewModel MD { get; set; }
+
         public ViewClient()
         {
+            
+            MD = new ViewClientViewModel();
             InitializeComponent();
-            this.DataContext = new ViewClientViewModel();
+            this.DataContext = MD;
         }
-        
+        public Action Reload { get => MD.inTilData; set => Reload = value; }
     }
+
 }
+

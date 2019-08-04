@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1bef7963d9eb4cca89dce7a629f2230e" Name="Diagram1" ShowGrid="true" DisplayType="false" ZoomLevel="34">
-        <EntityTypeShape EntityType="Univ.card" Width="1.5" PointX="6" PointY="4.5" />
-        <EntityTypeShape EntityType="Univ.card_7isab" Width="1.5" PointX="8.25" PointY="3.75" />
-        <EntityTypeShape EntityType="Univ.card_dafa3" Width="1.5" PointX="5.25" PointY="8.625" />
-        <EntityTypeShape EntityType="Univ.card_kanoni" Width="1.5" PointX="8.25" PointY="6.875" />
-        <EntityTypeShape EntityType="Univ.card_mo7sabi" Width="1.5" PointX="11.25" PointY="6.625" />
-        <EntityTypeShape EntityType="Univ.card_sa7ab" Width="1.5" PointX="8.25" PointY="13.75" />
-        <EntityTypeShape EntityType="Univ.client" Width="1.5" PointX="6" PointY="1" />
-        <EntityTypeShape EntityType="Univ.p_sa7ab" Width="1.5" PointX="10.5" PointY="11.125" />
-        <EntityTypeShape EntityType="Univ.part" Width="1.5" PointX="3" PointY="8.25" />
-        <EntityTypeShape EntityType="Univ.process" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="Univ.year" Width="1.5" PointX="3.75" PointY="5.25" />
+        <EntityTypeShape EntityType="Univ.card" Width="1.5" PointX="3" PointY="9.125" />
+        <EntityTypeShape EntityType="Univ.card_7isab" Width="1.5" PointX="5.25" PointY="19" />
+        <EntityTypeShape EntityType="Univ.card_dafa3" Width="1.5" PointX="6" PointY="9.125" />
+        <EntityTypeShape EntityType="Univ.card_kanoni" Width="1.5" PointX="5.25" PointY="13.375" />
+        <EntityTypeShape EntityType="Univ.card_mo7sabi" Width="1.5" PointX="8.25" PointY="9.125" />
+        <EntityTypeShape EntityType="Univ.card_sa7ab" Width="1.5" PointX="5.25" PointY="5.375" />
+        <EntityTypeShape EntityType="Univ.client" Width="1.5" PointX="6" PointY="22.5" />
+        <EntityTypeShape EntityType="Univ.p_sa7ab" Width="1.5" PointX="7.5" PointY="5.375" />
+        <EntityTypeShape EntityType="Univ.part" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="Univ.process" Width="1.5" PointX="0.75" PointY="5.25" />
+        <EntityTypeShape EntityType="Univ.year" Width="1.5" PointX="0.75" PointY="9.875" />
         <AssociationConnector Association="Univ.card_7isab_ibfk_1" />
         <AssociationConnector Association="Univ.card_ibfk_1" />
         <AssociationConnector Association="Univ.card_ibfk_2" />

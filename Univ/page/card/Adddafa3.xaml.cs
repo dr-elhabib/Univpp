@@ -25,14 +25,12 @@ namespace Univ.page
     public partial class Adddafa3 : UserControl
     {
 
-
-        public Adddafa3(part part, Action accept, Action Cancel, Action addItem)
+        public Adddafa3(part part, Action addItem)
         {
             InitializeComponent();
             this.DataContext = new Adddafa3VewModel(part) {
-                acc=accept,
-                con=Cancel,
                 saveElement=addItem
+                ,THIS=this
                 
             };
         }

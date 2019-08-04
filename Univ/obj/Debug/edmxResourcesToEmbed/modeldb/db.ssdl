@@ -32,6 +32,7 @@
     <Property Name="id_part" Type="int" Nullable="false" />
     <Property Name="tswiya" Type="text" />
     <Property Name="id_year" Type="int" Nullable="false" />
+    <Property Name="kasima" Type="text" />
   </EntityType>
   <EntityType Name="card_kanoni">
     <Key>
@@ -98,7 +99,6 @@
     <Property Name="Id_Pro" Type="int" Nullable="false" />
     <Property Name="num" Type="int" Nullable="false" />
     <Property Name="num_type" Type="int" Nullable="false" />
-    <Property Name="alpart" Type="text" Nullable="false" />
     <Property Name="nowcost" Type="double" Nullable="false" />
     <Property Name="mcost" Type="double" Nullable="false" />
   </EntityType>
@@ -113,6 +113,7 @@
     <Property Name="num" Type="varchar" MaxLength="255" Nullable="false" />
     <Property Name="NewCost" Type="double" Nullable="false" />
     <Property Name="location" Type="text" Nullable="false" />
+    <Property Name="edit" Type="bool" />
   </EntityType>
   <EntityType Name="year">
     <Key>

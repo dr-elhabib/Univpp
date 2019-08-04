@@ -9,6 +9,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using Univ.page;
+using System.Windows.Controls;
+using System.Text.RegularExpressions;
+using Univ.page.lib;
 
 namespace Univ.modelview
 {
@@ -18,13 +21,15 @@ namespace Univ.modelview
         public part part { get; set; }
 
         public double Cost { get; set; }
+        private List<string> erour = new List<string>();
 
         public string namepro { get; set; }
         public string namepart { get; set; }
         public string client { get; set; }
         public string subject { get; set; }
         public double cost { get; set; }
-
+        public ViewMo7sabiViewModel Sample4Contentviw { get; set; }
+        public UserControl THIS;
         public Command savecommand { get; set; }
         public Command Cancelcommand { get; set; }
         public client ClientSelected { get; set; }
@@ -57,29 +62,65 @@ namespace Univ.modelview
             {
 
 
-                if ((part.Cost - part.mcost) >= Cost)
+
+                erour = new List<string>();
+
+
+                string pattern = "[0-9]+";
+                Regex rgx = new Regex(pattern);
+                if (Cost == 0 || !rgx.IsMatch(cost.ToString()))
                 {
-                    acc();
-                    Creat_card(card_kanoni);
+                    erour.Add("الرجاء كتابة المبلغ ");
+
                 }
                 else
                 {
-
-                    MessageBox.Show("المبلغ أكبر من الرصيد المتاح");
+                    if (!((part.Cost - part.mcost) >= Cost))
+                    {
+                        erour.Add("المبلغ أكبر من الرصيد المتاح");
+                    }
 
                 }
+
+
+
+                if (subject.ToString().Length == 0)
+                {
+                    erour.Add("الرجاء كتابة  موضوع البطاقة    ");
+
+                }
+
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                if (erour.Count != 0)
+                {
+
+
+                    Ico.getValue<ContentApp>().Sample4Content=new Messagebox(erour, () => {
+
+                        Ico.getValue<ContentApp>().Sample4Content = THIS;
+                    });
+
+                }
+                else
+                {
+                    Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                    Creat_card(card_kanoni);
+                    
+                }
+
+                
             });
             Cancelcommand = new Command(() =>
             {
-                con();
+                Ico.getValue<ContentApp>().CancelSample4Dialog();
 
             });
         }
         public async Task Creat_card(card_kanoni card_kanoni)
         {
-
                 await Task.Run(() =>
                 {
+
                     var card = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro && c.year == Ico.getValue<Date>().GetNowDate().Id).OrderByDescending(c => c.num).ToList().FirstOrDefault();
                     var num = 1;
                     if (card != null)
@@ -89,7 +130,7 @@ namespace Univ.modelview
 
                     var d = DateTime.Now;
                     var name = "بطاقة إلتزام محاسبي رقم " + num + " سنة " + d.Year;
-
+                    var loca = Ico.getValue<IO>().CREATE_F_mo7asabi(part.process.location) + "\\" + name;
                     var car = new card()
                     {
                         date = d,
@@ -97,7 +138,7 @@ namespace Univ.modelview
                         num = Ico.getValue<db>().GetUnivdb().cards.ToList().Where(c => c.id_prosess == card_kanoni.part.Id_Pro).LastOrDefault().num + 1,
                         year = Ico.getValue<Date>().GetNowDate().Id
                      ,
-                        location = Ico.getValue<IO>().CREATE_F_mo7asabi(part.process.location) + "\\" + name
+                        location = loca
                     };
                     var card_mo7sabi = new card_mo7sabi()
                     {
@@ -116,10 +157,11 @@ namespace Univ.modelview
                     Ico.getValue<db>().GetUnivdb().cards.Add(car);
                     Ico.getValue<db>().GetUnivdb().card_mo7sabi.Add(card_mo7sabi);
                     Ico.getValue<db>().savedb();
-                    Card_mo7asabiExecl c7 = new Card_mo7asabiExecl(Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.card.num== num&&c.card.year==Ico.getValue<Date>().GetNowDate().Id).FirstOrDefault());
+                    var cardm = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.card.location == loca).FirstOrDefault();
+                    Card_mo7asabiExecl c7 = new Card_mo7asabiExecl(cardm);
                     c7.CreateCard();
-
-                    con();
+                    acc();
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
 
 
                 });

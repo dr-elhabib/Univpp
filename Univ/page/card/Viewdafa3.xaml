@@ -144,10 +144,12 @@
                                             </Button>
                                         </Grid>
                                         <StackPanel  Orientation="Horizontal" Margin=" 20 10 0 0">
-                                            <TextBlock Foreground="#0077CC"  TextAlignment="Center" Margin="15 5 15 5 " Width="100" Text="رقم البطاقة"/>
-                                            <TextBlock Foreground="#0077CC" TextAlignment="Center" Width="130" Margin="15 5 15 5 " Text="مبلغ البطافة"/>
-                                            <TextBlock Foreground="#0077CC" TextAlignment="Center" Width="180" Margin="15 5 15 5 " Text="مبلغ حرفيا"/>
-                                            <TextBlock Foreground="#0077CC"  TextAlignment="Center" Width="180" Margin="15 5 15 5 " Text=" تاريخ البطاقة"/>
+                                            <TextBlock Foreground="#0077CC"  TextAlignment="Center" Margin="15 5 15 5 " Width="80" Text="رقم البطاقة"/>
+                                            <TextBlock Foreground="#0077CC" TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="مبلغ البطافة"/>
+                                            <TextBlock Foreground="#0077CC" TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="مبلغ حرفيا"/>
+                                            <TextBlock Foreground="#0077CC"  TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text=" تاريخ البطاقة"/>
+                                            <TextBlock Foreground="#0077CC"  TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="تسوية الفاتورة"/>
+                                            <TextBlock Foreground="#0077CC"  TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="قسيمة الفاتورة"/>
                                         </StackPanel>
                                         <StackPanel>
 
@@ -158,15 +160,17 @@
                                                         <Border BorderBrush="Gray" BorderThickness="0 0 0 0">
                                                             <StackPanel>
                                                                 <StackPanel Orientation="Horizontal" Margin=" 20 10 0 0">
-                                                                    <TextBlock TextAlignment="Center" Margin="15 5 15 5 " Width="100" Text="{Binding num}"/>
-                                                                    <Grid    Margin="15 5 15 5 " Width="130">
+                                                                    <TextBlock TextAlignment="Center" Margin="15 5 15 5 " Width="80" Text="{Binding num}"/>
+                                                                    <Grid    Margin="15 5 15 5 " Width="120">
                                                                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                                                                             <TextBlock  Text="{Binding Cost}"/>
                                                                             <TextBlock Margin="3 0 0 0"  Text="دج"/>
                                                                         </StackPanel>
                                                                     </Grid>
-                                                                    <TextBlock TextAlignment="Center" Width="180" Margin="15 5 15 5 " Text="{Binding alCost}"/>
-                                                                    <TextBlock TextAlignment="Center" Width="180" Margin="15 5 15 5 " Text="{Binding date}"/>
+                                                                    <TextBlock TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="{Binding alCost}"/>
+                                                                    <TextBlock TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="{Binding date}"/>
+                                                                    <TextBlock TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="{Binding tswiyas }"/>
+                                                                    <TextBlock TextAlignment="Center" Width="120" Margin="15 5 15 5 " Text="{Binding kasima}"/>
                                                                     <StackPanel Margin="25 0 0 0  " Orientation="Horizontal">
                                                                         <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
                                                            ToolTip="فتح البطاقة"
@@ -175,17 +179,17 @@
                                                                         </Button>
                                                                         <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
                                                            ToolTip="طباعة البطاقة "
-                                                         Command="{Binding add_Mo7asabi}" HorizontalAlignment="Left">
+                                                         Command="{Binding print}" HorizontalAlignment="Left">
                                                                             <materialDesign:PackIcon  Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="LocalPrintShop"  />
                                                                         </Button>
                                                                         <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
-                                                           ToolTip=" إضافة تسوية الفاتورة"
+                                                           ToolTip=" إضافة قسيمة للفاتورة"
                                                             Visibility="{Binding tswiyavis}"
                                                                                  Command="{Binding tswiya}" HorizontalAlignment="Left">
                                                                             <materialDesign:PackIcon  Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="CalendarPlus"  />
                                                                         </Button>
                                                                         <Button  x:Name="butaddd" Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
-                                                           ToolTip=" تعديل تسوية الفاتورة"
+                                                           ToolTip=" تعديل قسيمة للفاتورة"
                                                             Visibility="{Binding edittswiyavis}"
                                                          Command="{Binding edittswiya}" HorizontalAlignment="Left">
                                                                             <materialDesign:PackIcon  Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="CalendarPlus"  />

@@ -1,0 +1,123 @@
+﻿<UserControl x:Class="Univ.page.Adddafa3"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Univ.page"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             FontFamily="{StaticResource Medium}"
+             FlowDirection="RightToLeft"
+             Width="600"
+             >
+    <materialDesign:Card Padding="10"  Background="White"  >
+        <StackPanel>
+            <StackPanel>
+                <Border Margin="20" Width="200" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
+                    <TextBlock FontWeight="Bold" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="16" Text=" إنشاء بطاقة دفع جديد "/>
+                </Border>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+
+                <Border Margin="5" BorderBrush="Gray" BorderThickness="0 0 1 0" Padding="8">
+                <StackPanel >
+                    <StackPanel>
+                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="معلومات العملية والحصة:"/>
+                    <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                        <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                        <TextBlock Text="  إسم العملية :   "/>
+                        <TextBlock Text="{Binding namepro}"/>
+
+            </StackPanel>
+            <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                <TextBlock Text="  إسم  الحصة :  "/>
+                <TextBlock Text="{Binding namepart}"/>
+
+            </StackPanel>
+            <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                <TextBlock Text="  مبلغ  الحصة :  "/>
+                <TextBlock Text="{Binding cost}"/>
+
+
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel>
+            <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="معلومات  العميل :"/>
+            <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                <TextBlock Text="  إسم العمبل:   "/>
+                <TextBlock Text="{Binding nameclient}"/>
+
+            </StackPanel>
+            <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                <TextBlock Text="  إسم  بنك :  "/>
+                <TextBlock Text="{Binding bankclient}"/>
+            </StackPanel>
+            <StackPanel Margin="4 10 4  4" Orientation="Horizontal" >
+                <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" />
+                <TextBlock Text="    رقم الحساب :  "/>
+                <TextBlock Text="{Binding codebankclient}"/>
+
+
+            </StackPanel>
+        </StackPanel>
+        </StackPanel>
+        </Border>
+                <Border Margin="5"   Padding="8">
+
+                    <StackPanel Margin="3 0 0 0" Orientation="Vertical">
+                        <TextBlock Foreground="Green" FontSize="18" Margin="5" Text="معلومات المبلغ  :"/>
+                        <StackPanel Margin="3 10 0 0" Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Kind="FlaskEmpty" VerticalAlignment="Bottom" Width="25" Height="25" />
+                                <TextBlock Margin="5 5 0 5" Text=" المبلغ : " VerticalAlignment="Center"/>
+                                <TextBlock Text="*" Foreground="Red" VerticalAlignment="Center"/>
+
+                            </StackPanel>
+                            <TextBox Width="250" Margin="5" BorderThickness="1" Padding="3" Text="{Binding Cost}"  />
+                        </StackPanel>
+                        <StackPanel  Margin="3 10 0 0" Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="RenameBox" />
+                                <TextBlock Margin="5 5 0 5" Text="  المبلغ بالحروف   : " VerticalAlignment="Center"/>
+                                <TextBlock Text="*" Foreground="Red" VerticalAlignment="Center"/>
+
+                            </StackPanel>
+                            <TextBox  BorderThickness="1"   Margin="10" Text="{Binding AlCost}" VerticalContentAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" 
+                                 AcceptsReturn="True" Width="350" Height="100"/>
+                        </StackPanel>
+
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+
+            <StackPanel 
+                
+                VerticalAlignment="Bottom"
+                Margin="10"
+        Orientation="Horizontal"
+        HorizontalAlignment="Right">
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+          Margin="8"
+          Command="{Binding savecommand}">
+                    إنشاء 
+                </Button>
+                <Button
+          Style="{StaticResource MaterialDesignFlatButton}"
+          IsDefault="True"
+          Margin="8"
+          Command="{Binding Cancelcommand}">
+إلفاء                 </Button>
+               
+            </StackPanel>
+        </StackPanel>
+
+    </materialDesign:Card>
+
+</UserControl>

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Univ.modeldb.model
 {
-    class Part
+   public class Part
     {
         public String Name { get; set; }
         public double Cost { get; set; }

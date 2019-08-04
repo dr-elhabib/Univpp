@@ -30,16 +30,23 @@ namespace Univ.modelview
             this.num = card_dafa3.num.ToString();
             this.part = card_dafa3.part.Name;
             this.cost = String.Format("{0:0.00}", card_dafa3.Cost);
-            savecommand = new Command( () =>
+            savecommand = new Command(async () =>
             {
-                acc();
-                Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(d => d.Id == card_dafa3.Id).ToList().FirstOrDefault().tswiya=tswiya;
-                Ico.getValue<db>().savedb();
-             con();
-            });
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() =>
+                {
+                    Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(d => d.Id == card_dafa3.Id).ToList().FirstOrDefault().kasima = tswiya;
+                    Ico.getValue<db>().savedb();
+                    Card_dafa3Execl c7 = new Card_dafa3Execl(Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.Id == card_dafa3.Id).FirstOrDefault());
+                    c7.CreateCard();
+                    acc();
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
+                });
 
             Cancelcommand = new Command(() => {
-                con();
+                Ico.getValue<ContentApp>().CancelSample4Dialog();
 
             });
         }

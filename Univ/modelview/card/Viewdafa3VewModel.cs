@@ -17,7 +17,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class Viewdafa3VewModel : BaseViewModel<part>
+  public  class Viewdafa3VewModel : BaseViewModel<part>
     {
 
 
@@ -69,7 +69,7 @@ namespace Univ.modelview
 
             this.actionUP = () => {
                 this.val = Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == part.Id).ToList().FirstOrDefault();
-            };
+              };
 
             this.inTilData();
             this.client=part.card_kanoni.ToList().FirstOrDefault().client.Name;
@@ -79,10 +79,8 @@ namespace Univ.modelview
               });
 
             AddDafa3 = new Command(()=> {
-                Sample4Content = new Adddafa3(part, AcceptSample4Dialog, CancelSample4Dialog,()=> {
-                    this.inTilData();
-                });
-                OpenSample4Dialog();
+                Ico.getValue<ContentApp>().Sample4Content = new Adddafa3(part, this.inTilData);
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
 
             });
 
@@ -100,21 +98,27 @@ namespace Univ.modelview
             this.old_cost = (val.mcost - val.nowcost);
 
         }
-        private void OpenSample4Dialog()
+        public void OpenSample4Dialog()
         {
             IsSample4DialogOpen = true;
         }
 
-        private void CancelSample4Dialog()
+        public void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
             this.inTilData();
 
         }
 
-        private void AcceptSample4Dialog()
+        public void AcceptSample4Dialog()
         {
+            OpenSample4Dialog();
             Sample4Content = new Progressbar();
+        }
+        public void Sample4Contentviw( UserControl us)
+        {
+            OpenSample4Dialog();
+            Sample4Content = us;
         }
 
         public ObservableCollection<ItemDafa3> CreateItem() {
@@ -122,20 +126,22 @@ namespace Univ.modelview
 
             return new ObservableCollection<ItemDafa3>(part.part.card_dafa3.Select(ct => new ItemDafa3(ct)
             {
+                Viewdafa3VewModel=this,
+                end= Ico.getValue<ContentApp>().CancelSample4Dialog,
                 action = (t) => {
 
-                    OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
 
-                    Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه الحصة من العملية ,لا يمكن التراجع عن الحذف",
+                    Ico.getValue<ContentApp>().Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه الحصة من العملية ,لا يمكن التراجع عن الحذف",
                        async () => {
-                           AcceptSample4Dialog();
+                           Ico.getValue<ContentApp>().AcceptSample4Dialog();
                            await Task.Run(() => {
 
                                Ico.getValue<db>().GetUnivdb().parts.ToList().Where(c => c.Id == ct.id_part).ToList().SingleOrDefault().nowcost -= t;
                                Ico.getValue<db>().GetUnivdb().card_dafa3.Remove(Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.Id == ct.Id).FirstOrDefault());
                                Ico.getValue<db>().savedb();
-
-                               CancelSample4Dialog();
+                               inTilData();
+                               Ico.getValue<ContentApp>().CancelSample4Dialog();
 
                            });
 
@@ -143,23 +149,39 @@ namespace Univ.modelview
                        },
                         () => {
 
-                            CancelSample4Dialog();
+                            Ico.getValue<ContentApp>().CancelSample4Dialog();
                         });
                 },
                 action_edit = (t) => {
-                    Sample4Content = new Editdafa3(t, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new Editdafa3(t, inTilData);
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
+                           },
+                addtswiya = (t) =>
+                {
 
-                    this.inTilData();
-                },
-                addtswiya = (t) => {
-                    Sample4Content = new Addtswiya(t, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
-                    this.inTilData();
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
+                    var cs = Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.id_part == t.id_part && c.card.date < t.date&&c.visa==null).ToList().Count;
+                    
+                    if (cs == 0)
+                    {
+                        Ico.getValue<ContentApp>().Sample4Content = new YesOrNo(" إذا أضفت القسيمة لن تستطيع التراجع عن البطاقة, الرجاء والتأكد قبل ذالك ", () =>
+                        {
+
+                            Ico.getValue<ContentApp>().Sample4Content = new Addtswiya(t, inTilData);
+
+                        }, Ico.getValue<ContentApp>().CancelSample4Dialog);
+                    }
+                    else
+                    {
+                        Ico.getValue<ContentApp>().Sample4Content = new Messagebox(new List<string> { "الرجاء إضافة تأشيرة للبطاقة المحاسبي مسبقااا ومن ثم أغد المحاولة .." }, () =>
+                        {
+                            Ico.getValue<ContentApp>().CancelSample4Dialog();
+                        });
+                    }
                 },
                 edittswiyaaction = (t) => {
-                    Sample4Content = new Edittswiya(t, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new Edittswiya(t, inTilData);
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
                 }
 
 

@@ -28,6 +28,7 @@ namespace Univ.modeldb
         public string num { get; set; }
         public double NewCost { get; set; }
         public string location { get; set; }
+        public Nullable<bool> edit { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<card> cards { get; set; }

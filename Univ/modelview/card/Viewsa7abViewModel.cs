@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class Viewsa7abViewModel : BaseViewModel<process>
+  public  class Viewsa7abViewModel : BaseViewModel<process>
     {
 
         public bool IsSample4DialogOpen
@@ -84,7 +84,6 @@ namespace Univ.modelview
         private void CancelSample4Dialog()
         {
             IsSample4DialogOpen = false;
-            this.inTilData();
         }
 
         private void AcceptSample4Dialog()
@@ -100,7 +99,7 @@ namespace Univ.modelview
                this.newcost = val.NewCost;
             
             Itemsa7abs = new ObservableCollection<Itemsa7ab>(Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c=>c.card.id_prosess==process.Id).ToList().Select(c => new Itemsa7ab(c)
-            {
+            {Viewsa7abViewModel=this,
                 start=()=>{ AcceptSample4Dialog();
                     AcceptSample4Dialog();
                 },
@@ -119,16 +118,13 @@ namespace Univ.modelview
             }));
 
             addmo7asabi = new Command(() => {
-      /*      MessageBox.Show((process.cards.ToList().LastOrDefault() != null)+"");
-            MessageBox.Show((Ico.getValue<Date>().GetPevDate() != null )+"");
-                MessageBox.Show((process.cards.ToList().LastOrDefault().year1.Id != Ico.getValue<Date>().GetPevDate().Id) + "");
-                     MessageBox.Show((Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c => (c.card.id_prosess == process.Id) &&
-                (c.card.year1.Id == Ico.getValue<Date>().GetNowDate().Id)).ToList().Count != 0) + "");
-                */
-
-                    if ((Ico.getValue<Date>().GetPevDate() == null) ||(process.cards.ToList().LastOrDefault()!=null&&Ico.getValue<Date>().GetPevDate() != null && process.cards.ToList().LastOrDefault().year1.Id!= Ico.getValue<Date>().GetPevDate().Id&&Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c=>(c.card.id_prosess== process.Id)&&(c.card.year1.Id== Ico.getValue<Date>().GetNowDate().Id)).ToList().Count!=0))
+              
+                
+                    if ((process.date.Year== Ico.getValue<Date>().GetNowDate().year1.Year) || (Ico.getValue<Date>().GetPevDate() == null) ||(process.cards.ToList().LastOrDefault()!=null&&Ico.getValue<Date>().GetPevDate() != null && process.cards.ToList().LastOrDefault().year1.Id!= Ico.getValue<Date>().GetPevDate().Id&&Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c=>(c.card.id_prosess== process.Id)&&(c.card.year1.Id== Ico.getValue<Date>().GetNowDate().Id)).ToList().Count!=0))
                 {
-                    MessageBox.Show("لا تستطيغ إستخراج باقة سحب بعد");
+                    Sample4Content = new Messagebox(new List<string>() { "لا تستطيع إستخراج بطاقة سحب بعد"}, CancelSample4Dialog);
+                    OpenSample4Dialog();
+
                 }
                 else
                 {
@@ -141,5 +137,10 @@ namespace Univ.modelview
 
         }
 
+        internal void Sample4Contentviw(Progressbar progressbar)
+        {
+            OpenSample4Dialog();
+            Sample4Content = progressbar;
+        }
     }
     }

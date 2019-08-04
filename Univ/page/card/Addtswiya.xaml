@@ -12,8 +12,8 @@
     <materialDesign:Card Padding="10"  Background="White"  >
         <StackPanel>
             <StackPanel>
-                <Border Margin="20" Width="200" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
-                    <TextBlock FontWeight="Bold" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="16" Text=" إنشاء تسوية للبطاقة  "/>
+                <Border Margin="20" Width="250" BorderBrush="Black"  BorderThickness=" 0 0 0 1 ">
+                    <TextBlock FontWeight="Bold" Margin="5" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="16" Text=" إضافة قسيمة التسديد للفاتورة  "/>
                 </Border>
             </StackPanel>
             <StackPanel >
@@ -38,11 +38,11 @@
                     </StackPanel>
                 </StackPanel>
                 <StackPanel Margin="3 0 0 0" Orientation="Vertical">
-                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text=" التسوية  :"/>
+                    <TextBlock Foreground="Green" FontSize="18" Margin="5" Text=" قسيمة الفاتورة  :"/>
                     <StackPanel  Margin="3 10 0 0" Orientation="Vertical">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Width="25" Height="25" VerticalAlignment="Center" Kind="RenameBox" />
-                            <TextBlock Margin="5 5 0 5" Text="  تسوية الفاتورة    : " VerticalAlignment="Center"/>
+                            <TextBlock Margin="5 5 0 5" Text="  القسيمة     : " VerticalAlignment="Center"/>
                             <TextBlock Text="*" Foreground="Red" VerticalAlignment="Center"/>
 
                         </StackPanel>

@@ -1,0 +1,124 @@
+﻿<Page x:Class="Univ.page.ViewClient"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Univ.page"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      mc:Ignorable="d" 
+      FontFamily="{StaticResource Medium}"
+      FlowDirection="RightToLeft"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ViewClient">
+    <materialDesign:Card       
+        Padding="0 0 0 30"              
+                                materialDesign:ShadowAssist.ShadowDepth="Depth5">
+
+        <StackPanel >
+            <Border Margin="20" Width="250" BorderBrush="Black"   BorderThickness=" 0 0 0 1 ">
+                <TextBlock FontSize="20" HorizontalAlignment="Center" Margin="10" Text="قائمة العملاء "/>
+            </Border>
+            <Grid Width="600">
+
+                <StackPanel Margin="20" Orientation="Horizontal">
+                    <TextBlock Text="      السنة  :"/>
+                    <TextBlock Text="2019" />
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right" Margin="20">
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <TextBlock Text=" إجمالي عدد العملاء  :"/>
+                        <TextBlock Text="2050" />
+                    </StackPanel>
+                    <StackPanel Margin="5" Orientation="Horizontal">
+                        <TextBlock Text="  عدد العملاء  هذه السنة  :"/>
+                        <TextBlock Text="2050" />
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <StackPanel Orientation="Vertical">
+                <Grid    >
+                    <Button Margin=" 20 0" HorizontalAlignment="Left" Background="Green"  BorderThickness="0" Style="{StaticResource MaterialDesignRaisedButton}" Command="{Binding new_}">
+                        <StackPanel Orientation="Horizontal"  >
+                            <TextBlock Text=" عميل جديد " Margin="0 0 2 3"/>
+                            <materialDesign:PackIcon Kind="Add" VerticalAlignment="Center"  Width="18" Height="18" />
+                        </StackPanel>
+                    </Button>
+                    <TextBox  HorizontalAlignment="Right"    Style="{StaticResource text_box}"   x:Name="ser"  Width="200" Margin="10 10 60 10">
+                        <TextBox.InputBindings>
+                            <KeyBinding Command="{Binding Serech}"  CommandParameter="{Binding Text, ElementName=ser}" Key="Enter" />
+                        </TextBox.InputBindings>
+                    </TextBox>
+
+                </Grid>
+                
+            </StackPanel>
+                <DataGrid MinWidth="1000"
+            HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+            CellStyle="{StaticResource tb_grid_cellr}"
+                    Background="Transparent"
+                    Grid.Column="1"
+                    BorderThickness="1"
+                    BorderBrush="LightGray"
+        Margin="0 8 0 0"
+        ItemsSource="{Binding partsClient}"
+        CanUserSortColumns="True"
+        AutoGenerateColumns="False"
+                    IsReadOnly="True"
+        materialDesign:DataGridAssist.CellPadding="13 8 8 8 "
+   materialDesign:DataGridAssist.ColumnHeaderPadding="8" >
+            <DataGrid.Columns>
+                <materialDesign:MaterialDataGridTextColumn
+      Binding="{Binding Name}" 
+      Header="الإسم " 
+                             HeaderStyle="{StaticResource tb_c_heder}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnEditingStyle}" />
+                <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
+                <materialDesign:MaterialDataGridTextColumn
+      Binding="{Binding bank}"
+      Header="البنك " 
+                             HeaderStyle="{StaticResource tb_c_heder}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <!-- set a max length to get an indicator in the editor -->
+                <materialDesign:MaterialDataGridTextColumn
+      Binding="{Binding agence}"
+      Header="الوكالة "
+                            HeaderStyle="{StaticResource tb_c_heder}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:MaterialDataGridTextColumn
+      Binding="{Binding numaccount}"
+      Header="رقم الحساب "
+                       HeaderStyle="{StaticResource tb_c_heder}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+                <materialDesign:MaterialDataGridTextColumn
+      Binding="{Binding address}"
+      Header="العنوان"
+Width="400"                             HeaderStyle="{StaticResource tb_c_heder}"
+      EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}" />
+
+                <DataGridTemplateColumn Header=" " Width="80"
+                                               HeaderStyle="{StaticResource tb_c_heder}"                                                
+                                                >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+
+                                <Button   Style="{StaticResource MaterialDesignToolForegroundButton}"  HorizontalAlignment="Right">
+                                    <materialDesign:PackIcon Kind="SquareEditOutline"  Foreground="Orange" />
+                                </Button>
+                           
+                                <Button   Style="{StaticResource MaterialDesignToolForegroundButton}" 
+                                                  Command="{Binding delete}" CommandParameter="{Binding}"
+                                                  HorizontalAlignment="Right">
+                                    <materialDesign:PackIcon Kind="PlaylistRemove"  Foreground="Red" />
+                                </Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+        </DataGrid>
+    </StackPanel>
+    </materialDesign:Card>
+</Page>

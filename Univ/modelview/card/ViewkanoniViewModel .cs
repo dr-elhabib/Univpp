@@ -66,7 +66,8 @@ namespace Univ.modelview
         public Action<card_mo7sabi> addtashira { get; set; }
         public Command tashira { get; set; }
         public Command edittashira { get; set; }
-
+        public Command open { get; set; }
+        public Command print { get; set; }
 
         public ViewkanoniViewModel(card_kanoni card)
         {
@@ -86,6 +87,7 @@ namespace Univ.modelview
         }
         public void inTilData()
         {
+            actionUP();
             this.card = val.card;
             this.process = val.card.process;
             this.cost = val.cost;
@@ -109,33 +111,35 @@ namespace Univ.modelview
             }
 
             tashira = new Command(() => {
-                Sample4Content = new Addtashira_kanoni(val, AcceptSample4Dialog, CancelSample4Dialog);
-                OpenSample4Dialog();
+                Ico.getValue<ContentApp>().Sample4Content = new Addtashira_kanoni(val, inTilData);
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
                 this.inTilData();
             });
             edittashira = new Command(() => {
-                Sample4Content = new Edittashira_kanoni(val, AcceptSample4Dialog, CancelSample4Dialog);
-                OpenSample4Dialog();
+                Ico.getValue<ContentApp>().Sample4Content = new Edittashira_kanoni(val,inTilData);
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
 
             });
 
 
-        }
-        private void OpenSample4Dialog()
-        {
-            IsSample4DialogOpen = true;
-        }
+            open = new Command(async () => {
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() => {
+                    ExcelHlper.OpenFile(val.card.location);
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
+            });
+            print = new Command(async () => {
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() => {
+                    ExcelHlper.PrintFile(val.card.location);
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
 
-        private void CancelSample4Dialog()
-        {
-            IsSample4DialogOpen = false;
-            this.inTilData();
+            });
         }
-
-        private void AcceptSample4Dialog()
-        {
-            Sample4Content = new Progressbar();
-        }
-
+        
     }
 }

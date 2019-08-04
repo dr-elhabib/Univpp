@@ -26,12 +26,11 @@ namespace Univ.page
     {
 
 
-        public Addtswiya( card_dafa3 card_Dafa3, Action accept, Action Cancel)
+        public Addtswiya( card_dafa3 card_Dafa3, Action accept)
         {
             InitializeComponent();
             this.DataContext = new AddtswiyaVewModel(card_Dafa3) {
                 acc=accept,
-                con=Cancel
             };
         }
 

@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
+using Univ.page.lib;
 
 namespace Univ.modelview
 {
@@ -22,9 +24,8 @@ namespace Univ.modelview
         public Command remove { get; set; }
         public Command edit { get; set; }
         public Command open { get; set; }
-        public Command add_Mo7asabi { get; set; }
+        public Command print { get; set; }
         public Action<card_mo7sabi> action_edit { get; set; }
-        public Action action_Mo7asabi { get; set; }
         public Action end { get; set; }
         public Action start { get; set; }
 
@@ -36,7 +37,7 @@ namespace Univ.modelview
         public Action<card_mo7sabi> addtashira { get; set; }
         public Command tashira { get; set; }
         public Command edittashira { get; set; }
-
+        public ViewMo7sabiViewModel ViewMo7sabiViewModel { get; set; }
         public ItemMo7asabi(card_mo7sabi card_mo7sabi)
         {
             this.Cost = String.Format("{0:0.00}", card_mo7sabi.cost);
@@ -64,10 +65,6 @@ namespace Univ.modelview
                 action_edit(card_mo7sabi);
             });
 
-            open = new Command(() => {
-                Card_mo7asabiExecl card_ = new Card_mo7asabiExecl(card_mo7sabi);
-                card_.CreateCard();
-            });
             tashira = new Command(() => {
             bool can = true;
             foreach (var c in Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.part.Id_Pro == Ico.getValue<db>().GetUnivdb().cards.
@@ -100,14 +97,28 @@ namespace Univ.modelview
                 start();
                
             });
-            add_Mo7asabi = new Command(() => {
-                //                Ico.getValue<ContentApp>().page = new AddPartCard(part);
 
-       //         action_Mo7asabi();
+            open = new Command(async () => {
+
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() => {
+                    ExcelHlper.OpenFile(card_mo7sabi.card.location);
+
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
             });
-         
+            print = new Command(async () => {
+                Ico.getValue<ContentApp>().OpenSample4Dialog();
+                Ico.getValue<ContentApp>().AcceptSample4Dialog();
+                await Task.Run(() => {
+                    ExcelHlper.PrintFile(card_mo7sabi.card.location);
+                    Ico.getValue<ContentApp>().CancelSample4Dialog();
+                });
+
+            });
         }
 
     
-}
+    }
 }

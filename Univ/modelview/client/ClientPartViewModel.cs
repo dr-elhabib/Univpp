@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Univ.modelview
 {
@@ -21,6 +22,7 @@ namespace Univ.modelview
         public Command edit { get; set; }
         public Action<object> deleteAc { get; set; }
         public Action editAc { get; set; }
+        public Visibility visibility { get; set; }
 
         public ClientPartViewModel( client client) {
 
@@ -29,6 +31,12 @@ namespace Univ.modelview
             this.agence = client.gence;
             this.bank = client.bank;
             this.address = client.address;
+            var c = client.card_kanoni.ToList().Count;
+
+            visibility = Visibility.Visible;
+            if (c > 0) {
+                visibility = Visibility.Collapsed;
+            }
             delete = new CommandPar((item) => {
                 deleteAc(item);
             });

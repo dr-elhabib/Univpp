@@ -24,7 +24,6 @@ namespace Univ.modelview
         public string Code { get; set; }
         public string Name { get; set; }
         public string name { get; set; }
-        public string alhcost { get; set; }
         public Command back { get; set; }
         public ViewpartViewModel(part part)
         {
@@ -35,7 +34,6 @@ namespace Univ.modelview
 
             this.Code = process.Code;
             this.Name = process.Name;
-            this.alhcost = part.alpart;
 
             foreach (part p in process.parts.ToList()) {
                 nowcost += p.Cost;

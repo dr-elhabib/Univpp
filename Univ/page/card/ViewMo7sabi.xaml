@@ -122,7 +122,7 @@
                                     </StackPanel>
                                 </StackPanel>
 
-                                <StackPanel   >
+                                <StackPanel Margin="15"  >
                                     <Grid  Margin="0 0 0 10">
                                         <TextBlock HorizontalAlignment="Left" Foreground="Green" FontSize="18" Margin="5" Text=" بطاقات إلتزام محاسبي :"/>
 
@@ -178,7 +178,7 @@
                                                                     </Button>
                                                                     <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
                                                            ToolTip="طباعة البطاقة "
-                                                         Command="{Binding add_Mo7asabi}" HorizontalAlignment="Left">
+                                                         Command="{Binding print}" HorizontalAlignment="Left">
                                                                         <materialDesign:PackIcon  Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="LocalPrintShop"  />
                                                                     </Button>
                                                                     <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 

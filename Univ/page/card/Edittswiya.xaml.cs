@@ -26,15 +26,14 @@ namespace Univ.page
     {
 
 
-        public Edittswiya( card_dafa3 card_Dafa3, Action accept, Action Cancel)
+        public Edittswiya( card_dafa3 card_Dafa3, Action accept)
         {
             InitializeComponent();
             this.DataContext = new EdittswiyaVewModel(card_Dafa3) {
                 acc=accept,
-                con=Cancel
             };
         }
 
-        
+       
     }
 }

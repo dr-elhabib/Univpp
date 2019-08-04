@@ -41,7 +41,10 @@ namespace Univ.lib
             
             Data["E8"] = p.Name;
             Data["E11"] = "إلتزام العقد المتعلق ب "+ card_dafa3.part.Name;
-            Data["E13"] = "الحصة رقم "+ card_dafa3.part.num+" : "+ card_dafa3.part.Name;
+            if (card_dafa3.part.process.parts.ToList().Count != 1 || card_dafa3.part.num_type != 7)
+            {
+                 Data["E13"] = "الحصة رقم " + card_dafa3.part.num + " : " + card_dafa3.part.Name;
+            }
             Data["E15"] = " مؤسسة : "+client.Name;
             ///////////////// start top section ////////////
             Data["Z4"] = p.code_.NumProsess[0] + "";

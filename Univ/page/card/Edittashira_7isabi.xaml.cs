@@ -26,12 +26,12 @@ namespace Univ.page
     {
 
 
-        public Edittashira_7isabi( card_7isab card_7isab , Action accept, Action Cancel)
+        public Edittashira_7isabi( card_7isab card_7isab , Action accept)
         {
             InitializeComponent();
             this.DataContext = new Edittashira_7isabi_VewModel(card_7isab) {
                 acc=accept,
-                con=Cancel
+               
             };
         }
 

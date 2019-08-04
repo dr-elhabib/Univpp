@@ -81,7 +81,7 @@
                     </TextBox>
                 </Grid>
 
-                <ScrollViewer  BorderThickness="0 1 0 0" MaxHeight="400" Grid.Row="2">
+                <ScrollViewer  BorderThickness="0 1 0 0" MaxHeight="{Binding withscrol}" Grid.Row="2">
                     <ListBox   ItemsSource="{Binding processes}">
                         <ListBox.ItemsPanel>
                             <ItemsPanelTemplate>

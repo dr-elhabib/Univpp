@@ -144,7 +144,7 @@
                                                                     </Button>
                                                                     <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 
                                                            ToolTip="طباعة البطاقة "
-                                                         Command="{Binding add_Mo7asabi}" HorizontalAlignment="Left">
+                                                         Command="{Binding print}" HorizontalAlignment="Left">
                                                                         <materialDesign:PackIcon  Foreground="#0077CC"  HorizontalAlignment="Right"  Kind="LocalPrintShop"  />
                                                                     </Button>
                                                                     <Button  Margin="5 0 0 0 "   Style="{StaticResource MaterialDesignToolForegroundButton}" 

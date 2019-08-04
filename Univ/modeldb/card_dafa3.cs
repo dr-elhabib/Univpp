@@ -23,6 +23,7 @@ namespace Univ.modeldb
         public int id_part { get; set; }
         public string tswiya { get; set; }
         public int id_year { get; set; }
+        public string kasima { get; set; }
     
         public virtual part part { get; set; }
         public virtual year year { get; set; }

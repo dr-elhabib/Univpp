@@ -26,12 +26,12 @@ namespace Univ.page
     {
 
 
-        public Editmo7asabi(card_mo7sabi card_mo7sabi, Action accept, Action Cancel)
+        public Editmo7asabi(card_mo7sabi card_mo7sabi, Action accept)
         {
             InitializeComponent();
             this.DataContext = new Editmo7asabiVewModel(card_mo7sabi) {
                 acc=accept,
-                con=Cancel                
+            
             };
         }
 

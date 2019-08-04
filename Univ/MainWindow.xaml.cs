@@ -28,6 +28,9 @@ namespace Univ
 
             //       univdb db = new univdb();
             //  MessageBox.Show((db.processes.ToList())[0].date + "");
+            ContentApp contentApp = new ContentApp(this);
+            Ico.setValue<ContentApp>(contentApp);
+
             this.DataContext = Ico.getValue<ContentApp>();
 
         }
@@ -45,5 +48,6 @@ namespace Univ
             this.WindowState = WindowState.Minimized;
         }
 
+       
     }
 }

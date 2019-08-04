@@ -16,7 +16,7 @@ using System.Windows.Controls;
 
 namespace Univ.modelview
 {
-    class ViewMo7sabiViewModel : BaseViewModel<card_kanoni>
+   public class ViewMo7sabiViewModel : BaseViewModel<card_kanoni>
     {
 
         public bool IsSample4DialogOpen
@@ -80,22 +80,7 @@ namespace Univ.modelview
 
 
 
-        private void OpenSample4Dialog()
-        {
-            IsSample4DialogOpen = true;
-        }
-
-        private void CancelSample4Dialog()
-        {
-            IsSample4DialogOpen = false;
-            this.inTilData();
-        }
-
-        private void AcceptSample4Dialog()
-        {
-            Sample4Content = new Progressbar();
-        }
-
+        
 
         public void inTilData()
         {
@@ -106,17 +91,17 @@ namespace Univ.modelview
             this.newcost = val.part.process.NewCost;
             ItemMo7asabis = new ObservableCollection<ItemMo7asabi>(val.part.card_mo7sabi.Select(card_mo7sabi => new ItemMo7asabi(card_mo7sabi)
             {
+                ViewMo7sabiViewModel =this,
                 action_edit = (t) => {
-                    Sample4Content = new Editmo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new Editmo7asabi(t, inTilData);
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
                 },
                 start=()=>{
 
-                    OpenSample4Dialog();
-
-                    Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه البطاقة من الحصة ,لا يمكن التراجع عن الحذف",
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new YesOrNo("هل أنت متأكد من قيامك بحذف هذه البطاقة من الحصة ,لا يمكن التراجع عن الحذف",
                        async () => {
-                           AcceptSample4Dialog();
+                           Ico.getValue<ContentApp>().AcceptSample4Dialog();
                            await Task.Run(() => {
 
 
@@ -126,47 +111,50 @@ namespace Univ.modelview
                 IEnumerable<card_dafa3> get_data(card_mo7sabi card)
                 {
 
-                    var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => (c.id_part == card_mo7sabi.id_part) && (c.tswiya == null) && (c.date > card_mo7sabi.card.date));
+                    var cs = Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => (c.id_part == card_mo7sabi.id_part) && (c.kasima == null) && (c.date > card_mo7sabi.card.date));
 
                     foreach (var c in cs)
                     {
                         Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).First().nowcost -= c.Cost;
+
                     }
                     return cs;
                 }
-            foreach (var c in Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.part.Id_Pro == Ico.getValue<db>().GetUnivdb().cards.
-            ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().id_prosess && c.card.date > Ico.getValue<db>().GetUnivdb().cards.
-            ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().date)) {
-                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id==c.Id).ToList().FirstOrDefault().oldCost += card_mo7sabi.cost;
-                    Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id == c.Id).ToList().FirstOrDefault().num -= 1;
-                }
-          
-                Ico.getValue<db>().GetUnivdb().card_mo7sabi.Remove(Ico.getValue<db>().GetUnivdb().card_mo7sabi.
-                ToList().Where(c => c.Id == card_mo7sabi.Id).ToList().SingleOrDefault());
-                Ico.getValue<db>().GetUnivdb().cards.Remove(Ico.getValue<db>().GetUnivdb().cards.
-                ToList().Where(c => c.Id == card_mo7sabi.id_card).ToList().SingleOrDefault());
-                Ico.getValue<db>().savedb();
-             
-                               CancelSample4Dialog();
+                        foreach (var c in Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(c => c.part.Id_Pro == Ico.getValue<db>().GetUnivdb().cards.
+                             ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().id_prosess && c.card.date > Ico.getValue<db>().GetUnivdb().cards.
+                             ToList().Where(cl => cl.Id == card_mo7sabi.id_card).ToList().SingleOrDefault().date)) {
+                                Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id==c.Id).ToList().FirstOrDefault().oldCost += card_mo7sabi.cost;
+                                Ico.getValue<db>().GetUnivdb().card_mo7sabi.ToList().Where(ca => ca.Id == c.Id).ToList().FirstOrDefault().num -= 1;
+                            }
+                                           Ico.getValue<db>().GetUnivdb().parts.ToList().Where(p => p.Id == card_mo7sabi.id_part).FirstOrDefault().mcost -= card_mo7sabi.cost;
+                                           Ico.getValue<db>().GetUnivdb().card_mo7sabi.Remove(Ico.getValue<db>().GetUnivdb().card_mo7sabi.
+                            ToList().Where(c => c.Id == card_mo7sabi.Id).ToList().SingleOrDefault());
+                            Ico.getValue<db>().GetUnivdb().cards.Remove(Ico.getValue<db>().GetUnivdb().cards.
+                            ToList().Where(c => c.Id == card_mo7sabi.id_card).ToList().SingleOrDefault());
+                            Ico.getValue<db>().savedb();
+                               inTilData();
+                               Ico.getValue<ContentApp>().CancelSample4Dialog();
 
                            });
-
-                           
-                       },
+ },
                         () => {
 
-                            CancelSample4Dialog();
+                            Ico.getValue<ContentApp>().CancelSample4Dialog();
                         });
                 },
-                end= CancelSample4Dialog,
+                end= Ico.getValue<ContentApp>().CancelSample4Dialog,
                 addtashira = (t) => {
-                    Sample4Content = new Addtashira_mo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
-                    this.inTilData();
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
+
+                    Ico.getValue<ContentApp>().Sample4Content = new YesOrNo(" إذا أضفت التأشيرة لن تستطيع التراجع عن البطاقة الرجاء والتأكد قبل ذالك ",()=> {
+                        Ico.getValue<ContentApp>().OpenSample4Dialog();
+                        Ico.getValue<ContentApp>().Sample4Content = new Addtashira_mo7asabi(t, Ico.getValue<ContentApp>().AcceptSample4Dialog, Ico.getValue<ContentApp>().CancelSample4Dialog);
+                        
+                    }, Ico.getValue<ContentApp>().CancelSample4Dialog);
                 },
                 edittashiraaction = (t) => {
-                    Sample4Content = new Edittashira_mo7asabi(t, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new Edittashira_mo7asabi(t, Ico.getValue<ContentApp>().AcceptSample4Dialog, Ico.getValue<ContentApp>().CancelSample4Dialog);
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
                 }
 
 
@@ -183,19 +171,19 @@ namespace Univ.modelview
                 }
 
                 if (card != null && card.card.year != Ico.getValue<Date>().GetNowDate()?.Id && Ico.getValue<db>().GetUnivdb().card_sa7ab.ToList().Where(c =>
-                   c.card.id_prosess == card_kanoni.card.id_prosess&&c.card.year== Ico.getValue<Date>().GetNowDate().Id).ToList().ToList().Count == 0&& dn != 0)
+                   c.card.id_prosess == card_kanoni.card.id_prosess && c.card.year == Ico.getValue<Date>().GetNowDate().Id).ToList().ToList().Count == 0 && dn != 0)
                 {
-                    
-                    MessageBox.Show(" الرجاء التأكد من إستخراج بظاقة سحب إلتزام مسبقاا  ");
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new Messagebox(new List<string> { " الرجاء التأكد من إستخراج بظاقة سحب إلتزام مسبقاا  " }, Ico.getValue<ContentApp>().CancelSample4Dialog);
                 }
                 else {
 
-                    Sample4Content = new Addmo7asabi(card_kanoni, AcceptSample4Dialog, CancelSample4Dialog);
-                    OpenSample4Dialog();
+                    Ico.getValue<ContentApp>().Sample4Content = new Addmo7asabi(card_kanoni, inTilData );
+                    Ico.getValue<ContentApp>().OpenSample4Dialog();
                 }
             });
 
         }
-
+       
     }
     }

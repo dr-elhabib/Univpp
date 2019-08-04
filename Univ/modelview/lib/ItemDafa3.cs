@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Univ.page.lib;
 
 namespace Univ.modelview
 {
@@ -16,18 +17,22 @@ namespace Univ.modelview
         public DateTime date { get; set; }
         public double Cost { get; set; }
         public string alCost { get; set; }
+        public string kasima { get; set; } = "لا توجد يعد";
+        public string tswiyas { get; set; }
         public int num { get; set; }
         public Visibility visibility { get; set; }
         public Visibility tswiyavis { get; set; }
         public Visibility edittswiyavis { get; set; }
 
+        public Action end { get; set; }
+        public Viewdafa3VewModel Viewdafa3VewModel { get; set; }
 
         public Command remove { get; set; }
         public Command edit { get; set; }
         public Command open { get; set; }
         public Command tswiya { get; set; }
         public Command edittswiya { get; set; }
-        public Command add_Mo7asabi { get; set; }
+        public Command print { get; set; }
         public Action<double> action { get; set; }
         public Action<card_dafa3> action_edit { get; set; }
         public Action<card_dafa3> edittswiyaaction { get; set; }
@@ -40,15 +45,18 @@ namespace Univ.modelview
             this.num = card_dafa3.num;
             this.date = card_dafa3.date;
             this.alCost = card_dafa3.alcost;
+            this.tswiyas = card_dafa3.tswiya;
             visibility = Visibility.Visible;
             tswiyavis = Visibility.Visible;
             edittswiyavis = Visibility.Collapsed;
 
-            if (card_dafa3.tswiya!=null)
+            if (card_dafa3.kasima!=null)
             {
                 visibility = Visibility.Collapsed;
                 edittswiyavis = Visibility.Visible;
                 tswiyavis = Visibility.Collapsed;
+                this.kasima = card_dafa3.kasima;
+
             }
 
             remove = new Command(() => {
@@ -64,6 +72,7 @@ namespace Univ.modelview
                 action_edit(card_dafa3);
             });
             tswiya = new Command(() => {
+
             bool can = true;
             foreach (var c in Ico.getValue<db>().GetUnivdb().card_dafa3.ToList().Where(c => c.id_part == card_dafa3.id_part && c.date < card_dafa3.date))
             {
@@ -88,17 +97,25 @@ namespace Univ.modelview
 
                 edittswiyaaction(card_dafa3);
             });
-            open = new Command(() => {
-                Card_dafa3Execl Card_dafa3Execl = new Card_dafa3Execl(card_dafa3);
-                Card_dafa3Execl.CreateCard();
+
+
+            open = new Command(async () => {
+                Viewdafa3VewModel.Sample4Contentviw(new Progressbar());
+
+                await Task.Run(() => {
+                    ExcelHlper.OpenFile(card_dafa3.location);
+                    end();
+                });
+            });
+            print = new Command(async () => {
+                Viewdafa3VewModel.Sample4Contentviw(new Progressbar());
+                await Task.Run(() => {
+                    ExcelHlper.PrintFile(card_dafa3.location);
+                    end();
+                });
 
             });
-            add_Mo7asabi = new Command(() => {
-                //                Ico.getValue<ContentApp>().page = new AddPartCard(part);
 
-       //         action_Mo7asabi();
-            });
-         
         }
 
     

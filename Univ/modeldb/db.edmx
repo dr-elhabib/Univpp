@@ -37,6 +37,7 @@
           <Property Name="id_part" Type="int" Nullable="false" />
           <Property Name="tswiya" Type="text" />
           <Property Name="id_year" Type="int" Nullable="false" />
+          <Property Name="kasima" Type="text" />
         </EntityType>
         <EntityType Name="card_kanoni">
           <Key>
@@ -103,7 +104,6 @@
           <Property Name="Id_Pro" Type="int" Nullable="false" />
           <Property Name="num" Type="int" Nullable="false" />
           <Property Name="num_type" Type="int" Nullable="false" />
-          <Property Name="alpart" Type="text" Nullable="false" />
           <Property Name="nowcost" Type="double" Nullable="false" />
           <Property Name="mcost" Type="double" Nullable="false" />
         </EntityType>
@@ -118,6 +118,7 @@
           <Property Name="num" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="NewCost" Type="double" Nullable="false" />
           <Property Name="location" Type="text" Nullable="false" />
+          <Property Name="edit" Type="bool" />
         </EntityType>
         <EntityType Name="year">
           <Key>
@@ -495,6 +496,7 @@
           <Property Name="id_part" Type="Int32" Nullable="false" />
           <Property Name="tswiya" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Name="id_year" Type="Int32" Nullable="false" />
+          <Property Name="kasima" Type="String" MaxLength="65535" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="part" Relationship="Univ.card_dafa3_ibfk_1" FromRole="card_dafa3" ToRole="part" />
           <NavigationProperty Name="year" Relationship="Univ.card_dafa3_ibfk_2" FromRole="card_dafa3" ToRole="year" />
         </EntityType>
@@ -575,7 +577,6 @@
           <Property Name="Id_Pro" Type="Int32" Nullable="false" />
           <Property Name="num" Type="Int32" Nullable="false" />
           <Property Name="num_type" Type="Int32" Nullable="false" />
-          <Property Name="alpart" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Name="nowcost" Type="Double" Nullable="false" />
           <Property Name="mcost" Type="Double" Nullable="false" />
           <NavigationProperty Name="card_dafa3" Relationship="Univ.card_dafa3_ibfk_1" FromRole="part" ToRole="card_dafa3" />
@@ -595,6 +596,7 @@
           <Property Name="num" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="NewCost" Type="Double" Nullable="false" />
           <Property Name="location" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="edit" Type="Boolean" />
           <NavigationProperty Name="cards" Relationship="Univ.card_ibfk_2" FromRole="process" ToRole="card" />
           <NavigationProperty Name="parts" Relationship="Univ.par_ibfk_1" FromRole="process" ToRole="part" />
         </EntityType>
@@ -817,6 +819,7 @@
           <EntitySetMapping Name="card_dafa3">
             <EntityTypeMapping TypeName="Univ.card_dafa3">
               <MappingFragment StoreEntitySet="card_dafa3">
+                <ScalarProperty Name="kasima" ColumnName="kasima" />
                 <ScalarProperty Name="id_year" ColumnName="id_year" />
                 <ScalarProperty Name="tswiya" ColumnName="tswiya" />
                 <ScalarProperty Name="id_part" ColumnName="id_part" />
@@ -894,7 +897,6 @@
               <MappingFragment StoreEntitySet="part">
                 <ScalarProperty Name="mcost" ColumnName="mcost" />
                 <ScalarProperty Name="nowcost" ColumnName="nowcost" />
-                <ScalarProperty Name="alpart" ColumnName="alpart" />
                 <ScalarProperty Name="num_type" ColumnName="num_type" />
                 <ScalarProperty Name="num" ColumnName="num" />
                 <ScalarProperty Name="Id_Pro" ColumnName="Id_Pro" />
@@ -907,6 +909,7 @@
           <EntitySetMapping Name="processes">
             <EntityTypeMapping TypeName="Univ.process">
               <MappingFragment StoreEntitySet="processes">
+                <ScalarProperty Name="edit" ColumnName="edit" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="NewCost" ColumnName="NewCost" />
                 <ScalarProperty Name="num" ColumnName="num" />

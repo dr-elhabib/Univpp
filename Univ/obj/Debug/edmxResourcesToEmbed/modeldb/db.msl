@@ -25,6 +25,7 @@
     <EntitySetMapping Name="card_dafa3">
       <EntityTypeMapping TypeName="Univ.card_dafa3">
         <MappingFragment StoreEntitySet="card_dafa3">
+          <ScalarProperty Name="kasima" ColumnName="kasima" />
           <ScalarProperty Name="id_year" ColumnName="id_year" />
           <ScalarProperty Name="tswiya" ColumnName="tswiya" />
           <ScalarProperty Name="id_part" ColumnName="id_part" />
@@ -102,7 +103,6 @@
         <MappingFragment StoreEntitySet="part">
           <ScalarProperty Name="mcost" ColumnName="mcost" />
           <ScalarProperty Name="nowcost" ColumnName="nowcost" />
-          <ScalarProperty Name="alpart" ColumnName="alpart" />
           <ScalarProperty Name="num_type" ColumnName="num_type" />
           <ScalarProperty Name="num" ColumnName="num" />
           <ScalarProperty Name="Id_Pro" ColumnName="Id_Pro" />
@@ -115,6 +115,7 @@
     <EntitySetMapping Name="processes">
       <EntityTypeMapping TypeName="Univ.process">
         <MappingFragment StoreEntitySet="processes">
+          <ScalarProperty Name="edit" ColumnName="edit" />
           <ScalarProperty Name="location" ColumnName="location" />
           <ScalarProperty Name="NewCost" ColumnName="NewCost" />
           <ScalarProperty Name="num" ColumnName="num" />

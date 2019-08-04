@@ -29,7 +29,6 @@ namespace Univ.modeldb
         public int Id_Pro { get; set; }
         public int num { get; set; }
         public int num_type { get; set; }
-        public string alpart { get; set; }
         public double nowcost { get; set; }
         public double mcost { get; set; }
     

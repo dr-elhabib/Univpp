@@ -140,6 +140,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="page\card\Editdafa3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="page\card\Adddafa3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -169,10 +173,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="page\card\Addtswiya.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="page\card\Editdafa3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -220,11 +220,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="page\client\EditClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="page\client\AddClient.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="page\client\ViewClient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\lib\Messagebox.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -271,6 +279,10 @@
     <Page Include="page\processes\ViewProcesses.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\wel\welcomme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="res\style\Animation.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -363,6 +375,7 @@
     <Compile Include="modelview\card\ViewkanoniViewModel .cs" />
     <Compile Include="modelview\card\ViewMo7sabiViewModel.cs" />
     <Compile Include="modelview\card\Viewsa7abViewModel.cs" />
+    <Compile Include="modelview\client\EditclientVievModel.cs" />
     <Compile Include="modelview\client\AddclientVievModel.cs" />
     <Compile Include="modelview\client\ClientPartViewModel.cs" />
     <Compile Include="modelview\client\ViewClientViewModel.cs" />
@@ -370,6 +383,7 @@
     <Compile Include="modelview\lib\ItemDafa3.cs" />
     <Compile Include="modelview\lib\ItemMo7asabi.cs" />
     <Compile Include="modelview\lib\ItemPart .cs" />
+    <Compile Include="modelview\lib\MessageboxModelView.cs" />
     <Compile Include="modelview\lib\YesOrNoModelView.cs" />
     <Compile Include="modelview\lib\Itemsa7ab.cs" />
     <Compile Include="modelview\MainViewModel.cs" />
@@ -382,6 +396,9 @@
     <Compile Include="modelview\processes\processes.cs" />
     <Compile Include="modelview\processes\processesViewModel.cs" />
     <Compile Include="modelview\processes\ViewProcessViewModel.cs" />
+    <Compile Include="page\card\Editdafa3.xaml.cs">
+      <DependentUpon>Editdafa3.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\card\Adddafa3.xaml.cs">
       <DependentUpon>Adddafa3.xaml</DependentUpon>
     </Compile>
@@ -405,9 +422,6 @@
     </Compile>
     <Compile Include="page\card\Addtswiya.xaml.cs">
       <DependentUpon>Addtswiya.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="page\card\Editdafa3.xaml.cs">
-      <DependentUpon>Editdafa3.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\card\Editmo7asabi.xaml.cs">
       <DependentUpon>Editmo7asabi.xaml</DependentUpon>
@@ -442,11 +456,17 @@
     <Compile Include="page\card\Viewsa7ab.xaml.cs">
       <DependentUpon>Viewsa7ab.xaml</DependentUpon>
     </Compile>
+    <Compile Include="page\client\EditClient.xaml.cs">
+      <DependentUpon>EditClient.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\client\AddClient.xaml.cs">
       <DependentUpon>AddClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\client\ViewClient.xaml.cs">
       <DependentUpon>ViewClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\lib\Messagebox.xaml.cs">
+      <DependentUpon>Messagebox.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\lib\YesOrNo.xaml.cs">
       <DependentUpon>YesOrNo.xaml</DependentUpon>
@@ -480,6 +500,9 @@
     </Compile>
     <Compile Include="page\processes\ViewProcesses.xaml.cs">
       <DependentUpon>ViewProcesses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\wel\welcomme.xaml.cs">
+      <DependentUpon>welcomme.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>

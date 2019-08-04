@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using Univ.page.lib;
 
 namespace Univ.modelview
 {
@@ -20,8 +21,10 @@ namespace Univ.modelview
         public string  oldcost { get; set; }
         public int num { get; set; }
         public Command open { get; set; }
+        public Command print { get; set; }
         public Action end { get; set; }
         public Action start { get; set; }
+        public Viewsa7abViewModel Viewsa7abViewModel { get; set; }
 
         public Visibility tashiravis { get; set; }
         public Visibility edittashiravis { get; set; }
@@ -37,7 +40,7 @@ namespace Univ.modelview
             this.num = card_sa7ab.card.num;
             this.date = card_sa7ab.card.date; ;
             this.oldcost = String.Format("{0:0.00}", card_sa7ab.old_cost);
-            this.nowcost = String.Format("{0:0.00}", card_sa7ab.old_cost- card_sa7ab.cost);
+            this.nowcost = String.Format("{0:0.00}", card_sa7ab.old_cost - card_sa7ab.cost);
 
 
             tashiravis = Visibility.Visible;
@@ -46,15 +49,11 @@ namespace Univ.modelview
             if (card_sa7ab.visa != null)
             {
                 edittashiravis = Visibility.Visible;
-                tashiravis= Visibility.Collapsed;
+                tashiravis = Visibility.Collapsed;
                 visa = card_sa7ab.visa;
             }
-            
 
-            open = new Command(() => {
-            //    Card_mo7asabiExecl card_ = new Card_mo7asabiExecl(card_sa7ab);
-              //  card_.CreateCard();
-            });
+
             tashira = new Command(() => {
 
                 addtashira(card_sa7ab);
@@ -63,9 +62,28 @@ namespace Univ.modelview
 
                 edittashiraaction(card_sa7ab);
             });
-         
-        }
 
-    
+            open = new Command(async () => {
+                Viewsa7abViewModel.Sample4Contentviw(new Progressbar());
+
+                await Task.Run(() => {
+                    ExcelHlper.OpenFile(card_sa7ab.card.location);
+                    end();
+                });
+            });
+            print = new Command(async () =>
+            {
+                Viewsa7abViewModel.Sample4Contentviw(new Progressbar());
+                await Task.Run(() =>
+                {
+                    ExcelHlper.PrintFile(card_sa7ab.card.location);
+                    end();
+                });
+
+            });
+            }
+
+
+
 }
 }
