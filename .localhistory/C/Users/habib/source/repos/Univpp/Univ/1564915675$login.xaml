@@ -1,0 +1,70 @@
+﻿<Window x:Class="Univ.login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Univ"
+        mc:Ignorable="d"
+        Title="login" Height="500" Width="800"
+         ResizeMode="NoResize" 
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+ FlowDirection="RightToLeft"
+        FontFamily="{StaticResource vip}"
+        Foreground="White"
+        FontSize="18"
+        BorderThickness="1"
+        BorderBrush="Black"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        >
+    
+        <StackPanel  Orientation="Horizontal">
+
+        <StackPanel Width="400">
+            <Image Height="200"  Width="250" Source="res/image/logo.png" Stretch="Fill" Margin="30"/>
+
+        </StackPanel>
+        <Grid Width="400"  Background="#FFAB00" >
+            <Button Margin="5" Style="{StaticResource PowerButton}" 
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Right"
+                    
+                    Click="Power">
+                <materialDesign:PackIcon Foreground="White" Kind="Power"/>
+            </Button>
+            <TextBlock
+                Foreground="White"
+                      VerticalAlignment="Top" Margin="4,100,-4,0" 
+                       FontSize="50"
+                       FontFamily="{StaticResource vip}" FontWeight="Bold" TextAlignment="Center" Text="تسجيل الدخول "/>
+            <StackPanel VerticalAlignment="Center" Margin=" 0 30  0 0 ">
+
+                <StackPanel Margin="3 10 0 0" Orientation="Vertical">
+                   
+                    <TextBox Width="250"
+                            materialDesign:HintAssist.Hint=" إسم المستخدم"
+                             Foreground="Black" Background="White" Margin="5" BorderThickness="1" Padding="3" Text="{Binding cost}"  />
+                </StackPanel>
+
+                <StackPanel Margin="3 10 0 0" Orientation="Vertical">
+                                      <TextBox Foreground="Black"
+                               materialDesign:HintAssist.Hint="كلمة المرور"
+                             Background="White" Width="250" Margin="5" BorderThickness="1"
+                                               
+Padding="3" Text="{Binding cost}"  />
+                </StackPanel>
+            </StackPanel>
+            <StackPanel VerticalAlignment="Bottom" Margin="0 0 0 50">
+                <Button
+                    FontSize="25"
+                    Style="{StaticResource MaterialDesignRaisedLightButton}"
+                    Background="Transparent" Foreground="White" Width="150" Height="45" 
+                    BorderBrush="White"
+                    FontWeight="Bold"
+                    BorderThickness="1"  > 
+                    دخول
+                </Button>
+            </StackPanel>
+        </Grid>
+    </StackPanel>
+
+</Window>

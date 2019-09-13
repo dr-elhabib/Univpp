@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Univ.modeldb;
 using Univ.page.lib;
 
 namespace Univ.lib
@@ -14,12 +15,12 @@ namespace Univ.lib
     class IO
     {
         private string Path { get; set; }
-        private string TemplatesPath { get; set; } = "C:\\Users\\habib\\source\\repos\\Univpp\\Univ\\template";
+        private string TemplatesPath { get; set; } = Ico.getValue<setting>().locationTem;
         public IO(string path = null)
         {
             if (path == null)
             {
-                this.Path = "C:\\ملفات";
+                this.Path = Ico.getValue<setting>().locationFile;
                 if (!System.IO.Directory.Exists(Path))
                 {
                     System.IO.Directory.CreateDirectory(Path);

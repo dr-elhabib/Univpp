@@ -181,10 +181,10 @@
                                 Foreground="#FF313131" 
                     BorderThickness="0"
                                 Background="Transparent"
-                    Command="{Binding users}"
+                    Command="{Binding account}"
                     >
                                 <StackPanel Orientation="Horizontal"  HorizontalAlignment="Right" Margin="0 0">
-                                    <TextBlock   Text="المستخدمين " Margin="10"/>
+                                    <TextBlock   Text="المستخدم " Margin="10"/>
                                     <materialDesign:PackIcon Kind="UserGroup" Width="20" Height="20"  Margin="5" VerticalAlignment="Center"/>
                                 </StackPanel>
                             </Button>

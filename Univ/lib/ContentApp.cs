@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using Univ.page.lib;
+using Univ.modeldb;
 
 namespace Univ.lib
 {
@@ -35,10 +36,16 @@ namespace Univ.lib
         public Window window { get; set; }
 
         public Command btnclose { get; set; } 
-        public Command btnmenu { get; set; } 
+        public Command btnmenu { get; set; }
+
+
         public Command HOME { get; set; } 
         public Command clients { get; set; } 
         public Command processes { get; set; } 
+        public Command account { get; set; } 
+        public Command chrts { get; set; } 
+        public Command settings { get; set; } 
+        public Command logout { get; set; } 
 
         public Visibility vismenu { get; set; } 
         public Visibility visbtn { get; set; } 
@@ -50,6 +57,24 @@ namespace Univ.lib
             HOME = new Command(() => {
                 page = new welcomme();
                 prev = null;
+            });
+            account = new Command(() => {
+                page = new ViewAcount();
+                prev = null;
+            });
+            settings = new Command(() => {
+                page = new Settings();
+                prev = null;
+            });
+            logout = new Command(() => {
+                
+                login  login = new login();
+                login.Show();
+                App.Current.MainWindow.Close();
+                App.Current.MainWindow=login;
+                 Ico.getValue<db>().GetUnivdb().users.ToList().Where(c => c.id == Ico.getValue<user>().id).ToList().FirstOrDefault().date_gust = DateTime.Now;
+                Ico.getValue<db>().savedb();
+                ;
             });
             clients = new Command(() => {
                 page = new ViewClient();

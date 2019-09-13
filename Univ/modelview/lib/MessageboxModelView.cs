@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 
 namespace Univ.modelview
 {
@@ -14,10 +15,22 @@ namespace Univ.modelview
     {
         public List<Message> Mes { set; get; }
         public Command ok { get; set; }
-        public MessageboxModelView(List<string> s,Action okaction)
+        public string imoji { get; set; } = null;
+        public SolidColorBrush brush { get; set; } 
+        public MessageboxModelView(List<string> s,Action okaction,bool happy=false)
         {
+            var color = System.Drawing.Color.Orange;
+            brush = new SolidColorBrush(Color.FromArgb(color.A,color.R,color.G,color.B));
             this.Mes = s.Select(sr => new Message() { message= "- "+sr}).ToList() ;
-           
+            if (happy)
+            {
+
+                 color = System.Drawing.Color.Green;
+                imoji = "SmileyHappy";
+                brush = new SolidColorBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
+
+
+            }
             this.ok = new Command(()=> {
                 okaction();
             });

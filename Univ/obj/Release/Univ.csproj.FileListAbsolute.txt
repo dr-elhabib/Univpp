@@ -102,3 +102,11 @@ C:\Users\habib\source\repos\Univpp\Univ\obj\Release\Univ.csproj.Fody.CopyLocal.c
 C:\Users\habib\source\repos\Univpp\Univ\obj\Release\Univ.csproj.CopyComplete
 C:\Users\habib\source\repos\Univpp\Univ\obj\Release\Univ.exe
 C:\Users\habib\source\repos\Univpp\Univ\obj\Release\Univ.pdb
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\login.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\page\client\EditClient.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\page\lib\Messagebox.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\page\wel\welcomme.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\login.baml
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\page\client\EditClient.baml
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\page\lib\Messagebox.baml
+C:\Users\habib\source\repos\Univpp\Univ\obj\Release\page\wel\welcomme.baml

@@ -11,6 +11,8 @@
     <EntitySet Name="p_sa7ab" EntityType="Univ.p_sa7ab" />
     <EntitySet Name="parts" EntityType="Univ.part" />
     <EntitySet Name="processes" EntityType="Univ.process" />
+    <EntitySet Name="settings" EntityType="Univ.setting" />
+    <EntitySet Name="users" EntityType="Univ.user" />
     <EntitySet Name="years" EntityType="Univ.year" />
     <AssociationSet Name="card_7isab_ibfk_1" Association="Univ.card_7isab_ibfk_1">
       <End Role="card" EntitySet="cards" />
@@ -215,6 +217,26 @@
     <Property Name="edit" Type="Boolean" />
     <NavigationProperty Name="cards" Relationship="Univ.card_ibfk_2" FromRole="process" ToRole="card" />
     <NavigationProperty Name="parts" Relationship="Univ.par_ibfk_1" FromRole="process" ToRole="part" />
+  </EntityType>
+  <EntityType Name="setting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="locationTem" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="locationFile" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="passoword" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="date_gust" Type="DateTime" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+    <Property Name="date_edit" Type="DateTime" Nullable="false" />
   </EntityType>
   <EntityType Name="year">
     <Key>

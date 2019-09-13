@@ -120,6 +120,26 @@
           <Property Name="location" Type="text" Nullable="false" />
           <Property Name="edit" Type="bool" />
         </EntityType>
+        <EntityType Name="settings">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="locationTem" Type="text" Nullable="false" />
+          <Property Name="locationFile" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="passoword" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="date_gust" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="name" Type="text" Nullable="false" />
+          <Property Name="date_edit" Type="datetime" Precision="0" Nullable="false" />
+        </EntityType>
         <EntityType Name="year">
           <Key>
             <PropertyRef Name="Id" />
@@ -318,6 +338,8 @@
           <EntitySet Name="p_sa7ab" EntityType="Self.p_sa7ab" Schema="db_univ" store:Type="Tables" />
           <EntitySet Name="part" EntityType="Self.part" Schema="db_univ" store:Type="Tables" />
           <EntitySet Name="processes" EntityType="Self.processes" Schema="db_univ" store:Type="Tables" />
+          <EntitySet Name="settings" EntityType="Self.settings" Schema="db_univ" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="db_univ" store:Type="Tables" />
           <EntitySet Name="year" EntityType="Self.year" Schema="db_univ" store:Type="Tables" />
           <AssociationSet Name="card_7isab_ibfk_1" Association="Self.card_7isab_ibfk_1">
             <End Role="card" EntitySet="card" />
@@ -395,6 +417,8 @@
           <EntitySet Name="p_sa7ab" EntityType="Univ.p_sa7ab" />
           <EntitySet Name="parts" EntityType="Univ.part" />
           <EntitySet Name="processes" EntityType="Univ.process" />
+          <EntitySet Name="settings" EntityType="Univ.setting" />
+          <EntitySet Name="users" EntityType="Univ.user" />
           <EntitySet Name="years" EntityType="Univ.year" />
           <AssociationSet Name="card_7isab_ibfk_1" Association="Univ.card_7isab_ibfk_1">
             <End Role="card" EntitySet="cards" />
@@ -599,6 +623,26 @@
           <Property Name="edit" Type="Boolean" />
           <NavigationProperty Name="cards" Relationship="Univ.card_ibfk_2" FromRole="process" ToRole="card" />
           <NavigationProperty Name="parts" Relationship="Univ.par_ibfk_1" FromRole="process" ToRole="part" />
+        </EntityType>
+        <EntityType Name="setting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="locationTem" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="locationFile" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="passoword" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="date_gust" Type="DateTime" Nullable="false" />
+          <Property Name="name" Type="String" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Name="date_edit" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="year">
           <Key>
@@ -917,6 +961,28 @@
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="settings">
+            <EntityTypeMapping TypeName="Univ.setting">
+              <MappingFragment StoreEntitySet="settings">
+                <ScalarProperty Name="locationFile" ColumnName="locationFile" />
+                <ScalarProperty Name="locationTem" ColumnName="locationTem" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="Univ.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="date_edit" ColumnName="date_edit" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="date_gust" ColumnName="date_gust" />
+                <ScalarProperty Name="passoword" ColumnName="passoword" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

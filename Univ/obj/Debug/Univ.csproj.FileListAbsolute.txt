@@ -148,3 +148,13 @@ C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\Univ.csproj.Fody.CopyLocal.cac
 C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\Univ.csproj.CopyComplete
 C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\Univ.exe
 C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\Univ.pdb
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\login.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\login.baml
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\page\account\ViewAcount.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\page\account\ViewAcount.baml
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\page\account\EditAccount.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\page\account\EditAccount.baml
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\page\Settings.g.cs
+C:\Users\habib\source\repos\Univpp\Univ\obj\Debug\page\Settings.baml
+C:\Users\habib\source\repos\Univpp\Univ\bin\Debug\Ookii.Dialogs.Wpf.dll
+C:\Users\habib\source\repos\Univpp\Univ\bin\Debug\Ookii.Dialogs.Wpf.xml

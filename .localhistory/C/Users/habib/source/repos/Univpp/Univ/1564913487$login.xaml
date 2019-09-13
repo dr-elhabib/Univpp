@@ -1,0 +1,25 @@
+﻿<Window x:Class="Univ.login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Univ"
+        mc:Ignorable="d"
+        Title="login" Height="400" Width="600"
+         ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        >
+    <Border CornerRadius="50" BorderThickness="2" BorderBrush="Aquamarine" Background="Transparent">
+        <StackPanel  Orientation="Horizontal">
+      
+        <StackPanel Width="300"> 
+            
+        </StackPanel>
+        <StackPanel>
+            <Image Height="140" Source="res/image/logo.png" Stretch="Fill" Margin="30"/>
+
+        </StackPanel>
+    </StackPanel>
+    </Border>
+
+</Window>

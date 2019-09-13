@@ -23,16 +23,22 @@ namespace Univ.lib
         {
             ikernel.Bind<db>().ToConstant(new db());
             ikernel.Bind<Date>().ToConstant(new Date());
+            ikernel.Bind<setting>().ToConstant(Ico.getValue<db>().GetUnivdb().settings.ToList().FirstOrDefault());
             ikernel.Bind<IO>().ToConstant(new IO());
         }
         public static T getValue<T>() {
 
-            return ikernel.Get<T>();
+            return ikernel.TryGet<T>();
         }
         public static void setValue<T>( T t)
         {
 
             ikernel.Bind<T>().ToConstant(t);
+        }
+        public static void ResetValue<T>(T t)
+        {
+
+            ikernel.Rebind<T>().ToConstant(t);
         }
 
 

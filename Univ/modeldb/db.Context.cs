@@ -35,6 +35,8 @@ namespace Univ.modeldb
         public virtual DbSet<p_sa7ab> p_sa7ab { get; set; }
         public virtual DbSet<part> parts { get; set; }
         public virtual DbSet<process> processes { get; set; }
+        public virtual DbSet<setting> settings { get; set; }
+        public virtual DbSet<user> users { get; set; }
         public virtual DbSet<year> years { get; set; }
     }
 }

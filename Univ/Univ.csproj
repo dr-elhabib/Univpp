@@ -74,6 +74,9 @@
     <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
     </Reference>
+    <Reference Include="Ookii.Dialogs.Wpf, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0c15020868fd6249, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ookii.Dialogs.1.0\lib\net35\Ookii.Dialogs.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="PropertyChanged, Version=2.6.1.0, Culture=neutral, PublicKeyToken=ee3ee20bcf148ddd, processorArchitecture=MSIL">
       <HintPath>..\packages\PropertyChanged.Fody.2.6.1\lib\net452\PropertyChanged.dll</HintPath>
     </Reference>
@@ -101,12 +104,17 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="login.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -136,10 +144,21 @@
     <Compile Include="lib\Ico.cs" />
     <Compile Include="lib\IO.cs" />
     <Compile Include="lib\MPage.cs" />
+    <Compile Include="login.xaml.cs">
+      <DependentUpon>login.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="page\account\EditAccount.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="page\account\ViewAcount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="page\card\Editdafa3.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -280,6 +299,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="page\Settings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="page\wel\welcomme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -351,9 +374,17 @@
     <Compile Include="modeldb\p_sa7ab.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
+    <Compile Include="modeldb\setting.cs">
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
+    <Compile Include="modeldb\user.cs">
+      <DependentUpon>db.tt</DependentUpon>
+    </Compile>
     <Compile Include="modeldb\year.cs">
       <DependentUpon>db.tt</DependentUpon>
     </Compile>
+    <Compile Include="modelview\account\EditAccountViewModel.cs" />
+    <Compile Include="modelview\account\ViewAccountViewModel.cs" />
     <Compile Include="modelview\BaseViewModel.cs" />
     <Compile Include="modelview\card\Adddafa3VewModel.cs" />
     <Compile Include="modelview\card\Addmo7asabiVewModel.cs" />
@@ -386,6 +417,7 @@
     <Compile Include="modelview\lib\MessageboxModelView.cs" />
     <Compile Include="modelview\lib\YesOrNoModelView.cs" />
     <Compile Include="modelview\lib\Itemsa7ab.cs" />
+    <Compile Include="modelview\loginModelView.cs" />
     <Compile Include="modelview\MainViewModel.cs" />
     <Compile Include="modelview\part\AddpartCardViewModel.cs" />
     <Compile Include="modelview\part\AddpartViewModel.cs" />
@@ -396,6 +428,13 @@
     <Compile Include="modelview\processes\processes.cs" />
     <Compile Include="modelview\processes\processesViewModel.cs" />
     <Compile Include="modelview\processes\ViewProcessViewModel.cs" />
+    <Compile Include="modelview\SettingModelView.cs" />
+    <Compile Include="page\account\EditAccount.xaml.cs">
+      <DependentUpon>EditAccount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\account\ViewAcount.xaml.cs">
+      <DependentUpon>ViewAcount.xaml</DependentUpon>
+    </Compile>
     <Compile Include="page\card\Editdafa3.xaml.cs">
       <DependentUpon>Editdafa3.xaml</DependentUpon>
     </Compile>
@@ -500,6 +539,9 @@
     </Compile>
     <Compile Include="page\processes\ViewProcesses.xaml.cs">
       <DependentUpon>ViewProcesses.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="page\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="page\wel\welcomme.xaml.cs">
       <DependentUpon>welcomme.xaml</DependentUpon>

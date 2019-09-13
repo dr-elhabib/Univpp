@@ -126,6 +126,28 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="settings">
+      <EntityTypeMapping TypeName="Univ.setting">
+        <MappingFragment StoreEntitySet="settings">
+          <ScalarProperty Name="locationFile" ColumnName="locationFile" />
+          <ScalarProperty Name="locationTem" ColumnName="locationTem" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="Univ.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="date_edit" ColumnName="date_edit" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="date_gust" ColumnName="date_gust" />
+          <ScalarProperty Name="passoword" ColumnName="passoword" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="years">
       <EntityTypeMapping TypeName="Univ.year">
         <MappingFragment StoreEntitySet="year">

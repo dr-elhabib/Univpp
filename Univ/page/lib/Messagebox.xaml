@@ -7,14 +7,15 @@
              FontFamily="{ StaticResource Medium}"
             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
-             BorderThickness="1"  BorderBrush="Orange"
+             BorderThickness="1"  BorderBrush="{Binding brush}"
              FlowDirection="RightToLeft"
 >
     <materialDesign:Card Width="500" Padding="5"  Background="White">
         <StackPanel>
             <StackPanel  >
-                <materialDesign:PackIcon Kind="MessageReplyText" Height="60"
-                                         Foreground="Orange"
+                <materialDesign:PackIcon Kind="{ Binding imoji ,FallbackValue='MessageReplyText'}"
+                     Height="60"
+                                         Foreground="{Binding brush}"
                                          Margin="0 10 0 0 "
                                          Width="60"
                                          HorizontalAlignment="Center" 
@@ -41,7 +42,7 @@
                 <Button
           Style="{StaticResource MaterialDesignFlatButton}"
           IsDefault="True"
-                    Foreground="Orange"
+                    Foreground="{Binding brush}"
           Margin="8"
           Command="{Binding ok}">
                 إغلاق    

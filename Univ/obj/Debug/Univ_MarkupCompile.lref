@@ -1,6 +1,9 @@
 ﻿
 FC:\Users\habib\source\repos\Univpp\Univ\App.xaml;;
+FC:\Users\habib\source\repos\Univpp\Univ\login.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\MainWindow.xaml;;
+FC:\Users\habib\source\repos\Univpp\Univ\page\account\EditAccount.xaml;;
+FC:\Users\habib\source\repos\Univpp\Univ\page\account\ViewAcount.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\page\card\Editdafa3.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\page\card\Adddafa3.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\page\card\Addmo7asabi .xaml;;
@@ -36,6 +39,7 @@ FC:\Users\habib\source\repos\Univpp\Univ\page\processes\EditProcesses.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\page\processes\NewProcesses.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\page\processes\PCrad.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\page\processes\ViewProcesses.xaml;;
+FC:\Users\habib\source\repos\Univpp\Univ\page\Settings.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\page\wel\welcomme.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\res\style\Animation.xaml;;
 FC:\Users\habib\source\repos\Univpp\Univ\res\style\Fonts.xaml;;

@@ -28,5 +28,6 @@ namespace Univ.page
             InitializeComponent();
             this.DataContext = new AddpartViewModel(process);
         }
+        
     }
 }

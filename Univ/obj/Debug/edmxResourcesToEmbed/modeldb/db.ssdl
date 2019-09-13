@@ -115,6 +115,26 @@
     <Property Name="location" Type="text" Nullable="false" />
     <Property Name="edit" Type="bool" />
   </EntityType>
+  <EntityType Name="settings">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="date" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="locationTem" Type="text" Nullable="false" />
+    <Property Name="locationFile" Type="text" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="passoword" Type="varchar" MaxLength="255" Nullable="false" />
+    <Property Name="date_gust" Type="datetime" Precision="0" Nullable="false" />
+    <Property Name="name" Type="text" Nullable="false" />
+    <Property Name="date_edit" Type="datetime" Precision="0" Nullable="false" />
+  </EntityType>
   <EntityType Name="year">
     <Key>
       <PropertyRef Name="Id" />
@@ -313,6 +333,8 @@
     <EntitySet Name="p_sa7ab" EntityType="Self.p_sa7ab" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="part" EntityType="Self.part" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="processes" EntityType="Self.processes" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="settings" EntityType="Self.settings" Schema="db_univ" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="db_univ" store:Type="Tables" />
     <EntitySet Name="year" EntityType="Self.year" Schema="db_univ" store:Type="Tables" />
     <AssociationSet Name="card_7isab_ibfk_1" Association="Self.card_7isab_ibfk_1">
       <End Role="card" EntitySet="card" />

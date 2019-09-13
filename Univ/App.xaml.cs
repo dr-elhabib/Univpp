@@ -20,7 +20,7 @@ namespace Univ
         {
             base.OnStartup(e);
             Ico.SetUp();
-            Current.MainWindow = new MainWindow();
+            Current.MainWindow = new login();
             Current.MainWindow.Show();
         }
 

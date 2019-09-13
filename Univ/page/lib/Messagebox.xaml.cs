@@ -21,10 +21,10 @@ namespace Univ.page.lib
     /// </summary>
     public partial class Messagebox : UserControl
     {
-        public Messagebox(List<string> s, Action OK)
+        public Messagebox(List<string> s, Action OK,bool happy=false)
         {
             InitializeComponent();
-            this.DataContext = new MessageboxModelView(s,OK);
+            this.DataContext = new MessageboxModelView(s,OK, happy);
            
         }
     }

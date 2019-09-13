@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace Univ.lib
 {
-    class CommandPar : ICommand
+  public  class CommandPar : ICommand
     {
 
         private Action<object>  Action;
